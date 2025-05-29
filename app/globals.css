@@ -84,3 +84,9 @@ body {
     transform: var(--petal-fall, scale(1) rotate(0deg));
   }
 }
+
+@layer components {
+  .medium-bold {
+    @apply font-semibold text-blue-600;
+  }
+}

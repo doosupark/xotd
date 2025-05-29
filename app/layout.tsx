@@ -42,7 +42,7 @@ export default function RootLayout({
           <main className="flex-1 flex flex-col min-h-screen">
             {/* 모바일 헤더 CI */}
             <header className="md:hidden flex items-center justify-center h-16 border-b border-gray-100 bg-white">
-              <Image src="/images/CI/CI_Logo_small.png" alt="XOTD CI" width={40} height={40} priority />
+              <Image src="/images/CI/CI_Logo_small.png" alt="XOTD CI" width={40} height={40} />
             </header>
             <div className="flex-1 w-full max-w-xl mx-auto px-2 sm:px-4 py-4">
               {children}
