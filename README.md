@@ -1,0 +1,2 @@
+# xotd
+genJPnames
