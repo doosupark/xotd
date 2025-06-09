@@ -1,15 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import mbtiTravelPersona from "@/lib/mbtiNameData";
+import mbtiTravelPersona from "../../lib/mbtiNameData";
 import maleNames from "@/../public/data/male_names.json";
 import femaleNames from "@/../public/data/female_names.json";
-
-// Add debug logs
-console.log("Loaded MBTI name data:", {
-  maleNamesKeys: Object.keys(maleNames),
-  femaleNamesKeys: Object.keys(femaleNames)
-});
 
 const GENDER = ["male", "female"] as const;
 const GENDER_ICON = { male: "♂", female: "♀" };
@@ -145,6 +139,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
                     height={isSelected ? 56 : 16}
                     className="object-contain mx-auto"
                     style={{ width: "auto", height: "auto", display: 'block', margin: '0 auto' }}
+                    quality={85}
+                    loading="eager"
+                    sizes="(max-width: 768px) 56px, 56px"
                   />
                 )}
               </div>
@@ -242,8 +239,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
       {/* 이름 생성 버튼 */}
       <button
         type="button"
-        className={`w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg transition-all duration-200
-          ${isComplete ? "bg-purple-500 hover:bg-purple-600" : "bg-gray-300 cursor-not-allowed"}`}
+        className={`w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg transition-all duration-200 ${
+          isComplete ? "bg-[#0080ff] hover:bg-[#0070e0]" : "bg-gray-300 cursor-not-allowed"
+        }`}
         disabled={!isComplete}
         onClick={handleGenerate}
       >

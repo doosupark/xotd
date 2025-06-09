@@ -82,7 +82,17 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
               animation: isVisible ? 'result-img-pop 0.7s cubic-bezier(0.4,1.4,0.6,1) 0s 1' : 'none',
             }}
           >
-            <Image src={result.imageUrl} alt="MBTI 성향 이미지" width={imageSize} height={imageSize} className="object-contain mx-auto" priority />
+            <Image 
+              src={result.imageUrl} 
+              alt={`${result.mbti} ${result.gender === 'male' ? '남성' : '여성'} MBTI 성향 이미지`} 
+              width={imageSize} 
+              height={imageSize} 
+              className="object-contain mx-auto" 
+              priority 
+              quality={85}
+              loading="eager"
+              sizes="(max-width: 768px) 168px, 168px"
+            />
           </div>
           {/* 히라가나 (이미지 하단에 겹치게, 20% 더 작게) */}
           <div
@@ -111,14 +121,14 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
       </div>
       {/* 복사/공유 버튼 */}
       <div className="flex gap-2 mb-2">
-        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("hiragana")}> 
+        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("hiragana")} aria-label="히라가나 복사하기"> 
           {copySuccess === "hiragana" ? "복사 완료!" : "히라가나 복사하기"}
         </button>
-        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("katakana")}> 
+        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("katakana")} aria-label="가타카나 복사하기"> 
           {copySuccess === "katakana" ? "복사 완료!" : "가타카나 복사하기"}
         </button>
       </div>
-      <button className="w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare}>결과 공유하기</button>
+      <button className="w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
       {/* 최하단 광고 영역 */}
       <AdBanner position="bottom" />
     </section>

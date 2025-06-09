@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 
 interface NameInputFormProps {
   onConvert?: (familyName: string, givenName: string) => void;
@@ -23,6 +24,8 @@ export default function NameInputForm({ onConvert }: NameInputFormProps) {
     }
   };
 
+  const isComplete = familyName.length > 0 && givenName.length > 0;
+
   return (
     <form className="flex flex-col gap-4 w-full items-center" onSubmit={handleSubmit}>
       <div className="flex flex-row gap-2 w-[50%] min-w-[240px] max-w-md">
@@ -30,7 +33,9 @@ export default function NameInputForm({ onConvert }: NameInputFormProps) {
           type="text"
           maxLength={4}
           placeholder="성"
-          className="border rounded px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-1/2 min-w-[120px]"
+          className={`border rounded px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-1/2 min-w-[120px] ${
+            familyName.length === 0 ? "bg-gray-50" : "bg-white"
+          }`}
           value={familyName}
           onChange={handleFamilyChange}
         />
@@ -38,16 +43,21 @@ export default function NameInputForm({ onConvert }: NameInputFormProps) {
           type="text"
           maxLength={4}
           placeholder="이름"
-          className="border rounded px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-1/2 min-w-[120px]"
+          className={`border rounded px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-purple-400 w-1/2 min-w-[120px] ${
+            givenName.length === 0 ? "bg-gray-50" : "bg-white"
+          }`}
           value={givenName}
           onChange={handleGivenChange}
         />
       </div>
       <button
         type="submit"
-        className="py-2 rounded font-bold text-white text-lg bg-purple-500 hover:bg-purple-600 transition-colors w-[50%] min-w-[240px] max-w-md"
+        className={`w-[50%] min-w-[240px] max-w-md py-3 rounded-lg font-bold text-white text-lg transition-all duration-200 ${
+          isComplete ? "bg-[#0080ff] hover:bg-[#0070e0]" : "bg-gray-300 cursor-not-allowed"
+        }`}
+        disabled={!isComplete}
       >
-        일본이름 생성하기
+        일본 이름으로 변환하기
       </button>
     </form>
   );
