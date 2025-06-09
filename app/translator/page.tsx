@@ -26,15 +26,11 @@ export default function TranslatorPage() {
   };
 
   return (
-    <section className="flex flex-col items-center w-full min-h-[80vh] pt-4">
-      <h2 className="text-center text-lg font-semibold mb-2 text-gray-700">일본 여행자를 위한</h2>
-      <h1 className="text-center text-2xl font-bold mb-4">한글 이름 일본어 변환기</h1>
-      <p className="text-center text-sm text-red-500 mb-2">당신의 이름을 일본어로 변환해보세요!</p>
+    <div>
+      <h2 className="mt-6 text-center text-lg text-gray-500 mb-1">일본 여행자를 위한</h2>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">한글 이름 일본어 변환기</h1>
+      <p className="text-center text-sm text-red-500 font-normal mb-2">당신의 이름을 일본어로 변환해보세요!</p>
       <NameInputForm onConvert={handleConvert} />
-      <div className="mt-6 w-full">
-        <ConversionResultDisplay {...result} />
-      </div>
-      <div className="mt-8 text-center text-xs text-gray-400">배너 광고 자리</div>
-    </section>
+    </div>
   );
 } 

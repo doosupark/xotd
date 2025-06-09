@@ -1,4 +1,60 @@
-# xotd.net
+# XOTD (v0.8)
+
+## 소개
+- MBTI 기반 일본 이름 생성기 & 한글 이름 일본어 변환기
+- Next.js 15, Tailwind CSS 기반
+
+## 최근 변경사항 (v0.8)
+- 두 주요 페이지(생성기/변환기) 본문 상단 여백 완전 통일 (mt-6)
+- PC 사이드바 CI 로고 LCP 최적화(priority 적용) 및 자연스러운 여백 적용
+- 레이아웃 구조 및 불필요 요소 정리
+- Tailwind 클래스 통일, linter 오류 해결
+
+## 실행 방법
+```bash
+npm install
+npm run dev
+```
+
+## TODO
+- 반응형 세부 개선
+- 결과 UX 개선
+- 광고 영역 실제 적용
+- 접근성/SEO 점검
+
+## Version 0.7
+
+### Latest Updates
+- **PC Layout**: Reduced the sidebar (header + navigation) width to 80% of its original size (now 179.2px).
+- **Navigation**: Centered the navigation link texts ("MBTI 일본 이름 생성기", "한글 이름 일본어 변환기") within the navigation area.
+- **UI Cleanup**: Removed all gray borders from the header, navigation, and ad banner components for a cleaner look.
+
+### Task List
+- [x] Set up Next.js project with TypeScript and Tailwind CSS
+- [x] Create basic layout with header, navigation, and main content area
+- [x] Implement responsive design for mobile and desktop
+- [x] Add MBTI name generator functionality
+- [x] Add Korean to Japanese name translator functionality
+- [x] Optimize UI for better user experience
+- [x] Remove gray borders and adjust sidebar width for a cleaner look
+- [ ] Add unit tests
+- [ ] Deploy to production
+
+### Getting Started
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Technologies Used
+- Next.js
+- TypeScript
+- Tailwind CSS
+- React
+- Node.js
+
+### License
+MIT
 
 ## Version History
 
@@ -47,26 +103,6 @@ D:/dev/xotd
 - src/app은 더 이상 사용하지 않음 (app만 유지)
 - 서버 재시작 필요시: `npm run dev`
 - 기본 포트(3000) 사용 불가 시, 자동으로 3001 등으로 변경됨
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 

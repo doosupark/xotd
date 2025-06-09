@@ -157,7 +157,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
       </div>
       {/* 경고 문구 */}
       {!gender && (
-        <div className="mb-2 text-red-500 font-semibold text-sm">성별을 먼저 선택해주세요</div>
+        <div className="mb-2 text-red-500 font-normal text-sm">성별을 먼저 선택해주세요</div>
       )}
       {/* 성별/점/성별 선택 */}
       <div className="flex items-center justify-center gap-4 mb-6">
