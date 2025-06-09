@@ -239,7 +239,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
       {/* 이름 생성 버튼 */}
       <button
         type="button"
-        className={`w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg transition-all duration-200 ${
+        className={`w-full sm:w-auto max-w-xs py-3 rounded-lg font-bold text-white text-lg transition-all duration-200 ${
           isComplete ? "bg-[#0080ff] hover:bg-[#0070e0]" : "bg-gray-300 cursor-not-allowed"
         }`}
         disabled={!isComplete}

@@ -1,93 +1,141 @@
-# MBTI 일본 이름 생성기 & 한글 이름 일본어 변환기
+# XOTD 개발 TASK (v0.9)
 
-## 버전 0.9
+## ✅ 완료된 주요 작업
+- SEO 고도화
+  - 메타데이터 및 Open Graph 태그 추가
+  - 구조화된 데이터(FAQ) 추가
+  - 동적 sitemap 및 robots.txt 구현
+  - 이미지 최적화 (Next.js Image 컴포넌트 활용, quality/sizes/priority 적용)
+  - 접근성 개선(alt, aria-label, 색상 대비 등)
+- MBTI 일본 이름 생성기/한글 이름 일본어 변환기 UI/UX 통일
+- 본문 상단 여백(PC/모바일) 완전 통일 (mt-6 적용)
+- PC 사이드바 CI 로고 LCP 최적화(priority 적용) 및 자연스러운 여백 적용
+- 레이아웃 불필요 요소 정리 및 사이드바/네비/헤더/광고 영역 구조 개선
+- Tailwind 클래스 통일, 불필요한 section/div 제거, linter 오류 해결
+- favicon, cross-origin 등 Next.js 경고/에러 대응
+- README/TASK.md 버전 관리 및 진행상황 기록
 
-### 최근 업데이트
-- **MBTI 일본 이름 생성기**:
-  - "일본 이름 생성하기" 버튼 활성화 시 컬러를 #0080ff로 변경
-  - "결과 공유하기" 버튼 활성화 시 컬러를 #d1e231로 변경, 호버 시 #ffcc33, 텍스트는 검정색으로 설정
-  - PC 환경에서 "결과 공유하기" 버튼 클릭 시 Web Share API 또는 링크 복사 기능 추가
+## 🕒 다음 작업 후보
+- AdBanner 등 import 경로 오류/빌드 에러 완전 정리
+- 모바일/PC 반응형 세부 개선 및 UI/UX 고도화
+- 결과 공유 기능(Web Share API, SNS 등) 고도화
+- 코드 리팩토링 및 불필요 파일/컴포넌트 정리
+- 테스트 및 품질 관리(단위/E2E 테스트, 크로스 브라우저 등)
+- 광고 영역 실제 적용 및 모니터링
+- 성능 모니터링 및 추가 최적화
 
-- **한글 이름 일본어 변환기**:
-  - "일본 이름으로 변환하기" 버튼 활성화 시 컬러를 #0080ff로 변경
-  - "성 복사하기", "이름 복사하기" 버튼 클릭 시 2초간 "복사 완료!" 피드백 추가
+---
+최신 버전: **v0.9**
+최종 업데이트: 2024-06-14
 
-### 다음 작업 제안
-1. **UI/UX 개선**:
-   - 모바일 환경에서의 반응형 디자인 최적화
-   - 애니메이션 및 전환 효과 추가
+# Version History
 
-2. **기능 확장**:
-   - MBTI 결과에 따른 추가 정보 제공
-   - 사용자 피드백 수집 및 분석 기능
-
-3. **성능 최적화**:
-   - 이미지 로딩 속도 개선
-   - 코드 최적화 및 번들 크기 감소
-
-4. **테스트 및 안정화**:
-   - 단위 테스트 및 통합 테스트 추가
-   - 크로스 브라우저 호환성 검증
-
-5. **문서화**:
-   - API 문서 및 사용자 가이드 작성
-   - 개발 환경 설정 가이드 업데이트
+- **v0.5** (2024-06-09):
+  - 한글 이름 → 일본어 변환기(카타카나/히라가나) 페이지 완성
+  - 입력 필드 단순화(글자수 제한만 적용)
+  - 결과 하단에 성/이름 복사 버튼 추가
+  - MBTI 이름 생성기 페이지 완성
 
 ---
 
-## SEO 고도화 TODO (순차 진행)
+# TODO / 진행상황
 
-### 공통
-- [ ] 각 페이지별 정확한 <title>과 <meta name="description"> 설정
-- [ ] Open Graph/카카오/트위터 카드: OG, Twitter Card, Kakao OG 등 소셜 미리보기 메타태그 동적 제공
-- [ ] 구조화 데이터(Schema.org): WebPage, BreadcrumbList 등 추가
-- [ ] H1~H3 계층적 헤딩 구조 및 주요 키워드 반영
-- [ ] 모바일 최적화(viewport, Core Web Vitals 등)
-- [ ] 로딩 속도 최적화(이미지, LCP, JS/CSS)
-- [ ] 내부 링크 강화(두 서비스 간 상호 링크, 주요 기능/FAQ/소개 등)
-- [ ] robots.txt, sitemap.xml 최신화
-- [ ] 접근성(alt, aria-label, contrast 등) 개선
-- [ ] 검색엔진 제출(구글 서치콘솔, 네이버 웹마스터도구 등)
+- [x] 한글 이름 입력 필드 (성/이름, 4글자 제한)
+- [x] 입력값 유효성 단순화 (글자수만 제한)
+- [x] 변환 버튼 always enabled
+- [x] 변환 결과 카타카나/히라가나 표시
+- [x] 각 결과 하단에 '성 복사하기', '이름 복사하기' 버튼 추가 (가로 정렬, 작게)
+- [x] MBTI 이름 생성기 페이지 및 결과 표시
+- [ ] (다음 버전) UX 개선, 모바일 최적화, 추가 피드백 반영
 
-### MBTI 일본 이름 생성기 (https://xotd.net/)
-- [ ] Title: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요! | xotd.net"
-- [ ] Description: "MBTI와 성별을 선택하면 당신만의 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS에서 활용해보세요!"
-- [ ] OG/소셜 미리보기: og:title, og:description, og:image(결과별 동적), og:url 등
-- [ ] Twitter Card, Kakao OG 등
-- [ ] 구조화 데이터(Schema.org)
-- [ ] H1: "MBTI 일본 이름 생성기"
-- [ ] H2: "나만의 일본식 이름을 만들어보세요"
-- [ ] H3: "MBTI란?", "일본 이름 생성 방법", "자주 묻는 질문"
+# XOTD.NET Project Tasks (v0.1)
 
-### 한글 이름 일본어 변환기 (https://xotd.net/translator)
-- [ ] Title: "한글 이름 일본어 변환기 - 카타카나/히라가나 변환 | xotd.net"
-- [ ] Description: "한글 이름을 입력하면 일본어(카타카나/히라가나)로 변환해드립니다. 일본 웹/앱 서비스 가입시 활용하세요!"
-- [ ] OG/소셜 미리보기: og:title, og:description, og:image(결과별 동적), og:url 등
-- [ ] Twitter Card, Kakao OG 등
-- [ ] 구조화 데이터(Schema.org)
-- [ ] H1: "한글 이름 일본어 변환기"
-- [ ] H2: "카타카나/히라가나로 변환해보세요"
-- [ ] H3: "일본어 표기법", "변환 방법", "자주 묻는 질문"
+## 0.1 버전 릴리즈 기준 (2024-05-26)
+- 메인 UI 및 MBTI/성별 선택 UX 고도화 완료
+- 반응형 레이아웃, 네비/광고/헤더 구조 적용
+- 성별/MBTI 선택 애니메이션, 점 이동, 개별 이미지 확대 등 고급 UX 반영
+- 성별 미선택 시 경고 및 선택 제한, 안내 문구 등 UX 친화적 처리
+- 플레이스홀더/이미지/컬러/간격 등 디자인 디테일 반영
 
----
+## 1. Project Setup
+- [x] Initialize Next.js + TypeScript project
+- [x] Configure TailwindCSS
+- [x] Set up ESLint and Prettier
+- [x] Create project structure according to the technical specification
+- [ ] Configure AWS Amplify for deployment
+- [ ] Set up domain configuration for xotd.net
 
-## 주요 변경사항
-- 모든 MBTI 타입(남/여) 이름 데이터 완비 및 JSON 파일 보강
-- MBTI 설명 텍스트 좌측 정렬 및 마침표 뒤 줄바꿈 처리
-- favicon 및 LCP 이미지 경고 해결
-- MBTI 선택기 컴포넌트 개선 완료
-- 결과 표시 컴포넌트 개선 완료
-- README, tesk.md 등 문서 최신화
-- 사이트 정상 동작 및 주요 기능 점검 완료
+## 2. Common Components Development
+- [x] Create base layout component (app/layout.tsx)
+- [x] Implement navigation header with links between services
+- [x] Create footer component
+- [x] Develop reusable UI components:
+  - [x] Button component
+  - [x] Input field component
+  - [x] Card component
+  - [x] Copy to clipboard button
+  - [x] Ad banner component
 
-## TODO
-- translator 페이지 UI 개선
-- 광고 컴포넌트 추가
-- 사용자 피드백 반영한 추가 개선
+## 3. MBTI Japanese Name Generator (Homepage)
+- [x] Create homepage UI (app/page.tsx)
+- [x] Implement MBTI selector component (고도화: 점 이동, 개별 이미지 확대, 성별 미선택 UX 등)
+- [x] Create MBTI result card component (기본 구조)
+- [x] Set up MBTI data management:
+  - [x] Create mbtiNameData.ts with personality data
+  - [x] Implement MBTI result generation logic
+- [x] Add MBTI personality images
+- [x] Style MBTI selector interface (고도화 반영)
+- [x] 성별/MBTI 선택 UX 고도화 (점 이동, 경고, 개별 애니메이션 등)
+- [x] Implement results display with animations
+- [ ] Add social sharing functionality
 
-## Known Issues
-- 현재까지 알려진 이슈 없음
+## 4. Korean to Japanese Name Translator
+- [ ] Create translator page (app/translator/page.tsx)
+- [ ] Port existing Korean to Japanese conversion logic
+- [ ] Implement name input form
+- [ ] Create conversion result display
+- [ ] Add copy functionality for results
+- [ ] Style translator interface
+- [ ] Implement error handling
 
-## Next Steps
-- 추가 테스트 및 사용자 피드백 수집
-- 데이터 및 UI 지속 개선 
+## 5. SEO & Performance
+- [x] Configure metadata for both pages
+- [x] Add Open Graph tags
+- [x] Implement dynamic meta descriptions
+- [x] Optimize images and assets
+- [ ] Set up analytics
+- [x] Configure robots.txt and sitemap
+
+## 6. Testing & Quality Assurance
+- [ ] Write unit tests for conversion logic
+- [ ] Test responsive design
+- [ ] Cross-browser testing
+- [ ] Performance testing
+- [ ] SEO audit
+- [ ] Accessibility testing
+
+## 7. Deployment & Monitoring
+- [ ] Set up AWS S3 for static assets
+- [ ] Configure AWS Amplify deployment
+- [ ] Set up continuous deployment
+- [ ] Configure domain and SSL
+- [ ] Set up monitoring and alerts
+- [ ] Implement error tracking
+
+## 8. Monetization
+- [ ] Set up Google AdSense
+- [ ] Configure ad placements
+- [ ] Implement ad tracking
+- [ ] Test ad performance
+
+## 9. Documentation
+- [ ] Create README.md
+- [ ] Document component usage
+- [ ] Add deployment instructions
+- [ ] Create maintenance guide
+
+## 10. Post-Launch
+- [ ] Monitor site performance
+- [ ] Gather user feedback
+- [ ] Plan future improvements
+- [ ] Regular content updates 

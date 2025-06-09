@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import AdBanner from "@/components/AdBanner";
+import AdBanner from "./AdBanner";
 
 interface MBTIResultCardProps {
   result: {
@@ -54,7 +54,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
   return (
     <section className="flex flex-col items-center w-full mt-8">
       {/* 광고 영역 */}
-      <AdBanner position="default" />
+      <AdBanner />
       {/* 결과 안내 텍스트 */}
       <div className="text-center text-lg font-semibold mt-2 mb-4">당신의 일본 이름은?</div>
       {/* 결과 이미지 + 이름 */}
@@ -114,7 +114,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
         <div className={`text-base text-gray-500 mb-2 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
       </div>
       {/* MBTI 설명 */}
-      <div className="w-full max-w-xs bg-gray-50 rounded-lg p-4 mb-4 text-center transition-shadow duration-300 hover:shadow-md">
+      <div className="w-full max-w-xs bg-gray-50 rounded-lg p-4 mb-4 text-center shadow transition-shadow duration-300 hover:shadow-md">
         <div className="font-bold text-lg mb-1">{result.mbti} <span className="text-purple-500">{result.persona?.nickname}</span></div>
         <div className="text-sm text-gray-700 mb-1">{result.persona?.slogan}</div>
         <div className="text-sm text-gray-600 whitespace-pre-line">{result.persona?.description}</div>
@@ -130,7 +130,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
       </div>
       <button className="w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
       {/* 최하단 광고 영역 */}
-      <AdBanner position="bottom" />
+      <AdBanner />
     </section>
   );
 } 

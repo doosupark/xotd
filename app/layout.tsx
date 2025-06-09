@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import AdBanner from "@/components/AdBanner";
+import AdBanner from "../components/AdBanner";
 import Image from "next/image";
 import { generateMetadata } from './metadata';
 
@@ -77,7 +77,7 @@ export default function RootLayout({
             <header className="md:hidden flex items-center justify-center h-8 bg-white">
               <Image src="/images/CI/CI_Logo_small.png" alt="XOTD CI" width={24} height={24} priority />
             </header>
-            <div className="flex-1 w-full max-w-xl mx-auto px-2 sm:px-4 py-4">
+            <div className="flex-1 w-full max-w-lg mx-auto px-4 sm:px-6 py-4">
               {children}
             </div>
             {/* 모바일 네비게이션 (출력 하단) */}
