@@ -1,40 +1,35 @@
-# XOTD 개발 TASK (v0.9)
+# XOTD 개발 TASK (v1.0)
 
 ## ✅ 완료된 주요 작업
-- SEO 고도화
-  - 메타데이터 및 Open Graph 태그 추가
-  - 구조화된 데이터(FAQ) 추가
-  - 동적 sitemap 및 robots.txt 구현
-  - 이미지 최적화 (Next.js Image 컴포넌트 활용, quality/sizes/priority 적용)
-  - 접근성 개선(alt, aria-label, 색상 대비 등)
-- MBTI 일본 이름 생성기/한글 이름 일본어 변환기 UI/UX 통일
+- SEO 고도화 (메타데이터, Open Graph, 구조화 데이터, 동적 sitemap/robots.txt, 이미지 최적화, 접근성 개선 등)
+- MBTI 일본 이름 생성기/한글 이름 일본어 변환기 UI/UX 통일 및 반응형 개선
 - 본문 상단 여백(PC/모바일) 완전 통일 (mt-6 적용)
 - PC 사이드바 CI 로고 LCP 최적화(priority 적용) 및 자연스러운 여백 적용
 - 레이아웃 불필요 요소 정리 및 사이드바/네비/헤더/광고 영역 구조 개선
 - Tailwind 클래스 통일, 불필요한 section/div 제거, linter 오류 해결
 - favicon, cross-origin 등 Next.js 경고/에러 대응
 - README/TASK.md 버전 관리 및 진행상황 기록
+- 페이지 속도 최적화 (불필요 JS/CSS 제거, 이미지 최적화, 동적 임포트 등)
+- 접근성 개선(alt, aria-label, 색상 대비 등)
 
 ## 🕒 다음 작업 후보
-- AdBanner 등 import 경로 오류/빌드 에러 완전 정리
-- 모바일/PC 반응형 세부 개선 및 UI/UX 고도화
+- 광고 영역 실제 적용 및 모니터링
 - 결과 공유 기능(Web Share API, SNS 등) 고도화
 - 코드 리팩토링 및 불필요 파일/컴포넌트 정리
 - 테스트 및 품질 관리(단위/E2E 테스트, 크로스 브라우저 등)
-- 광고 영역 실제 적용 및 모니터링
 - 성능 모니터링 및 추가 최적화
+- E2E 테스트 구축 (Cypress/Playwright 등 활용)
+- 구글, 네이버 검색 등록 및 사이트맵 제출
 
 ---
-최신 버전: **v0.9**
+최신 버전: **v1.0**
 최종 업데이트: 2024-06-14
 
 # Version History
 
-- **v0.5** (2024-06-09):
-  - 한글 이름 → 일본어 변환기(카타카나/히라가나) 페이지 완성
-  - 입력 필드 단순화(글자수 제한만 적용)
-  - 결과 하단에 성/이름 복사 버튼 추가
-  - MBTI 이름 생성기 페이지 완성
+- **v1.0** (2024-06-14):
+  - SEO 고도화, UX/반응형 개선, 속도 최적화 마무리
+  - 광고 영역 제외한 1.0 주요 기능 완성
 
 ---
 
@@ -138,4 +133,29 @@
 - [ ] Monitor site performance
 - [ ] Gather user feedback
 - [ ] Plan future improvements
-- [ ] Regular content updates 
+- [ ] Regular content updates
+
+## E2E 테스트 구축 절차
+1. **테스트 도구 선택**
+   - Cypress 또는 Playwright 중 선택
+   - 설치 및 초기 설정
+
+2. **테스트 환경 구성**
+   - 테스트 스크립트 작성
+   - 테스트 데이터 준비
+
+3. **테스트 케이스 작성**
+   - 주요 기능에 대한 테스트 케이스 작성
+   - 예: MBTI 선택, 이름 생성, 결과 공유 등
+
+4. **테스트 실행 및 결과 분석**
+   - 테스트 실행 및 결과 확인
+   - 실패한 테스트 케이스 디버깅 및 수정
+
+5. **CI/CD 통합**
+   - GitHub Actions 또는 Jenkins 등에 테스트 통합
+   - 자동화된 테스트 실행 설정
+
+6. **문서화 및 유지보수**
+   - 테스트 문서 작성
+   - 테스트 케이스 유지보수 및 업데이트 

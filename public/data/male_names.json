@@ -303,6 +303,158 @@
       "korean": "쿠도 류지"
     }
   ],
+  "ESTJ": [
+    {
+      "hiragana": "なかもり ぎんぞう",
+      "katakana": "ナカモリ ギンゾウ",
+      "korean": "나카모리 긴조"
+    },
+    {
+      "hiragana": "さとう けんいち",
+      "katakana": "サトウ ケンイチ",
+      "korean": "사토 켄이치"
+    },
+    {
+      "hiragana": "たなか だいすけ",
+      "katakana": "タナカ ダイスケ",
+      "korean": "타나카 다이스케"
+    },
+    {
+      "hiragana": "やまもと なおき",
+      "katakana": "ヤマモト ナオキ",
+      "korean": "야마모토 나오키"
+    },
+    {
+      "hiragana": "すずき ゆうき",
+      "katakana": "スズキ ユウキ",
+      "korean": "스즈키 유우키"
+    },
+    {
+      "hiragana": "たかはし まこと",
+      "katakana": "タカハシ マコト",
+      "korean": "타카하시 마코토"
+    },
+    {
+      "hiragana": "なかむら ごう",
+      "katakana": "ナカムラ ゴウ",
+      "korean": "나카무라 고우"
+    },
+    {
+      "hiragana": "こばやし てつや",
+      "katakana": "コバヤシ テツヤ",
+      "korean": "코바야시 테츠야"
+    },
+    {
+      "hiragana": "よしだ こうじ",
+      "katakana": "ヨシダ コウジ",
+      "korean": "요시다 코우지"
+    },
+    {
+      "hiragana": "わたなべ たかし",
+      "katakana": "ワタナベ タカシ",
+      "korean": "와타나베 타카시"
+    },
+    {
+      "hiragana": "いとう まさる",
+      "katakana": "イトウ マサル",
+      "korean": "이토 마사루"
+    },
+    {
+      "hiragana": "おおにし じゅん",
+      "katakana": "オオニシ ジュン",
+      "korean": "오오니시 준"
+    },
+    {
+      "hiragana": "さいとう まさひろ",
+      "katakana": "サイトウ マサヒロ",
+      "korean": "사이토 마사히로"
+    },
+    {
+      "hiragana": "ふじい まさき",
+      "katakana": "フジイ マサキ",
+      "korean": "후지이 마사키"
+    },
+    {
+      "hiragana": "きむら りょうた",
+      "katakana": "キムラ リョウタ",
+      "korean": "키무라 료타"
+    },
+    {
+      "hiragana": "まつもと しんじ",
+      "katakana": "マツモト シンジ",
+      "korean": "마츠모토 신지"
+    },
+    {
+      "hiragana": "さかた たけし",
+      "katakana": "サカタ タケシ",
+      "korean": "사카타 타케시"
+    },
+    {
+      "hiragana": "いのうえ かずひろ",
+      "katakana": "イノウエ カズヒロ",
+      "korean": "이노우에 카즈히로"
+    },
+    {
+      "hiragana": "ながた ゆうじ",
+      "katakana": "ナガタ ユウジ",
+      "korean": "나가타 유우지"
+    },
+    {
+      "hiragana": "おおた しょうた",
+      "katakana": "オオタ ショウタ",
+      "korean": "오오타 쇼타"
+    },
+    {
+      "hiragana": "くろだ けんた",
+      "katakana": "クロダ ケタ",
+      "korean": "쿠로다 켄타"
+    },
+    {
+      "hiragana": "かわむら たくま",
+      "katakana": "カワムラ タクマ",
+      "korean": "카와무라 타쿠마"
+    },
+    {
+      "hiragana": "おかだ しんいち",
+      "katakana": "オカダ シンイチ",
+      "korean": "오카다 신이치"
+    },
+    {
+      "hiragana": "たけうち ゆういち",
+      "katakana": "タケウチ ユウイチ",
+      "korean": "타케우치 유이치"
+    },
+    {
+      "hiragana": "みやもと なおや",
+      "katakana": "ミヤモト ナオヤ",
+      "korean": "미야모토 나오야"
+    },
+    {
+      "hiragana": "ほんだ たろう",
+      "katakana": "ホンダ タロウ",
+      "korean": "혼다 타로"
+    },
+    {
+      "hiragana": "いしい こうへい",
+      "katakana": "イシイ コウヘイ",
+      "korean": "이시이 코헤이"
+    },
+    {
+      "hiragana": "くどう たかし",
+      "katakana": "クドウ タカシ",
+      "korean": "쿠도 타카시"
+    },
+    {
+      "hiragana": "よしおか げん",
+      "katakana": "ヨシオカ ゲン",
+      "korean": "요시오카 겐"
+    },
+    {
+      "hiragana": "はしもと しゅうへい",
+      "katakana": "ハシモト シュウヘイ",
+      "korean": "하시모토 슈헤이"
+    }
+  ],
   "ENTJ": [
     {
       "hiragana": "さとう まさる",
@@ -1547,6 +1699,158 @@
       "hiragana": "はしもと しゅうへい",
       "katakana": "ハシモト シュウヘイ",
       "korean": "하시모토 슈헤이"
+    }
+  ],
+  "ISFP": [
+    {
+      "hiragana": "さとう あお",
+      "katakana": "サトウ アオ",
+      "korean": "사토 아오"
+    },
+    {
+      "hiragana": "たなか はる",
+      "katakana": "タナカ ハル",
+      "korean": "타나카 하루"
+    },
+    {
+      "hiragana": "やまもと そうすけ",
+      "katakana": "ヤマモト ソウスケ",
+      "korean": "야마모토 소우스케"
+    },
+    {
+      "hiragana": "すずき ゆいと",
+      "katakana": "スズキ ユイと",
+      "korean": "스즈키 유이토"
+    },
+    {
+      "hiragana": "たかはし かなた",
+      "katakana": "タカハシ カナタ",
+      "korean": "타카하시 카나타"
+    },
+    {
+      "hiragana": "いとう りつ",
+      "katakana": "イトウ リツ",
+      "korean": "이토 리츠"
+    },
+    {
+      "hiragana": "なかむら いおり",
+      "katakana": "ナカムラ イオリ",
+      "korean": "나카무라 이오리"
+    },
+    {
+      "hiragana": "よしだ こうき",
+      "katakana": "ヨシダ コウキ",
+      "korean": "요시다 코우키"
+    },
+    {
+      "hiragana": "こばやし あき",
+      "katakana": "コバヤシ アキ",
+      "korean": "코바야시 아키"
+    },
+    {
+      "hiragana": "わたなべ そう",
+      "katakana": "ワタナベ ソウ",
+      "korean": "와타나베 소우"
+    },
+    {
+      "hiragana": "おおにし ひびき",
+      "katakana": "オオニシ ヒビキ",
+      "korean": "오오니시 히비키"
+    },
+    {
+      "hiragana": "さいとう しずき",
+      "katakana": "サイトウ シズキ",
+      "korean": "사이토 시즈키"
+    },
+    {
+      "hiragana": "ふじわら あつき",
+      "katakana": "フジワラ アツキ",
+      "korean": "후지와라 아츠키"
+    },
+    {
+      "hiragana": "むらかみ こたろう",
+      "katakana": "ムラカミ コタロウ",
+      "korean": "무라카미 코타로"
+    },
+    {
+      "hiragana": "はしもと かずき",
+      "katakana": "ハシモト カズキ",
+      "korean": "하시모토 카즈키"
+    },
+    {
+      "hiragana": "きむら ゆうと",
+      "katakana": "キムラ ユウと",
+      "korean": "키무라 유우토"
+    },
+    {
+      "hiragana": "まつもと いぶき",
+      "katakana": "マツモト イブキ",
+      "korean": "마츠모토 이부키"
+    },
+    {
+      "hiragana": "さかた こうへい",
+      "katakana": "サカタ コウヘイ",
+      "korean": "사카타 코헤이"
+    },
+    {
+      "hiragana": "いのうえ りょうま",
+      "katakana": "イノウエ リョウマ",
+      "korean": "이노우에 료마"
+    },
+    {
+      "hiragana": "ながた ゆうま",
+      "katakana": "ナガタ ユウマ",
+      "korean": "나가타 유우마"
+    },
+    {
+      "hiragana": "おお타 사토시",
+      "katakana": "オオタ サトシ",
+      "korean": "오오타 사토시"
+    },
+    {
+      "hiragana": "후지이 하루키",
+      "katakana": "フジイ ハルキ",
+      "korean": "후지이 하루키"
+    },
+    {
+      "hiragana": "쿠로다 아오이",
+      "katakana": "クロダ アオイ",
+      "korean": "쿠로다 아오이"
+    },
+    {
+      "hiragana": "카와무라 렌",
+      "katakana": "カワムラ レン",
+      "korean": "카와무라 렌"
+    },
+    {
+      "hiragana": "오카다 류",
+      "katakana": "オカダ リュウ",
+      "korean": "오카다 류"
+    },
+    {
+      "hiragana": "타케우치 소라",
+      "katakana": "タケウチ ソラ",
+      "korean": "타케우치 소라"
+    },
+    {
+      "hiragana": "미야모토 호마레",
+      "katakana": "ミヤモト ホマレ",
+      "korean": "미야모토 호마레"
+    },
+    {
+      "hiragana": "혼다 유우세이",
+      "katakana": "ホンダ ユウセイ",
+      "korean": "혼다 유우세이"
+    },
+    {
+      "hiragana": "이시이 카나타",
+      "katakana": "イシイ カナタ",
+      "korean": "이시이 카나타"
+    },
+    {
+      "hiragana": "쿠도 코헤이",
+      "katakana": "クドウ コウヘイ",
+      "korean": "쿠도 코헤이"
     }
   ],
   "ESTJ": [

@@ -128,7 +128,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
           {copySuccess === "katakana" ? "복사 완료!" : "가타카나 복사하기"}
         </button>
       </div>
-      <button className="w-full max-w-xs py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
+      <button className="w-[50%] min-w-[245px] max-w-md py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
       {/* 최하단 광고 영역 */}
       <AdBanner />
     </section>
