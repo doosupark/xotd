@@ -25,65 +25,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes sakura-fall {
-  0% {
-    opacity: 0;
-    top: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.7;
-    top: 110%;
-    transform: translateX(60px) rotate(360deg) scale(1.1);
-  }
-}
-
-@keyframes sakura-burst-fall {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-    transform: var(--transform-burst, scale(0.3) rotate(0deg));
-  }
-  80% {
-    opacity: 1;
-    transform: var(--transform-fall, scale(0.3) rotate(0deg));
-  }
-  80.1% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: var(--transform-fall, scale(0.3) rotate(0deg));
-  }
-}
-
-@keyframes sakura-up-fall {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-    transform: var(--petal-burst, scale(1) rotate(0deg));
-  }
-  60% {
-    opacity: 1;
-    transform: var(--petal-burst, scale(1) rotate(0deg));
-  }
-  80% {
-    opacity: 1;
-    transform: var(--petal-fall, scale(1) rotate(0deg));
-  }
-  100% {
-    opacity: 0;
-    transform: var(--petal-fall, scale(1) rotate(0deg));
-  }
-}
 
 @layer components {
   .medium-bold {

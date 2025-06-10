@@ -28,7 +28,7 @@ export default function NameInputForm({ onConvert }: NameInputFormProps) {
 
   return (
     <form className="flex flex-col gap-4 w-full items-center" onSubmit={handleSubmit}>
-      <div className="flex flex-row gap-2 w-[52%] min-w-[245px] max-w-md">
+      <div className="flex flex-row gap-2 w-[50%] min-w-[245px] max-w-md">
         <input
           type="text"
           maxLength={4}
