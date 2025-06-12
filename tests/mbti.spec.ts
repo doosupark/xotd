@@ -10,7 +10,7 @@ test.describe('MBTI 일본 이름 생성기 테스트', () => {
 
   test('페이지 로드 및 기본 UI 확인', async ({ page }) => {
     // 페이지 타이틀 확인
-    await expect(page).toHaveTitle(/XOTD/);
+    await expect(page).toHaveTitle(/MBTI 일본/);
     
     // MBTI 선택 버튼들이 존재하는지 확인
     await expect(page.locator('button[aria-label="MBTI 선택"]')).toBeVisible();
