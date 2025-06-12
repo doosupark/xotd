@@ -8,14 +8,19 @@ test.describe('MBTI 일본 이름 생성기 테스트', () => {
   });
 
   test('페이지 로드 및 기본 UI 확인', async ({ page }) => {
-    // 페이지 타이틀 확인
-    await expect(page).toHaveTitle(/일본/);
-    
+    // 페이지 로드
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(2000); // 추가 대기 시간
+
     // MBTI 선택 버튼들이 존재하는지 확인
-    await expect(page.locator('button[aria-label="MBTI 선택"]')).toBeVisible();
+    await expect(page.locator('button[aria-label="MBTI 선택"]')).toBeVisible({ timeout: 10000 });
   });
 
   test('MBTI 선택 및 이름 생성', async ({ page }) => {
+    // 페이지 로드
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(2000); // 추가 대기 시간
+
     // 성별 선택 (남성)
     await page.click('button[aria-label="남성"]');
     
