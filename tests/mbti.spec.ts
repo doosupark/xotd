@@ -3,8 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('MBTI 일본 이름 생성기 테스트', () => {
   test.beforeEach(async ({ page }) => {
     // 각 테스트 전에 메인 페이지로 이동
-    await page.goto('http://localhost:3000');
-    // 페이지가 완전히 로드될 때까지 대기
+    await page.goto('/');
     await page.waitForLoadState('networkidle');
   });
 
