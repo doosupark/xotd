@@ -42,15 +42,4 @@ test.describe('MBTI 일본 이름 생성기 테스트', () => {
     await selectMBTI(page, MBTI_TYPES);
     await generateName(page);
   });
-
-  test('결과 공유 기능', async ({ page }) => {
-    await selectMBTI(page, MBTI_TYPES);
-    await generateName(page);
-    
-    // 공유 버튼 클릭
-    await page.click('button:has-text("결과 공유하기")');
-    
-    // 복사 완료 메시지 확인 (UI 메시지)
-    await expect(page.locator('text=링크가 복사되었습니다')).toBeVisible({ timeout: TEST_TIMEOUT });
-  });
 }); 

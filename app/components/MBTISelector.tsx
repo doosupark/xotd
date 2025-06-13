@@ -97,7 +97,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
     const resultData = {
       mbti: mbtiStr,
       gender,
-      imageUrl: `/images/${gender}/${mbtiStr}.png`,
+      imageUrl: `/images/${gender}/${mbtiStr.toLowerCase()}.png`,
       hiragana: name.hiragana,
       katakana: name.katakana,
       korean: name.korean,
