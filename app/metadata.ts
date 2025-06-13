@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export async function generateMetadata({ searchParams }: { searchParams: any }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | undefined> }): Promise<Metadata> {
   // 기본 메타데이터 (홈/MBTI 생성기)
   const defaultMetadata = {
     title: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요 | xotd.net",

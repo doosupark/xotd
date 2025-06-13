@@ -4,8 +4,8 @@ export default function Home() {
   return <MBTIPageClient />;
 }
 
-export async function generateMetadata({ searchParams }: { searchParams: any }) {
-  const params = await searchParams;
+export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | undefined> }) {
+  const params = searchParams;
   const img = params.img;
   const mbti = params.mbti;
   const gender = params.gender;

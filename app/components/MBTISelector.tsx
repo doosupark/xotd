@@ -27,8 +27,6 @@ type ResultData = {
   };
 };
 
-const GENDER = ["male", "female"] as const;
-const GENDER_ICON = { male: "♂", female: "♀" };
 const MBTI_FIELDS = [
   { key: "ie", left: "I", right: "E" },
   { key: "sn", left: "S", right: "N" },
@@ -55,8 +53,8 @@ function getRandomName(gender: string, mbti: string) {
 export default function MBTISelector({ onComplete }: { onComplete?: (data: ResultData) => void }) {
   const [gender, setGender] = useState<Gender | null>(null);
   const [mbti, setMbti] = useState<MBTIType>({ ie: "-", sn: "-", tf: "-", jp: "-" });
-  // 애니메이션 트리거용
-  const [animIdx, setAnimIdx] = useState<number | null>(null);
+  const [selectedLetters, setSelectedLetters] = useState<string[]>(["-", "-", "-", "-"]);
+  const [isSelectedArr, setIsSelectedArr] = useState<boolean[]>([false, false, false, false]);
   // 점 이동 애니메이션 상태 (각 field별로 left/right 중 어디에 있는지)
   const [dotPos, setDotPos] = useState<{ [key: string]: "left" | "right" | null }>({
     ie: null, sn: null, tf: null, jp: null,
@@ -66,22 +64,6 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   // 모든 선택이 완료되었는지 체크
   const isComplete = gender && Object.values(mbti).every(Boolean);
 
-  // 선택 결과 표시용
-  const selectedLetters = [
-    mbti.ie || "-",
-    mbti.sn || "-",
-    mbti.tf || "-",
-    mbti.jp || "-",
-  ];
-
-  // 박스별로 선택 여부
-  const isSelectedArr = [
-    !!mbti.ie && !!gender,
-    !!mbti.sn && !!gender,
-    !!mbti.tf && !!gender,
-    !!mbti.jp && !!gender,
-  ];
-
   // 점 이동 핸들러
   const handleSelect = (field: string, value: string, idx: number) => {
     if (!gender) {
@@ -90,9 +72,8 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       return;
     }
     setMbti((prev) => ({ ...prev, [field]: value }));
-    setAnimIdx(["ie", "sn", "tf", "jp"].indexOf(field));
     setDotPos((prev) => ({ ...prev, [field]: value === MBTI_FIELDS.find(f => f.key === field)!.left ? "left" : "right" }));
-    setTimeout(() => setAnimIdx(null), 400);
+    setTimeout(() => setShakeDotIdx(null), 400);
   };
 
   // 라운드 박스 크기/선 두께 (선택 전 50%, 선택 후 150%)
@@ -185,7 +166,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
           onClick={() => setGender("male")}
           aria-label="남성"
         >
-          {GENDER_ICON.male}
+          ♂
         </button>
         {/* 점 */}
         <span className="w-2 h-2 rounded-full mx-2 transition-all duration-300"
@@ -204,7 +185,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
           onClick={() => setGender("female")}
           aria-label="여성"
         >
-          {GENDER_ICON.female}
+          ♀
         </button>
       </div>
       {/* MBTI 4지표 선택 (왼쪽-점-오른쪽) */}

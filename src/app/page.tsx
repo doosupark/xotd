@@ -3,16 +3,6 @@ import { useState } from "react";
 import Head from "next/head";
 
 export default function Home() {
-  const [result, setResult] = useState(null);
-
-  const handleCopy = (type: "hiragana" | "katakana") => {
-    console.log(`복사: ${type}`);
-  };
-
-  const handleShare = () => {
-    console.log("공유하기");
-  };
-
   return (
     <>
       <Head>
