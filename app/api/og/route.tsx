@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
               textAlign: 'center',
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://xotd.net/images/CI/CI_Logo_small.png"
               alt="XOTD Logo"

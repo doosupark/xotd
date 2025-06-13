@@ -111,7 +111,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
     <section className="flex flex-col items-center w-full">
       {/* 선택 결과(철자+이미지) - 개별 선택마다 순차적으로 확대 */}
       <div className="flex gap-[20px] mb-4 mt-2">
-        {MBTI_FIELDS.map((field, idx) => {
+        {MBTI_FIELDS.map((field) => {
           const letter = mbti[field.key];
           const isSelected = letter !== "-";
           return (
