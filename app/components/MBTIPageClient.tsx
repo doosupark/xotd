@@ -3,8 +3,23 @@ import { useState } from "react";
 import MBTISelector from "./MBTISelector";
 import MBTIResultCard from "./MBTIResultCard";
 
+type Gender = "male" | "female";
+type ResultData = {
+  mbti: string;
+  gender: Gender | null;
+  imageUrl: string;
+  hiragana: string;
+  katakana: string;
+  korean: string;
+  persona: {
+    nickname: string;
+    slogan: string;
+    description: string;
+  };
+};
+
 export default function MBTIPageClient() {
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<ResultData | null>(null);
 
   const handleCopy = (type: "hiragana" | "katakana") => {
     console.log(`복사: ${type}`);
