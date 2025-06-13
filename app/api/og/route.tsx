@@ -58,7 +58,7 @@ export async function GET(req: NextRequest) {
             >
               {description}
             </p>
-            // eslint-disable-next-line @next/next/no-img-element
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://xotd.net/images/CI/CI_Logo_small.png"
               alt="XOTD Logo"

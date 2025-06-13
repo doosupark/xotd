@@ -62,7 +62,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   const [dotPos, setDotPos] = useState<{ [key: string]: "left" | "right" | null }>({
     ie: null, sn: null, tf: null, jp: null,
   });
-  const [shakeDotIdx, setShakeDotIdx] = useState<number | null>(null);
+  const [shakeDotField, setShakeDotField] = useState<string | null>(null);
 
   // 모든 선택이 완료되었는지 체크
   const isComplete = gender && Object.values(mbti).every(Boolean);
@@ -70,13 +70,13 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   // 점 이동 핸들러
   const handleSelect = (field: string, value: string) => {
     if (!gender) {
-      setShakeDotIdx(null);
-      setTimeout(() => setShakeDotIdx(null), 350);
+      setShakeDotField(field);
+      setTimeout(() => setShakeDotField(null), 350);
       return;
     }
     setMbti((prev) => ({ ...prev, [field]: value }));
     setDotPos((prev) => ({ ...prev, [field]: value === MBTI_FIELDS.find(f => f.key === field)!.left ? "left" : "right" }));
-    setTimeout(() => setShakeDotIdx(null), 400);
+    setTimeout(() => setShakeDotField(null), 400);
   };
 
   // 라운드 박스 크기/선 두께 (선택 전 50%, 선택 후 150%)
@@ -194,7 +194,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       </div>
       {/* MBTI 4지표 선택 (왼쪽-점-오른쪽) */}
       <div className="flex flex-col gap-4 mb-6">
-        {MBTI_FIELDS.map((field, idx) => (
+        {MBTI_FIELDS.map((field) => (
           <div key={field.key} className="flex items-center gap-4 justify-center">
             {/* 왼쪽 선택지 */}
             <button
@@ -209,9 +209,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
             >
               {field.left}
             </button>
-            {/* 점 (선택 방향으로 이동, shakeDotIdx 애니메이션) */}
+            {/* 점 (선택 방향으로 이동, shakeDotField 애니메이션) */}
             <span
-              className={`w-2 h-2 rounded-full mx-2 transition-all duration-300 ${shakeDotIdx === idx ? 'scale-150' : ''}`}
+              className={`w-2 h-2 rounded-full mx-2 transition-all duration-300 ${shakeDotField === field.key ? 'scale-150' : ''}`}
               style={{
                 background: BLUE,
                 transform:
