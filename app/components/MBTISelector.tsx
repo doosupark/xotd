@@ -53,8 +53,6 @@ function getRandomName(gender: string, mbti: string) {
 export default function MBTISelector({ onComplete }: { onComplete?: (data: ResultData) => void }) {
   const [gender, setGender] = useState<Gender | null>(null);
   const [mbti, setMbti] = useState<MBTIType>({ ie: "-", sn: "-", tf: "-", jp: "-" });
-  const [selectedLetters, setSelectedLetters] = useState<string[]>(["-", "-", "-", "-"]);
-  const [isSelectedArr, setIsSelectedArr] = useState<boolean[]>([false, false, false, false]);
   // 점 이동 애니메이션 상태 (각 field별로 left/right 중 어디에 있는지)
   const [dotPos, setDotPos] = useState<{ [key: string]: "left" | "right" | null }>({
     ie: null, sn: null, tf: null, jp: null,
@@ -108,10 +106,11 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
     <section className="flex flex-col items-center w-full">
       {/* 선택 결과(철자+이미지) - 개별 선택마다 순차적으로 확대 */}
       <div className="flex gap-[20px] mb-4 mt-2">
-        {selectedLetters.map((letter, idx) => {
-          const isSelected = isSelectedArr[idx];
+        {MBTI_FIELDS.map((field, idx) => {
+          const letter = mbti[field.key];
+          const isSelected = letter !== "-";
           return (
-            <div key={idx} className="flex flex-col items-center gap-1">
+            <div key={field.key} className="flex flex-col items-center gap-1">
               <div
                 className={`flex items-center justify-center rounded-lg bg-white overflow-hidden transition-all duration-300`}
                 style={{

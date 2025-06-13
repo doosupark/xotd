@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import NameInputForm from "./NameInputForm";
 import ConversionResultDisplay from "./ConversionResultDisplay";
 import { Kr2JpConverter } from "../../../lib/kr2jpConverter";
@@ -28,18 +27,10 @@ export default function TranslatorPageClient() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">일본어 번역기</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">한글 이름 일본어 변환기</h1>
       <NameInputForm onConvert={handleConvert} />
       <div className="mt-8">
         <ConversionResultDisplay {...result} />
-      </div>
-      <div className="mt-8 text-center">
-        <p className="text-gray-600">
-          &apos;MBTI 일본 이름 생성기&apos;로 돌아가기
-        </p>
-        <Link href="/" className="text-blue-500 hover:underline">
-          홈으로
-        </Link>
       </div>
       <section className="mt-10">
         <h2 className="text-lg font-bold mb-2">일본 웹사이트 가입시 주의사항</h2>
@@ -53,7 +44,7 @@ export default function TranslatorPageClient() {
           <p className="text-xs text-gray-600 mb-2">A. 일본 웹/앱 서비스 가입, 닉네임, SNS 등에서 활용할 수 있습니다.</p>
         </div>
         <div className="flex flex-col gap-2 mt-6">
-          <Link href="/" className="text-blue-600 underline font-semibold text-xs">MBTI 일본 이름 생성기도 이용해보세요👉</Link>
+          {/* MBTI 일본 이름 생성기도 이용해보세요👉 링크 삭제 */}
         </div>
       </section>
     </div>

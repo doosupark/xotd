@@ -4,15 +4,14 @@ export default function Home() {
   return <MBTIPageClient />;
 }
 
-export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | undefined> }) {
-  const params = searchParams;
+export async function generateMetadata({ searchParams }: { searchParams: any }) {
+  const params = await searchParams;
   const img = params.img;
   const mbti = params.mbti;
   const gender = params.gender;
   const hiragana = params.hiragana;
   const katakana = params.katakana;
   const korean = params.korean;
-  const persona = params.persona ? JSON.parse(params.persona) : null;
 
   if (!img) {
     return {
