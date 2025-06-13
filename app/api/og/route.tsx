@@ -12,7 +12,7 @@ export async function GET(request: Request) {
 
   // 이미지 경로 결정
   const imgUrl = `https://xotd.net/images/${gender}/${img}`;
-  const ciUrl = 'https://xotd.net/images/CI/CI_Logo_small.png';
+  const ciUrl = 'https://xotd.net/images/ci/ci_logo_small.png';
 
   return new ImageResponse(
     (

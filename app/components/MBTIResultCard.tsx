@@ -52,7 +52,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
   const imageSize = 168;
 
   return (
-    <section className="flex flex-col items-center w-full mt-8">
+    <section className="result-card flex flex-col items-center w-full mt-8">
       {/* 광고 영역 */}
       <AdBanner />
       {/* 결과 안내 텍스트 */}
