@@ -6,7 +6,7 @@ import AdBanner from "./AdBanner";
 interface MBTIResultCardProps {
   result: {
     mbti: string;
-    gender: "male" | "female";
+    gender: "male" | "female" | null;
     imageUrl: string;
     hiragana: string;
     katakana: string;
@@ -84,7 +84,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
           >
             <Image 
               src={result.imageUrl} 
-              alt={`${result.mbti} ${result.gender === 'male' ? '남성' : '여성'} MBTI 성향 이미지`} 
+              alt={`${result.mbti} ${result.gender === 'male' ? '남성' : result.gender === 'female' ? '여성' : '성별 미지정'} MBTI 성향 이미지`} 
               width={imageSize} 
               height={imageSize} 
               className="object-contain mx-auto" 
