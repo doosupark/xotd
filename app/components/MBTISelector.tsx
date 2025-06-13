@@ -11,6 +11,7 @@ type MBTIType = {
   sn: string;
   tf: string;
   jp: string;
+  [key: string]: string;
 };
 
 type ResultData = {
@@ -27,6 +28,8 @@ type ResultData = {
   };
 };
 
+type NameData = { [mbti: string]: { hiragana: string; katakana: string; korean: string }[] };
+
 const MBTI_FIELDS = [
   { key: "ie", left: "I", right: "E" },
   { key: "sn", left: "S", right: "N" },
@@ -42,7 +45,9 @@ function getTraitImagePath(gender: Gender | null, letter: string) {
 }
 
 function getRandomName(gender: string, mbti: string) {
-  const names = gender === "male" ? (maleNames as any)[mbti] : (femaleNames as any)[mbti];
+  const male = maleNames as NameData;
+  const female = femaleNames as NameData;
+  const names = gender === "male" ? male[mbti] : female[mbti];
   if (!names || !Array.isArray(names) || names.length === 0) {
     console.error(`No names found for MBTI: ${mbti}, gender: ${gender}`);
     return { hiragana: "-", katakana: "-", korean: "-" };
