@@ -1,28 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import AdBanner from "../components/AdBanner";
 import Image from "next/image";
-import { generateMetadata } from './metadata';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export { generateMetadata };
+export const metadata = {
+  title: "MBTI 일본 이름 생성기",
+  description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ko">
       <head>
@@ -60,7 +54,7 @@ export default function RootLayout({
           ]
         }) }} />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white min-h-screen`}>  
+      <body className={inter.className}>
         <div className="min-h-screen flex flex-col md:flex-row">
           {/* PC: 좌측 네비/광고, 모바일: 상단 CI */}
           <aside className="hidden md:flex md:flex-col md:w-[179.2px] md:min-h-screen bg-white">

@@ -5,6 +5,28 @@ import mbtiTravelPersona from "../../lib/mbtiNameData";
 import maleNames from "@/../public/data/male_names.json";
 import femaleNames from "@/../public/data/female_names.json";
 
+type Gender = "male" | "female";
+type MBTIType = {
+  ie: string;
+  sn: string;
+  tf: string;
+  jp: string;
+};
+
+type ResultData = {
+  mbti: string;
+  gender: Gender | null;
+  imageUrl: string;
+  hiragana: string;
+  katakana: string;
+  korean: string;
+  persona: {
+    nickname: string;
+    slogan: string;
+    description: string;
+  };
+};
+
 const GENDER = ["male", "female"] as const;
 const GENDER_ICON = { male: "♂", female: "♀" };
 const MBTI_FIELDS = [
@@ -16,7 +38,7 @@ const MBTI_FIELDS = [
 const BLUE = "#8B8FFF";
 
 // 성향별 이미지 파일명 규칙: public/images/{gender}/{철자}.png
-function getTraitImagePath(gender: string | null, letter: string) {
+function getTraitImagePath(gender: Gender | null, letter: string) {
   if (!gender || letter === "-") return "/images/placeholder_trait.png";
   return `/images/${gender}/${letter.toLowerCase()}.png`;
 }
@@ -30,14 +52,9 @@ function getRandomName(gender: string, mbti: string) {
   return names[Math.floor(Math.random() * names.length)];
 }
 
-export default function MBTISelector({ onComplete }: { onComplete?: (data: any) => void }) {
-  const [gender, setGender] = useState<string | null>(null);
-  const [mbti, setMbti] = useState<{ [key: string]: string | null }>({
-    ie: null,
-    sn: null,
-    tf: null,
-    jp: null,
-  });
+export default function MBTISelector({ onComplete }: { onComplete?: (data: ResultData) => void }) {
+  const [gender, setGender] = useState<Gender | null>(null);
+  const [mbti, setMbti] = useState<MBTIType>({ ie: "-", sn: "-", tf: "-", jp: "-" });
   // 애니메이션 트리거용
   const [animIdx, setAnimIdx] = useState<number | null>(null);
   // 점 이동 애니메이션 상태 (각 field별로 left/right 중 어디에 있는지)
@@ -91,10 +108,10 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: any) 
     const persona = mbtiData ? {
       nickname: mbtiData.nickname,
       slogan: mbtiData.slogan,
-      description: mbtiData.genders?.[gender as "male" | "female"]?.description ?? "",
+      description: mbtiData.genders?.[gender as Gender]?.description ?? "",
     } : { nickname: "", slogan: "", description: "" };
     const name = gender ? getRandomName(gender, mbtiStr) : { hiragana: "-", katakana: "-", korean: "-" };
-    const resultData = {
+    const resultData: ResultData = {
       mbti: mbtiStr,
       gender,
       imageUrl: `/images/${gender}/${mbtiStr.toLowerCase()}.png`,

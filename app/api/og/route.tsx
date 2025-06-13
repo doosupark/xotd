@@ -1,56 +1,82 @@
 import { ImageResponse } from 'next/og';
+import { NextRequest } from 'next/server';
 
 export const runtime = 'edge';
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const mbti = (searchParams.get('mbti') || 'ENTP').toUpperCase();
-  const name = searchParams.get('name') || '키무라 료';
-  const hiragana = searchParams.get('hiragana') || 'きむら りょう';
-  const gender = searchParams.get('gender') || 'male';
-  const img = searchParams.get('img') || 'entp.png';
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const title = searchParams.get('title');
+    const description = searchParams.get('description');
 
-  // 이미지 경로 결정
-  const imgUrl = `https://xotd.net/images/${gender}/${img}`;
-  const ciUrl = 'https://xotd.net/images/ci/ci_logo_small.png';
-
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: 500,
-          height: 500,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          background: 'white',
-          fontFamily: 'sans-serif',
-          border: '2px solid #eee',
-        }}
-      >
-        {/* CI */}
-        <img src={ciUrl} width={40} style={{ marginTop: 24 }} />
-        {/* MBTI 안내 */}
-        <div style={{ fontSize: 24, fontWeight: 700, color: '#7C3AED', margin: '12px 0 0 0', letterSpacing: 1 }}>
-          {mbti} 당신의 일본 이름은?
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'white',
+            padding: '40px 80px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
+          >
+            <img
+              src="https://xotd.net/images/CI/CI_Logo_small.png"
+              alt="XOTD Logo"
+              width={200}
+              height={200}
+              style={{ marginBottom: '20px' }}
+            />
+            <h1
+              style={{
+                fontSize: '60px',
+                fontWeight: 'bold',
+                color: '#333',
+                marginBottom: '20px',
+              }}
+            >
+              {title}
+            </h1>
+            <p
+              style={{
+                fontSize: '30px',
+                color: '#666',
+                marginBottom: '20px',
+              }}
+            >
+              {description}
+            </p>
+            <img
+              src="https://xotd.net/images/CI/CI_Logo_small.png"
+              alt="XOTD Logo"
+              width={100}
+              height={100}
+              style={{ marginTop: '20px' }}
+            />
+          </div>
         </div>
-        {/* 결과 이미지 */}
-        <img src={imgUrl} width={120} height={120} style={{ margin: '16px 0' }} />
-        {/* 히라가나 + 한글 이름 */}
-        <div style={{ textAlign: 'center', margin: '0 0 8px 0' }}>
-          <div style={{ fontSize: 22, color: '#222', fontWeight: 600 }}>{hiragana}</div>
-          <div style={{ fontSize: 20, color: '#222', fontWeight: 700, marginTop: 4 }}>{name}</div>
-        </div>
-        {/* 콜투액션 */}
-        <div style={{ fontSize: 18, color: '#7C3AED', fontWeight: 600, marginBottom: 24 }}>
-          MBTI로 일본이름 만들러 가기
-        </div>
-      </div>
-    ),
-    {
-      width: 500,
-      height: 500,
-    }
-  );
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  } catch (e) {
+    console.log(`${e.message}`);
+    return new Response(`Failed to generate the image`, {
+      status: 500,
+    });
+  }
 } 

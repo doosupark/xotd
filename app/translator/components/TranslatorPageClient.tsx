@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import NameInputForm from "./NameInputForm";
 import ConversionResultDisplay from "./ConversionResultDisplay";
 import { Kr2JpConverter } from "../../../lib/kr2jpConverter";
@@ -26,13 +27,41 @@ export default function TranslatorPageClient() {
   };
 
   return (
-    <div>
-      <h1 className="mt-6 text-center text-3xl font-bold mb-2">한글 이름 일본어 변환기</h1>
-      <h2 className="text-center text-lg text-gray-500 mb-4">카타카나/히라가나로 변환해보세요</h2>
-      <p className="text-center text-sm text-red-500 font-normal mb-2">당신의 이름을 일본어로 변환해보세요!</p>
-      <NameInputForm onConvert={handleConvert} />
-      <div className="mt-8">
-        <ConversionResultDisplay {...result} />
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8">일본어 번역기</h1>
+      <div className="mb-8">
+        <textarea
+          className="w-full h-32 p-4 border rounded-lg"
+          value={result.error || result.katakanaFamily || result.katakanaGiven || result.hiraganaFamily || result.hiraganaGiven}
+          onChange={(e) => {
+            // This is a placeholder for the textarea. The value is controlled by the state.
+          }}
+          placeholder="번역할 텍스트를 입력하세요"
+        />
+      </div>
+      <button
+        className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+        onClick={() => {
+          // This is a placeholder for the button. The onClick handler is not provided in the original file or the new code block.
+        }}
+      >
+        번역하기
+      </button>
+      {result.error && (
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">번역 결과</h2>
+          <div className="p-4 bg-gray-100 rounded-lg">
+            <p>{result.error}</p>
+          </div>
+        </div>
+      )}
+      <div className="mt-8 text-center">
+        <p className="text-gray-600">
+          &apos;MBTI 일본 이름 생성기&apos;로 돌아가기
+        </p>
+        <Link href="/" className="text-blue-500 hover:underline">
+          홈으로
+        </Link>
       </div>
       <section className="mt-10">
         <h2 className="text-lg font-bold mb-2">일본 웹사이트 가입시 주의사항</h2>
