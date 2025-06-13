@@ -68,9 +68,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   const isComplete = gender && Object.values(mbti).every(Boolean);
 
   // 점 이동 핸들러
-  const handleSelect = (field: string, value: string, idx: number) => {
+  const handleSelect = (field: string, value: string) => {
     if (!gender) {
-      setShakeDotIdx(idx);
+      setShakeDotIdx(null);
       setTimeout(() => setShakeDotIdx(null), 350);
       return;
     }
@@ -203,7 +203,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
                 ${mbti[field.key] === field.left && gender
                   ? "bg-[#8B8FFF] text-white border-none"
                   : "border-gray-300 bg-white text-gray-400"}`}
-              onClick={() => handleSelect(field.key, field.left, idx)}
+              onClick={() => handleSelect(field.key, field.left)}
               aria-label={field.left}
               disabled={!gender}
             >
@@ -229,7 +229,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
                 ${mbti[field.key] === field.right && gender
                   ? "bg-[#8B8FFF] text-white border-none"
                   : "border-gray-300 bg-white text-gray-400"}`}
-              onClick={() => handleSelect(field.key, field.right, idx)}
+              onClick={() => handleSelect(field.key, field.right)}
               aria-label={field.right}
               disabled={!gender}
             >

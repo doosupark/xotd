@@ -58,6 +58,7 @@ export async function GET(req: NextRequest) {
             >
               {description}
             </p>
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src="https://xotd.net/images/CI/CI_Logo_small.png"
               alt="XOTD Logo"
@@ -73,8 +74,8 @@ export async function GET(req: NextRequest) {
         height: 630,
       }
     );
-  } catch (e) {
-    console.log(`${e.message}`);
+  } catch (e: unknown) {
+    console.log(`${e instanceof Error ? e.message : 'Unknown error'}`);
     return new Response(`Failed to generate the image`, {
       status: 500,
     });

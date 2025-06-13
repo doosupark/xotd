@@ -4,6 +4,7 @@ export default function Home() {
   return <MBTIPageClient />;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generateMetadata({ searchParams }: { searchParams: any }) {
   const params = await searchParams;
   const img = params.img;
