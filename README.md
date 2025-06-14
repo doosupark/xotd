@@ -5,7 +5,7 @@
 - Next.js 15, Tailwind CSS 기반
 - SEO 고도화, 반응형 UX, 속도 최적화 완료 (v1.0)
 
-## 최근 변경사항 (v1.0)
+## 최근 변경사항 (v1.0.2)
 - SEO 고도화 및 접근성 개선 마무리
 - 모바일/PC 반응형 UI/UX 고도화
 - 페이지 속도 최적화 (불필요 JS/CSS 제거, 이미지 최적화, 동적 임포트 등)
@@ -125,7 +125,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Project Version
 
-Current version: 0.4
+Current version: 1.0.2
 
 ## Recent Changes
 - 모든 MBTI 타입(남/여) 이름 데이터 완비 및 JSON 파일 보강
@@ -171,6 +171,11 @@ Current version: 0.4
 
 ## Version History
 
+- **v1.0.2** (2024-06-15)
+  - 빌드/타입스크립트/ESLint 오류 수정 및 CI/CD 안정화
+  - AWS Amplify 배포 워크플로우 점검
+  - MBTIResultCard 타입 호환성 개선
+  - 기타 코드 품질 개선
 - **v1.0** (2024-06-14)
   - SEO 고도화, UX/반응형 개선, 속도 최적화 마무리
   - 광고 영역 제외한 1.0 주요 기능 완성
