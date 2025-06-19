@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  context: any
+  context: { params: Promise<{ encoded: string }> }
 ) {
   try {
-    const { encoded } = context.params;
+    const { encoded } = await context.params;
     
     // base64 디코딩
     const padded = encoded + '='.repeat((4 - encoded.length % 4) % 4);
