@@ -1,15 +1,23 @@
-# XOTD (v1.0)
+# XOTD (v1.0.5)
 
 ## 소개
 - MBTI 기반 일본 이름 생성기 & 한글 이름 일본어 변환기
 - Next.js 15, Tailwind CSS 기반
 - SEO 고도화, 반응형 UX, 속도 최적화 완료 (v1.0)
+- 정적 OG 이미지 및 짧은 공유 URL 지원 (v1.0.5)
 
-## 최근 변경사항 (v1.0.2)
-- SEO 고도화 및 접근성 개선 마무리
-- 모바일/PC 반응형 UI/UX 고도화
-- 페이지 속도 최적화 (불필요 JS/CSS 제거, 이미지 최적화, 동적 임포트 등)
-- 광고 영역 제외한 1.0 주요 기능 완성
+## 최근 변경사항 (v1.0.5)
+- 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
+- 짧은 공유 URL 시스템 구현 (base64 인코딩)
+- MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
+- 카카오톡 등 SNS에서 OG 이미지 정상 표시
+- 공유 URL 단축으로 사용자 경험 개선
+
+## 이전 변경사항 (v1.0.2)
+- 빌드/타입스크립트/ESLint 오류 수정 및 CI/CD 안정화
+- AWS Amplify 배포 워크플로우 점검
+- MBTIResultCard 타입 호환성 개선
+- 기타 코드 품질 개선
 
 ## 실행 방법
 ```bash
@@ -125,14 +133,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Project Version
 
-Current version: 1.0.2
+Current version: 1.0.5
 
 ## Recent Changes
-- 모든 MBTI 타입(남/여) 이름 데이터 완비 및 JSON 파일 보강
-- MBTI 설명 텍스트 좌측 정렬 및 마침표 뒤 줄바꿈 처리
-- favicon 및 LCP 이미지 경고 해결
-- README, tesk.md 등 문서 최신화
-- 사이트 정상 동작 및 주요 기능 점검 완료
+- 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
+- 짧은 공유 URL 시스템 구현 (base64 인코딩)
+- MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
+- 카카오톡 등 SNS에서 OG 이미지 정상 표시
+- 공유 URL 단축으로 사용자 경험 개선
 
 # MBTI 일본 이름 생성기 & 한글 이름 일본어 변환기
 
@@ -171,6 +179,12 @@ Current version: 1.0.2
 
 ## Version History
 
+- **v1.0.5** (2024-12-19)
+  - 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
+  - 짧은 공유 URL 시스템 구현 (base64 인코딩)
+  - MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
+  - 카카오톡 등 SNS에서 OG 이미지 정상 표시
+  - 공유 URL 단축으로 사용자 경험 개선
 - **v1.0.2** (2024-06-15)
   - 빌드/타입스크립트/ESLint 오류 수정 및 CI/CD 안정화
   - AWS Amplify 배포 워크플로우 점검

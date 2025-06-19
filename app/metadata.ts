@@ -45,29 +45,33 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
     };
   }
 
-  // 결과/상세 페이지 (동적)
-  if (searchParams?.mbti && searchParams?.korean) {
+  // 결과/상세 페이지 (정적 OG 이미지 사용)
+  if (searchParams?.mbti && searchParams?.korean && searchParams?.index) {
     const mbti = searchParams.mbti;
     const gender = searchParams.gender === "male" ? "남성" : "여성";
     const hiragana = searchParams.hiragana || "";
     const katakana = searchParams.katakana || "";
     const korean = searchParams.korean;
-    const img = searchParams.img || "https://xotd.net/images/og-mbti.jpg";
+    const index = searchParams.index;
+    
+    // 정적 OG 이미지 URL 생성
+    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp`;
+    
     return {
       title: `${mbti} ${gender} 일본 이름 - ${korean} | xotd.net`,
       description: `${mbti} ${gender}의 일본 이름 ${korean}(${hiragana}, ${katakana})을 확인해보세요.`,
       openGraph: {
-        title: `${mbti} 일본 이름 결과` ,
-        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.` ,
-        images: [img],
-        url: 'https://xotd.net',
+        title: `${mbti} 일본 이름 결과`,
+        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
+        images: [ogImageUrl],
+        url: `https://xotd.net?mbti=${mbti}&gender=${searchParams.gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
         type: 'website',
       },
       twitter: {
         card: "summary_large_image",
-        title: `${mbti} 일본 이름 결과` ,
-        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.` ,
-        images: [img],
+        title: `${mbti} 일본 이름 결과`,
+        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
+        images: [ogImageUrl],
       },
     };
   }

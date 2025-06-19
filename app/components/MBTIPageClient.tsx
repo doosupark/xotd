@@ -2,6 +2,7 @@
 import { useState } from "react";
 import MBTISelector from "./MBTISelector";
 import MBTIResultCard from "./MBTIResultCard";
+import { createShortShareUrl } from "../../lib/canvas-utils";
 
 type Gender = "male" | "female";
 type ResultData = {
@@ -11,6 +12,7 @@ type ResultData = {
   hiragana: string;
   katakana: string;
   korean: string;
+  index: number;
   persona: {
     nickname: string;
     slogan: string;
@@ -26,19 +28,49 @@ export default function MBTIPageClient() {
   };
 
   const handleShare = () => {
-    const shareUrl = "https://xotd.net";
-    const shareTitle = "나의 일본 이름 결과";
-    const shareText = "나의 일본 이름을 확인해보세요!";
+    if (!result) return;
+
+    // 짧은 공유 URL 생성
+    const shareUrl = createShortShareUrl({
+      mbti: result.mbti,
+      gender: result.gender || 'male',
+      hiragana: result.hiragana,
+      katakana: result.katakana,
+      korean: result.korean,
+      imageUrl: result.imageUrl,
+      index: result.index
+    });
+
+    const shareTitle = `${result.mbti} ${result.gender === 'male' ? '남성' : '여성'} 일본 이름 - ${result.korean}`;
+    const shareText = `${result.mbti} ${result.gender === 'male' ? '남성' : '여성'}의 일본 이름 ${result.korean}(${result.hiragana}, ${result.katakana})을 확인해보세요!`;
+
     if (navigator.share) {
       navigator.share({
         title: shareTitle,
         text: shareText,
         url: shareUrl,
+      }).catch((error) => {
+        console.log('공유 실패:', error);
+        fallbackShare(shareUrl);
       });
     } else {
-      navigator.clipboard.writeText(shareUrl);
-      alert("링크가 복사되었습니다! 원하는 곳에 붙여넣어 공유하세요.");
+      fallbackShare(shareUrl);
     }
+  };
+
+  const fallbackShare = (url: string) => {
+    navigator.clipboard.writeText(url).then(() => {
+      alert("링크가 복사되었습니다! 카카오톡 등에서 붙여넣어 공유하세요.");
+    }).catch(() => {
+      // 클립보드 API가 지원되지 않는 경우
+      const textArea = document.createElement('textarea');
+      textArea.value = url;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert("링크가 복사되었습니다! 카카오톡 등에서 붙여넣어 공유하세요.");
+    });
   };
 
   return (

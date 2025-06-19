@@ -21,6 +21,7 @@ type ResultData = {
   hiragana: string;
   katakana: string;
   korean: string;
+  index: number;
   persona: {
     nickname: string;
     slogan: string;
@@ -44,15 +45,16 @@ function getTraitImagePath(gender: Gender | null, letter: string) {
   return `/images/${gender}/${letter.toLowerCase()}.png`;
 }
 
-function getRandomName(gender: string, mbti: string) {
+function getRandomName(gender: string, mbti: string): { hiragana: string; katakana: string; korean: string; index: number } {
   const male = maleNames as NameData;
   const female = femaleNames as NameData;
   const names = gender === "male" ? male[mbti] : female[mbti];
   if (!names || !Array.isArray(names) || names.length === 0) {
     console.error(`No names found for MBTI: ${mbti}, gender: ${gender}`);
-    return { hiragana: "-", katakana: "-", korean: "-" };
+    return { hiragana: "-", katakana: "-", korean: "-", index: 0 };
   }
-  return names[Math.floor(Math.random() * names.length)];
+  const randomIndex = Math.floor(Math.random() * names.length);
+  return { ...names[randomIndex], index: randomIndex };
 }
 
 export default function MBTISelector({ onComplete }: { onComplete?: (data: ResultData) => void }) {
@@ -94,7 +96,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       slogan: mbtiData.slogan,
       description: mbtiData.genders?.[gender as Gender]?.description ?? "",
     } : { nickname: "", slogan: "", description: "" };
-    const name = gender ? getRandomName(gender, mbtiStr) : { hiragana: "-", katakana: "-", korean: "-" };
+    const name = gender ? getRandomName(gender, mbtiStr) : { hiragana: "-", katakana: "-", korean: "-", index: 0 };
     const resultData: ResultData = {
       mbti: mbtiStr,
       gender,
@@ -102,6 +104,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       hiragana: name.hiragana,
       katakana: name.katakana,
       korean: name.korean,
+      index: name.index,
       persona,
     };
     onComplete?.(resultData);
