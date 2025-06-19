@@ -37,7 +37,7 @@ jobs:
         path: playwright-report/
         retention-days: 30
 
-  build:
+  build-and-deploy:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -57,6 +57,7 @@ jobs:
     - name: Build
       run: npm run build
     
+    # AWS Amplify 배포 (권한 문제 시 주석 처리)
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -66,27 +67,22 @@ jobs:
     
     - name: Deploy to AWS Amplify
       run: |
+        # Amplify 앱이 존재하는지 확인
+        aws amplify get-app --app-id ${{ secrets.AMPLIFY_APP_ID }} || exit 1
+        
+        # 배포 시작
         aws amplify start-deployment \
           --app-id ${{ secrets.AMPLIFY_APP_ID }} \
           --branch-name main \
           --source-url ${{ github.server_url }}/${{ github.repository }}/archive/${{ github.sha }}.zip
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+      continue-on-error: true
     
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
+    # Vercel 배포 (대안)
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
       with:
-        name: build
-        path: .next
-    
-    # 여기에 실제 배포 단계 추가
-    # 예: AWS Amplify, Vercel, Netlify 등
-    - name: Deploy to production
-      run: echo "Deploy to production"
-      # 실제 배포 명령어로 대체 필요 
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+      continue-on-error: true 
