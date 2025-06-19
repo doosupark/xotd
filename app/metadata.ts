@@ -54,8 +54,13 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
     const korean = searchParams.korean;
     const index = searchParams.index;
     
-    // 정적 OG 이미지 URL 생성
-    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp`;
+    // 정적 OG 이미지 URL 생성 (캐시 무효화를 위해 타임스탬프 추가)
+    const timestamp = Date.now();
+    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp?v=${timestamp}`;
+    
+    // 디버깅용 로그
+    console.log('OG Image URL:', ogImageUrl);
+    console.log('Search Params:', searchParams);
     
     return {
       title: `${mbti} ${gender} 일본 이름 - ${korean} | xotd.net`,

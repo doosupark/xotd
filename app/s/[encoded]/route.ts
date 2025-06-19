@@ -18,9 +18,9 @@ export async function GET(
     const redirectUrl = new URL('https://xotd.net');
     redirectUrl.searchParams.set('mbti', data.m);
     redirectUrl.searchParams.set('gender', data.g);
-    redirectUrl.searchParams.set('hiragana', data.h);
-    redirectUrl.searchParams.set('katakana', data.k);
-    redirectUrl.searchParams.set('korean', data.n);
+    redirectUrl.searchParams.set('hiragana', decodeURIComponent(data.h));
+    redirectUrl.searchParams.set('katakana', decodeURIComponent(data.k));
+    redirectUrl.searchParams.set('korean', decodeURIComponent(data.n));
     redirectUrl.searchParams.set('index', data.i.toString());
     
     return NextResponse.redirect(redirectUrl);

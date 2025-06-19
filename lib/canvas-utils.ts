@@ -30,12 +30,13 @@ export function createShortShareUrl(data: {
   index: number;
   imageUrl: string;
 }): string {
+  // 한글을 안전하게 인코딩
   const dataString = JSON.stringify({
     m: data.mbti,
     g: data.gender,
-    h: data.hiragana,
-    k: data.katakana,
-    n: data.korean,
+    h: encodeURIComponent(data.hiragana),
+    k: encodeURIComponent(data.katakana),
+    n: encodeURIComponent(data.korean),
     i: data.index
   });
   
