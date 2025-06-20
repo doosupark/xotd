@@ -3,12 +3,68 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import AdBanner from "../components/AdBanner";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "MBTI 일본 이름 생성기",
-  description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+export const metadata: Metadata = {
+  metadataBase: new URL('https://xotd.net'),
+  title: {
+    default: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요 | xotd.net",
+    template: "%s | xotd.net"
+  },
+  description: "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+  keywords: ["MBTI", "일본 이름", "일본어", "카타카나", "히라가나", "이름 생성기", "한글 이름 변환기"],
+  authors: [{ name: "XOTD" }],
+  creator: "XOTD",
+  publisher: "XOTD",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    siteName: 'XOTD',
+    title: "MBTI 일본 이름 생성기",
+    description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
+    url: 'https://xotd.net',
+    images: [
+      {
+        url: '/images/og-mbti.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MBTI 일본 이름 생성기',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "MBTI 일본 이름 생성기",
+    description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
+    images: ['/images/og-mbti.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    other: {
+      'naver-site-verification': 'your-naver-verification-code',
+    },
+  },
+  alternates: {
+    canonical: 'https://xotd.net',
+  },
 };
 
 export default function RootLayout({
@@ -52,6 +108,25 @@ export default function RootLayout({
             }
           ]
         }) }} />
+        {/* 카카오톡 OG 이미지 캐시 무효화 */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:alt" content="MBTI 일본 이름 생성기" />
+        
+        {/* 카카오톡 전용 메타데이터 */}
+        <meta name="kakao:title" content="MBTI 일본 이름 생성기" />
+        <meta name="kakao:description" content="MBTI와 성별로 나만의 일본식 이름을 추천받으세요." />
+        <meta name="kakao:image" content="https://xotd.net/images/og-mbti.jpg" />
+        
+        {/* 카카오톡 OG 이미지 강제 새로고침 */}
+        <meta property="og:image" content="https://xotd.net/images/og-mbti.jpg?v=1.0.5" />
+        <meta property="og:image:secure_url" content="https://xotd.net/images/og-mbti.jpg?v=1.0.5" />
+        
+        {/* 캐시 제어 */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
       </head>
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col md:flex-row">

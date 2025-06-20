@@ -9,10 +9,16 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       title: "MBTI 일본 이름 생성기",
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
       images: [
-        "https://xotd.net/images/og-mbti.jpg"
+        {
+          url: "https://xotd.net/images/og-mbti.jpg",
+          width: 1200,
+          height: 630,
+          alt: "MBTI 일본 이름 생성기",
+        }
       ],
       url: 'https://xotd.net',
       type: 'website',
+      siteName: 'XOTD',
     },
     twitter: {
       card: "summary_large_image",
@@ -31,10 +37,16 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         title: "한글 이름 일본어 변환기",
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
         images: [
-          "https://xotd.net/images/og-translator.jpg"
+          {
+            url: "https://xotd.net/images/og-translator.jpg",
+            width: 1200,
+            height: 630,
+            alt: "한글 이름 일본어 변환기",
+          }
         ],
         url: 'https://xotd.net/translator',
         type: 'website',
+        siteName: 'XOTD',
       },
       twitter: {
         card: "summary_large_image",
@@ -54,9 +66,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
     const korean = searchParams.korean;
     const index = searchParams.index;
     
-    // 정적 OG 이미지 URL 생성 (캐시 무효화를 위해 타임스탬프 추가)
-    const timestamp = Date.now();
-    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp?v=${timestamp}`;
+    // 정적 OG 이미지 URL 생성 (캐시 무효화를 위해 버전 파라미터 사용)
+    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp?v=1.0.5`;
     
     // 디버깅용 로그
     console.log('OG Image URL:', ogImageUrl);
@@ -68,15 +79,29 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       openGraph: {
         title: `${mbti} 일본 이름 결과`,
         description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
-        images: [ogImageUrl],
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: `${mbti} ${gender} 일본 이름 - ${korean}`,
+          }
+        ],
         url: `https://xotd.net?mbti=${mbti}&gender=${searchParams.gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
         type: 'website',
+        siteName: 'XOTD',
       },
       twitter: {
         card: "summary_large_image",
         title: `${mbti} 일본 이름 결과`,
         description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
         images: [ogImageUrl],
+      },
+      // 카카오톡 전용 메타데이터
+      other: {
+        'kakao:title': `${mbti} ${gender} 일본 이름 - ${korean}`,
+        'kakao:description': `${mbti} ${gender}의 일본 이름 ${korean}(${hiragana}, ${katakana})을 확인해보세요.`,
+        'kakao:image': ogImageUrl,
       },
     };
   }
