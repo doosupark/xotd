@@ -46,5 +46,36 @@ export function createShortShareUrl(data: {
     .replace(/\//g, '_')
     .replace(/=/g, '');
   
-  return `https://xotd.net/s/${encoded}`;
+  return `https://xotd.net/?share=${encoded}`;
+}
+
+export type DecodedData = {
+  mbti: string;
+  gender: 'male' | 'female';
+  hiragana: string;
+  katakana: string;
+  korean: string;
+  index: number;
+};
+
+export function decodeShareData(encoded: string): DecodedData | null {
+  try {
+    const padded = encoded.replace(/-/g, '+').replace(/_/g, '/') + '=='.substring(0, (3 * encoded.length) % 4);
+    const decodedString = Buffer.from(padded, 'base64').toString('utf-8');
+    const data = JSON.parse(decodedString);
+    if (!data.m || !data.g || !data.h || !data.k || !data.n || typeof data.i === 'undefined') {
+      return null;
+    }
+    return {
+      mbti: data.m,
+      gender: data.g,
+      hiragana: decodeURIComponent(data.h),
+      katakana: decodeURIComponent(data.k),
+      korean: decodeURIComponent(data.n),
+      index: parseInt(data.i, 10),
+    };
+  } catch (error) {
+    console.error("Failed to decode share data:", error);
+    return null;
+  }
 } 

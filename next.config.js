@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: [
@@ -6,6 +8,11 @@ const nextConfig = {
   ],
   productionBrowserSourceMaps: false,
   webpack: (config, { dev }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname),
+    };
+
     if (dev) {
       config.devtool = false;
     }
