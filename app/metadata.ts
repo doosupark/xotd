@@ -46,7 +46,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     if (data) {
       const { mbti, gender, korean, index, hiragana, katakana } = data;
       const genderText = gender === 'male' ? "남성" : "여성";
-      const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${gender}-${index}.webp?v=1.0.6`;
+      const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${gender}-${index}.webp?v=1.0.7`;
 
       return {
         title: `${mbti} ${genderText} 일본 이름 - ${korean} | xotd.net`,
@@ -67,6 +67,16 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
           images: [ogImageUrl],
         },
       };
+    } else {
+      // 디코딩 실패 시
+      return {
+        title: "디버그: 데이터 디코딩 실패",
+        description: "공유 데이터 디코딩에 실패했습니다.",
+        openGraph: {
+          title: "Debug: Decode Failed",
+          description: "데이터 디코딩 실패"
+        }
+      }
     }
   }
   
@@ -138,7 +148,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     const index = params.index;
     
     // 정적 OG 이미지 URL 생성 (캐시 무효화를 위해 버전 파라미터 사용)
-    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${params.gender}-${index}.webp?v=1.0.6`;
+    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${params.gender}-${index}.webp?v=1.0.7`;
     
     // 디버깅용 로그
     console.log('OG Image URL:', ogImageUrl);
