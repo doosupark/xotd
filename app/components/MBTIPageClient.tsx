@@ -20,8 +20,8 @@ type ResultData = {
   };
 };
 
-export default function MBTIPageClient() {
-  const [result, setResult] = useState<ResultData | null>(null);
+export default function MBTIPageClient({ initialResult }: { initialResult?: ResultData | null }) {
+  const [result, setResult] = useState<ResultData | null>(initialResult || null);
 
   const handleCopy = (type: "hiragana" | "katakana") => {
     console.log(`복사: ${type}`);
@@ -37,7 +37,6 @@ export default function MBTIPageClient() {
       hiragana: result.hiragana,
       katakana: result.katakana,
       korean: result.korean,
-      imageUrl: result.imageUrl,
       index: result.index
     });
 

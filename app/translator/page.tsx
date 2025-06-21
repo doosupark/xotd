@@ -1,4 +1,4 @@
-import TranslatorPageClient from '@/translator/components/TranslatorPageClient';
+import TranslatorPageClient from './components/TranslatorPageClient';
 
 export default function TranslatorPage() {
   return <TranslatorPageClient />;

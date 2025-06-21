@@ -6,7 +6,6 @@ export function createShortShareUrl(data: {
   katakana: string;
   korean: string;
   index: number;
-  imageUrl: string;
 }): string {
   // 동적 OG 이미지 API를 사용하는 직접 쿼리 파라미터 방식
   const baseUrl = 'https://xotd.net';

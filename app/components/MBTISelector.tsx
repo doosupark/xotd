@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import mbtiTravelPersona from "../../lib/mbtiNameData";
-import maleNames from "@/../public/data/male_names.json";
-import femaleNames from "@/../public/data/female_names.json";
+import { mbtiTravelPersona } from "../../lib/mbtiNameData";
+import maleNames from "../../public/data/male_names.json";
+import femaleNames from "../../public/data/female_names.json";
 
 type Gender = "male" | "female";
 type MBTIType = {
