@@ -2,6 +2,8 @@ import MBTIPageClient from './components/MBTIPageClient';
 import { decodeShareData } from '@/lib/canvas-utils';
 import { mbtiTravelPersona } from '@/lib/mbtiNameData';
 
+export const revalidate = 0;
+
 type Gender = "male" | "female";
 type ResultData = {
   mbti: string;
