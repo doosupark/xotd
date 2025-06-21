@@ -37,10 +37,12 @@ function decodeShareData(encoded: string): DecodedData | null {
 }
 */
 
-export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | undefined> }): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }): Promise<Metadata> {
+  const params = await searchParams;
+  
   // 공유 URL 처리
-  if (searchParams?.share) {
-    const data = decodeShareData(searchParams.share);
+  if (params?.share) {
+    const data = decodeShareData(params.share);
     if (data) {
       const { mbti, gender, korean, index, hiragana, katakana } = data;
       const genderText = gender === 'male' ? "남성" : "여성";
@@ -52,7 +54,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         openGraph: {
           title: `${mbti} 일본 이름 결과`,
           description: `추천된 일본식 이름을 지금 바로 확인해보세요.`,
-          url: `https://xotd.net/?share=${searchParams.share}`,
+          url: `https://xotd.net/?share=${params.share}`,
           siteName: 'XOTD',
           images: [{ url: ogImageUrl, width: 1200, height: 630, alt: `${mbti} ${genderText} 일본 이름 - ${korean}` }],
           locale: 'ko_KR',
@@ -96,7 +98,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
   };
 
   // 한글 이름 일본어 변환기
-  if (searchParams?.page === 'translator') {
+  if (params?.page === 'translator') {
     return {
       title: "한글 이름 일본어 변환기 - 카타카나/히라가나 변환 | xotd.net",
       description: "한글 이름을 입력하면 일본어(카타카나/히라가나)로 변환해드립니다. 일본 웹/앱 서비스 가입시 활용하세요!",
@@ -125,20 +127,20 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
   }
 
   // 결과/상세 페이지 (정적 OG 이미지 사용)
-  if (searchParams?.mbti && searchParams?.korean && searchParams?.index) {
-    const mbti = searchParams.mbti;
-    const gender = searchParams.gender === "male" ? "남성" : "여성";
-    const hiragana = searchParams.hiragana || "";
-    const katakana = searchParams.katakana || "";
-    const korean = searchParams.korean;
-    const index = searchParams.index;
+  if (params?.mbti && params?.korean && params?.index) {
+    const mbti = params.mbti;
+    const gender = params.gender === "male" ? "남성" : "여성";
+    const hiragana = params.hiragana || "";
+    const katakana = params.katakana || "";
+    const korean = params.korean;
+    const index = params.index;
     
     // 정적 OG 이미지 URL 생성 (캐시 무효화를 위해 버전 파라미터 사용)
-    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${searchParams.gender}-${index}.webp?v=1.0.6`;
+    const ogImageUrl = `https://xotd.net/images/og-results/${mbti.toLowerCase()}-${params.gender}-${index}.webp?v=1.0.6`;
     
     // 디버깅용 로그
     console.log('OG Image URL:', ogImageUrl);
-    console.log('Search Params:', searchParams);
+    console.log('Search Params:', params);
     
     return {
       title: `${mbti} ${gender} 일본 이름 - ${korean} | xotd.net`,
@@ -154,7 +156,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
             alt: `${mbti} ${gender} 일본 이름 - ${korean}`,
           }
         ],
-        url: `https://xotd.net?mbti=${mbti}&gender=${searchParams.gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
+        url: `https://xotd.net?mbti=${mbti}&gender=${params.gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
         type: 'website',
         siteName: 'XOTD',
       },

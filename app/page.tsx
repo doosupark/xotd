@@ -34,20 +34,23 @@ function getPersona(mbti: string, gender: 'male' | 'female') {
   };
 }
 
-export default function Home({ searchParams }: { searchParams?: { share?: string } }) {
+export default async function Home({ searchParams }: { searchParams?: Promise<{ share?: string }> }) {
   let initialResult: ResultData | null = null;
 
-  if (searchParams?.share) {
-    const decoded = decodeShareData(searchParams.share);
+  if (searchParams) {
+    const params = await searchParams;
+    if (params?.share) {
+      const decoded = decodeShareData(params.share);
 
-    if (decoded) {
-      const persona = getPersona(decoded.mbti, decoded.gender);
-      if (persona) {
-        initialResult = {
-          ...decoded,
-          imageUrl: `/images/og-results/${decoded.mbti.toLowerCase()}-${decoded.gender}-${decoded.index}.webp`,
-          persona,
-        };
+      if (decoded) {
+        const persona = getPersona(decoded.mbti, decoded.gender);
+        if (persona) {
+          initialResult = {
+            ...decoded,
+            imageUrl: `/images/og-results/${decoded.mbti.toLowerCase()}-${decoded.gender}-${decoded.index}.webp`,
+            persona,
+          };
+        }
       }
     }
   }
