@@ -70,12 +70,14 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     }
   }
   
+  const debugTitle = `Debug: share=${params?.share ? 'yes' : 'no'}`;
+  
   // 기본 메타데이터 (홈/MBTI 생성기)
   const defaultMetadata = {
     title: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요 | xotd.net",
     description: "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
     openGraph: {
-      title: "MBTI 일본 이름 생성기",
+      title: params?.share ? "MBTI 일본 이름 생성기" : debugTitle,
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
       images: [
         {
