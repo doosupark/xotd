@@ -91,7 +91,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
       images: [
         {
-          url: "https://xotd.net/images/og-mbti.jpg",
+          url: "https://xotd.net/images/og-results/enfj-female-0.webp",
           width: 1200,
           height: 630,
           alt: "MBTI 일본 이름 생성기",
@@ -105,7 +105,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       card: "summary_large_image",
       title: "MBTI 일본 이름 생성기",
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
-      images: ["https://xotd.net/images/og-mbti.jpg"],
+      images: ["https://xotd.net/images/og-results/enfj-female-0.webp"],
     },
   };
 
@@ -119,7 +119,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
         images: [
           {
-            url: "https://xotd.net/images/og-translator.jpg",
+            url: "https://xotd.net/images/og-results/enfp-male-0.webp",
             width: 1200,
             height: 630,
             alt: "한글 이름 일본어 변환기",
@@ -133,7 +133,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
         card: "summary_large_image",
         title: "한글 이름 일본어 변환기",
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
-        images: ["https://xotd.net/images/og-translator.jpg"],
+        images: ["https://xotd.net/images/og-results/enfp-male-0.webp"],
       },
     };
   }
