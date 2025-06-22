@@ -35,11 +35,12 @@ function getPersona(mbti: string, gender: 'male' | 'female') {
   };
 }
 
-export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default async function Home({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   let initialResult: ResultData | null = null;
 
-  if (searchParams?.mbti && searchParams.gender && searchParams.korean && searchParams.index) {
-    const { mbti, gender, korean, index, hiragana, katakana } = searchParams;
+  const params = await searchParams;
+  if (params?.mbti && params.gender && params.korean && params.index) {
+    const { mbti, gender, korean, index, hiragana, katakana } = params;
     const persona = getPersona(mbti as string, gender as 'male' | 'female');
 
     if (persona) {
