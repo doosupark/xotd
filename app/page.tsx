@@ -35,7 +35,7 @@ function getPersona(mbti: string, gender: 'male' | 'female') {
   };
 }
 
-export default async function Home({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } }) {
+export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   let initialResult: ResultData | null = null;
 
   if (searchParams?.mbti && searchParams.gender && searchParams.korean && searchParams.index) {
