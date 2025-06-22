@@ -22,20 +22,6 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3368149883961314" crossOrigin="anonymous"></script>
-        {/* JSON-LD for SEO */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://xotd.net",
-            "name": "XOTD.NET | MBTI 일본 이름 생성기",
-            "description": "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://xotd.net/?mbti={mbti}&gender={gender}",
-              "query-input": "required name=mbti, required name=gender"
-            }
-          })
-        }} />
       </head>
       <body className={inter.className}>
         {/* Google Analytics - Next.js Script component 사용 */}
@@ -52,6 +38,26 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* JSON-LD for SEO - Script component 사용 */}
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://xotd.net",
+            "name": "XOTD.NET | MBTI 일본 이름 생성기",
+            "description": "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://xotd.net/?mbti={mbti}&gender={gender}",
+              "query-input": "required name=mbti, required name=gender"
+            }
+          })}
+        </Script>
+
         <div className="flex min-h-screen">
           {/* PC 사이드바 */}
           <div className="hidden lg:flex lg:w-56 lg:flex-col lg:fixed lg:inset-y-0">
@@ -64,7 +70,7 @@ export default function RootLayout({
                   width={120}
                   height={40}
                   priority
-                  style={{ width: 'auto', height: '40px' }}
+                  className="h-10 w-auto"
                 />
               </div>
               
@@ -88,7 +94,7 @@ export default function RootLayout({
           {/* 메인 콘텐츠 */}
           <div className="lg:pl-56 flex flex-col flex-1">
             {/* 모바일 헤더 - CI 로고 */}
-            <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3">
+            <div className="lg:hidden bg-white px-4 py-3">
               <div className="flex items-center justify-center">
                 <Image
                   src="/images/ci/ci_logo_small.png"
@@ -96,7 +102,7 @@ export default function RootLayout({
                   width={100}
                   height={33}
                   priority
-                  style={{ width: 'auto', height: '33px' }}
+                  className="h-8 w-auto"
                 />
               </div>
             </div>

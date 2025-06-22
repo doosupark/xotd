@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 export default function Navigation() {
   const pathname = usePathname();
   return (
-    <nav className="flex flex-row items-center justify-center gap-2 p-2 w-full">
+    <nav className="flex flex-col md:flex-row items-center justify-center gap-2 p-2 w-full">
       <Link
         href="/"
-        className={`font-bold text-[0.6rem] hover:text-purple-600 transition-colors px-2 py-1 rounded-md text-center flex-1 ${
+        className={`font-bold text-[0.6rem] hover:text-purple-600 transition-colors px-2 py-1 rounded-md text-center w-full md:flex-1 ${
           pathname === "/" ? "bg-gray-100" : ""
         }`}
       >
@@ -17,7 +17,7 @@ export default function Navigation() {
       </Link>
       <Link
         href="/translator"
-        className={`font-bold text-[0.6rem] hover:text-purple-600 transition-colors px-2 py-1 rounded-md text-center flex-1 ${
+        className={`font-bold text-[0.6rem] hover:text-purple-600 transition-colors px-2 py-1 rounded-md text-center w-full md:flex-1 ${
           pathname === "/translator" ? "bg-gray-100" : ""
         }`}
       >
