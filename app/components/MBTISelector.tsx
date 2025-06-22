@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { mbtiTravelPersona } from "../../lib/mbtiNameData";
 import maleNames from "../../public/data/male_names.json";
@@ -39,10 +39,19 @@ const MBTI_FIELDS = [
 ];
 const BLUE = "#8B8FFF";
 
-// 성향별 이미지 파일명 규칙: public/images/{gender}/{철자}.png
+// 성향별 이미지 파일명 규칙: public/images/{gender}/{철자}.webp (webp 우선, fallback으로 png)
 function getTraitImagePath(gender: Gender | null, letter: string) {
   if (!gender || letter === "-") return "/images/placeholder_trait.png";
-  return `/images/${gender}/${letter.toLowerCase()}.png`;
+  return `/images/${gender}/${letter.toLowerCase()}.webp`;
+}
+
+// 이미지 사전 로딩 함수
+function preloadImages(gender: Gender) {
+  const letters = ['e', 'i', 'n', 's', 't', 'f', 'j', 'p'];
+  letters.forEach(letter => {
+    const img = new window.Image();
+    img.src = `/images/${gender}/${letter}.webp`;
+  });
 }
 
 function getRandomName(gender: string, mbti: string): { hiragana: string; katakana: string; korean: string; index: number } {
@@ -68,6 +77,13 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
 
   // 모든 선택이 완료되었는지 체크
   const isComplete = gender && Object.values(mbti).every(Boolean);
+
+  // 성별 선택 시 이미지 사전 로딩
+  const handleGenderSelect = (selectedGender: Gender) => {
+    setGender(selectedGender);
+    // 성별 선택 시 해당 성별의 모든 개별 이미지를 미리 로드
+    preloadImages(selectedGender);
+  };
 
   // 점 이동 핸들러
   const handleSelect = (field: string, value: string) => {
@@ -144,8 +160,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
                     height={isSelected ? 56 : 16}
                     className="object-contain mx-auto"
                     style={{ width: "auto", height: "auto", display: 'block', margin: '0 auto' }}
-                    quality={85}
-                    loading="eager"
+                    quality={60}
+                    priority={isSelected}
+                    loading={isSelected ? "eager" : "lazy"}
                     sizes="(max-width: 768px) 56px, 56px"
                   />
                 )}
@@ -170,7 +187,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
             ${gender === "male"
               ? "bg-[#8B8FFF] text-white border-none"
               : "border-gray-300 bg-white text-gray-400"}`}
-          onClick={() => setGender("male")}
+          onClick={() => handleGenderSelect("male")}
           aria-label="남성"
         >
           ♂
@@ -189,7 +206,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
             ${gender === "female"
               ? "bg-[#8B8FFF] text-white border-none"
               : "border-gray-300 bg-white text-gray-400"}`}
-          onClick={() => setGender("female")}
+          onClick={() => handleGenderSelect("female")}
           aria-label="여성"
         >
           ♀
