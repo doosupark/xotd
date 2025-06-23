@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { mbtiTravelPersona } from "../../lib/mbtiNameData";
 import maleNames from "../../public/data/male_names.json";
