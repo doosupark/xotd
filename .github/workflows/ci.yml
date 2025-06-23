@@ -67,14 +67,9 @@ jobs:
     
     - name: Deploy to AWS Amplify
       run: |
-        # 사용 가능한 Amplify 앱 목록 확인 (디버깅용)
-        echo "Available Amplify apps:"
-        aws amplify list-apps --region us-east-1
-        
-        # Amplify 앱이 존재하는지 확인
-        echo "Checking app ID: ${{ secrets.AMPLIFY_APP_ID }}"
-        aws amplify get-app --app-id ${{ secrets.AMPLIFY_APP_ID }} --region us-east-1 || exit 1
-        
+        # main 브랜치의 자동 빌드를 강제로 활성화 (UI-API 불일치 문제 해결)
+        aws amplify update-branch --app-id ${{ secrets.AMPLIFY_APP_ID }} --branch-name main --enable-auto-build --region us-east-1
+
         # 배포 시작
         aws amplify start-deployment \
           --app-id ${{ secrets.AMPLIFY_APP_ID }} \
