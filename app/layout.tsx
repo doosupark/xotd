@@ -65,7 +65,7 @@ export default function RootLayout({
               {/* CI 로고 - 이미지 크기 수정 */}
               <div className="flex items-center flex-shrink-0 px-4 mb-8">
                 <Image
-                  src="/images/ci/ci_logo_small.png"
+                  src="/images/ci/ci_logo_small.webp"
                   alt="XOTD Logo"
                   width={120}
                   height={40}
@@ -97,7 +97,7 @@ export default function RootLayout({
             <div className="lg:hidden bg-white px-4 py-3">
               <div className="flex items-center justify-center">
                 <Image
-                  src="/images/ci/ci_logo_small.png"
+                  src="/images/ci/ci_logo_small.webp"
                   alt="XOTD Logo"
                   width={100}
                   height={33}

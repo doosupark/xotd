@@ -57,7 +57,7 @@ jobs:
     - name: Build
       run: npm run build
     
-    # AWS Amplify 배포 (권한 문제 시 주석 처리)
+    # AWS Amplify 배포
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -74,15 +74,4 @@ jobs:
         aws amplify start-deployment \
           --app-id ${{ secrets.AMPLIFY_APP_ID }} \
           --branch-name main \
-          --source-url ${{ github.server_url }}/${{ github.repository }}/archive/${{ github.sha }}.zip
-      continue-on-error: true
-    
-    # Vercel 배포 (대안)
-    - name: Deploy to Vercel
-      uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-        vercel-args: '--prod'
-      continue-on-error: true 
+          --source-url ${{ github.server_url }}/${{ github.repository }}/archive/${{ github.sha }}.zip 

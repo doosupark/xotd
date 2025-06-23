@@ -1,23 +1,21 @@
-# XOTD (v1.0.5)
+# XOTD (v1.0.6)
 
 ## 소개
 - MBTI 기반 일본 이름 생성기 & 한글 이름 일본어 변환기
-- Next.js 15, Tailwind CSS 기반
+- Next.js 15, Tailwind CSS 기반, AWS Amplify 배포
 - SEO 고도화, 반응형 UX, 속도 최적화 완료 (v1.0)
 - 정적 OG 이미지 및 짧은 공유 URL 지원 (v1.0.5)
 
-## 최근 변경사항 (v1.0.5)
+## 최근 변경사항 (v1.0.6)
+- 코드 리팩토링: 불필요한 `src`, `components` 디렉토리 및 레거시 파일(`utils.js`, `nameGenerator.js`) 제거
+- CI/CD 파이프라인 개선: AWS Amplify 중심으로 배포 프로세스를 통일하고 Vercel 관련 코드 삭제
+
+## 이전 변경사항 (v1.0.5)
 - 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
 - 짧은 공유 URL 시스템 구현 (base64 인코딩)
 - MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
 - 카카오톡 등 SNS에서 OG 이미지 정상 표시
 - 공유 URL 단축으로 사용자 경험 개선
-
-## 이전 변경사항 (v1.0.2)
-- 빌드/타입스크립트/ESLint 오류 수정 및 CI/CD 안정화
-- AWS Amplify 배포 워크플로우 점검
-- MBTIResultCard 타입 호환성 개선
-- 기타 코드 품질 개선
 
 ## 실행 방법
 ```bash
@@ -105,8 +103,8 @@ MIT
 ```
 D:/dev/xotd
 ├── app/                # Next.js App Router (메인)
+├── amplify/            # AWS Amplify 백엔드 설정
 ├── public/             # 정적 파일 (favicon 등)
-├── src/                # 이전 코드(백업용)
 ├── ...
 ```
 
@@ -133,14 +131,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Project Version
 
-Current version: 1.0.5
+Current version: 1.0.6
 
 ## Recent Changes
-- 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
-- 짧은 공유 URL 시스템 구현 (base64 인코딩)
-- MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
-- 카카오톡 등 SNS에서 OG 이미지 정상 표시
-- 공유 URL 단축으로 사용자 경험 개선
+- 코드 리팩토링: 불필요한 `src`, `components` 디렉토리 및 레거시 파일(`utils.js`, `nameGenerator.js`) 제거
+- CI/CD 파이프라인 개선: AWS Amplify 중심으로 배포 프로세스를 통일하고 Vercel 관련 코드 삭제
 
 # MBTI 일본 이름 생성기 & 한글 이름 일본어 변환기
 
@@ -179,7 +174,10 @@ Current version: 1.0.5
 
 ## Version History
 
-- **v1.0.5** (2024-12-19)
+- **v1.0.6** (2024-12-20):
+  - 코드 리팩토링: 불필요한 `src`, `components` 디렉토리 및 레거시 파일 제거
+  - CI/CD 파이프라인 개선: AWS Amplify 중심으로 배포 프로세스 통일
+- **v1.0.5** (2024-12-19):
   - 정적 OG 이미지 생성 및 적용 (약 890개 이미지)
   - 짧은 공유 URL 시스템 구현 (base64 인코딩)
   - MBTI 결과 공유 시 정적 이미지 사용으로 안정성 향상
