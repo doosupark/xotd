@@ -77,6 +77,9 @@ export default function MBTIPageClient({ initialResult }: { initialResult?: Resu
       <h1 className="mt-6 text-center text-3xl font-bold mb-2">MBTI 일본 이름 생성기</h1>
       <h2 className="text-center text-lg text-gray-500 mb-4">나만의 일본식 이름을 만들어보세요</h2>
       <MBTISelector onComplete={setResult} />
+      <div id="ad-banner-placement" className="w-full h-24 my-6 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg">
+        광고 자리 (Ad Banner Placeholder)
+      </div>
       {result && <MBTIResultCard result={result} onCopy={handleCopy} onShare={handleShare} />}
       <section className="mt-10">
         <h2 className="text-lg font-bold mb-2">MBTI란?</h2>
