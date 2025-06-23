@@ -118,14 +118,14 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
       </div>
       {/* 복사/공유 버튼 */}
       <div className="flex gap-2 mb-2">
-        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("hiragana")} aria-label="히라가나 복사하기"> 
+        <button className="px-2 py-1 rounded bg-gray-200 font-semibold text-sm transition-colors duration-300 hover:bg-gray-300 min-w-[80px]" onClick={() => handleCopy("hiragana")} aria-label="히라가나 복사하기"> 
           {copySuccess === "hiragana" ? "복사 완료!" : "히라가나 복사하기"}
         </button>
-        <button className="px-3 py-2 rounded bg-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-300" onClick={() => handleCopy("katakana")} aria-label="가타카나 복사하기"> 
+        <button className="px-2 py-1 rounded bg-gray-200 font-semibold text-sm transition-colors duration-300 hover:bg-gray-300 min-w-[80px]" onClick={() => handleCopy("katakana")} aria-label="가타카나 복사하기"> 
           {copySuccess === "katakana" ? "복사 완료!" : "가타카나 복사하기"}
         </button>
       </div>
-      <button className="w-[50%] min-w-[245px] max-w-md py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
+      <button className="w-[50%] min-w-[180px] max-w-md py-3 rounded-lg font-bold text-black text-lg bg-[#FEE500] mb-4 transition-colors duration-300 hover:bg-[#ffe066]" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
     </section>
   );
 } 
