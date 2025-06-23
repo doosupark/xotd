@@ -75,8 +75,8 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   });
   const [shakeDotField, setShakeDotField] = useState<string | null>(null);
 
-  // 모든 선택이 완료되었는지 체크
-  const isComplete = gender && Object.values(mbti).every(Boolean);
+  // 모든 선택이 완료되었는지 체크 (성별 선택, MBTI 4개 항목 모두 선택)
+  const isComplete = gender && Object.values(mbti).every(val => val !== "-");
 
   // 성별 선택 시 이미지 사전 로딩
   const handleGenderSelect = (selectedGender: Gender) => {
@@ -261,11 +261,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       {/* 이름 생성 버튼 */}
       <button
         type="button"
-        className={`w-[50%] min-w-[245px] max-w-md py-3 rounded-lg font-bold text-white text-lg transition-all duration-200 ${
-          isComplete ? "bg-[#0080ff] hover:bg-[#0070e0]" : "bg-gray-300 cursor-not-allowed"
-        }`}
-        disabled={!isComplete}
         onClick={handleGenerate}
+        disabled={!isComplete}
+        className="w-full max-w-sm h-12 mt-4 text-lg font-bold text-white rounded-lg transition-colors duration-200 bg-[#0080ff] hover:bg-[#0070e0] disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
         일본 이름 생성하기
       </button>
