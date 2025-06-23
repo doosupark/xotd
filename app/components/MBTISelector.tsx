@@ -125,9 +125,9 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
     };
     onComplete?.(resultData);
 
-    // 광고 배너 위치로 스크롤
+    // 결과 위치(타이틀)로 스크롤
     setTimeout(() => {
-      document.getElementById('ad-banner-placement')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('mbti-result-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100); // 결과 카드가 렌더링될 시간을 줌
   };
 

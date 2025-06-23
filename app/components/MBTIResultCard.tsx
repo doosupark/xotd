@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import AdBanner from "./AdBanner";
 
 interface MBTIResultCardProps {
   result: {
@@ -53,10 +52,8 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
 
   return (
     <section className="result-card flex flex-col items-center w-full mt-8">
-      {/* 광고 영역 */}
-      <AdBanner />
       {/* 결과 안내 텍스트 */}
-      <div className="text-center text-lg font-semibold mt-2 mb-4">당신의 일본 이름은?</div>
+      <div id="mbti-result-title" className="text-center text-lg font-semibold mt-2 mb-4">당신의 일본 이름은?</div>
       {/* 결과 이미지 + 이름 */}
       <div
         className="flex flex-col items-center mb-4 relative"
@@ -129,8 +126,6 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
         </button>
       </div>
       <button className="w-[50%] min-w-[245px] max-w-md py-3 rounded-lg font-bold text-white text-lg bg-pink-400 mb-4 transition-colors duration-300 hover:bg-pink-500" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
-      {/* 최하단 광고 영역 */}
-      <AdBanner />
     </section>
   );
 } 
