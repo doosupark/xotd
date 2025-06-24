@@ -60,7 +60,6 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
   // 결과/상세 페이지 (동적 OG 이미지 사용)
   if (searchParams?.mbti && searchParams?.korean && searchParams?.index && searchParams?.gender && searchParams?.hiragana && searchParams?.katakana) {
     const { mbti, gender, hiragana, katakana, korean, index } = searchParams;
-    const genderText = gender === "male" ? "남성" : "여성";
     
     // canvas-utils의 함수를 사용하여 OG 이미지 URL 생성
     const ogImageUrl = createOGImageUrl({
@@ -73,17 +72,17 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
     });
     
     return {
-      title: `${korean} - MBTI 일본 이름`,
-      description: `${mbti} ${genderText}의 일본 이름입니다.`,
+      title: `${korean}`,
+      description: `${korean}`,
       openGraph: {
         title: `${korean}`,
-        description: `${mbti} ${genderText}`,
+        description: `${korean}`,
         images: [
           {
             url: ogImageUrl,
             width: 1200,
             height: 630,
-            alt: `${mbti} ${genderText} 일본 이름 - ${korean}`,
+            alt: `${korean}`,
           }
         ],
         url: `https://xotd.net?mbti=${mbti}&gender=${gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
@@ -93,7 +92,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       twitter: {
         card: "summary_large_image",
         title: `${korean}`,
-        description: `${mbti} ${genderText}`,
+        description: `${korean}`,
         images: [ogImageUrl],
       },
     };
