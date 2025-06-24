@@ -1,5 +1,14 @@
 # XOTD 개발 TASK (v1.0.6)
 
+## 🗂️ 업무 순서 제안 (우선순위)
+1. 구글 애즈(AdSense) 적용
+2. 광고 영역 실제 적용 및 모니터링
+3. 결과 공유 기능(Web Share API, SNS 등) 고도화
+4. 테스트 및 품질 관리(단위/E2E 테스트, 크로스 브라우저 등)
+5. 성능 모니터링 및 추가 최적화
+6. E2E 테스트 구축 (Cypress/Playwright 등 활용)
+7. 구글, 네이버 검색 등록 및 사이트맵 제출
+
 ## ✅ 완료된 주요 작업
 - CI/CD 파이프라인 최적화: GitHub Actions는 테스트만, AWS Amplify는 자동 배포만 담당하도록 역할을 분리하여 프로세스 단순화
 - 코드 리팩토링: 불필요한 `src`, `components` 디렉토리 및 레거시 파일(`utils.js`, `nameGenerator.js`) 제거
@@ -66,4 +75,26 @@
 
 6. **문서화 및 유지보수**
    - 테스트 문서 작성
-   - 테스트 케이스 유지보수 및 업데이트 
+   - 테스트 케이스 유지보수 및 업데이트
+
+# 구글 애즈(AdSense) 적용 절차
+1. **AdSense 계정 생성 및 사이트 등록**
+   - [Google AdSense](https://www.google.com/adsense/start/) 가입 및 사이트 등록
+   - 소유권 인증(HTML 태그 삽입 또는 DNS)
+2. **광고 단위 생성**
+   - 광고 유형(디스플레이, 인피드, 앵커 등) 및 위치 선정
+   - 광고 코드 발급
+3. **코드 삽입**
+   - Next.js의 경우 `_app.tsx` 또는 각 페이지/컴포넌트에 `<script>` 및 광고 코드 삽입
+   - 광고 위치에 맞게 레이아웃/스타일 조정
+4. **광고 노출 테스트**
+   - 실제 광고 노출 여부 확인(최초 승인까지 1~2일 소요 가능)
+   - 광고 차단/레이아웃 깨짐 등 이슈 점검
+
+# 구글, 네이버 검색 등록 및 사이트맵 제출
+1. **구글 검색 등록**
+   - [Google Search Console](https://search.google.com/search-console/)에 사이트 등록
+   - 사이트 맵 제출
+2. **네이버 검색 등록**
+   - [Naver Search Advisor](https://searchadvisor.naver.com/)에 사이트 등록
+   - 사이트 맵 제출 

@@ -2322,10 +2322,155 @@
     { "hiragana": "くどう りょうた", "katakana": "クドウ リョウタ", "korean": "쿠도 료타" }
   ],
   "ESTP": [
-    { "hiragana": "たかはし ゆうき", "katakana": "タカハシ ユウキ", "korean": "타카하시 유우키" },
-    { "hiragana": "なかむら だいき", "katakana": "ナカムラ ダイキ", "korean": "나카무라 다이키" },
-    { "hiragana": "よしだ りく", "katakana": "ヨシダ リク", "korean": "요시다 리쿠" },
-    { "hiragana": "こばやし しょうた", "katakana": "コバヤシ ショウタ", "korean": "코바야시 쇼타" },
-    { "hiragana": "わたなべ けんた", "katakana": "ワタナベ ケンタ", "korean": "와타나베 켄타" }
+    {
+      "hiragana": "さとう かいと",
+      "katakana": "サトウ カイト",
+      "korean": "사토 카이토"
+    },
+    {
+      "hiragana": "たなか れお",
+      "katakana": "タナカ レオ",
+      "korean": "타나카 레오"
+    },
+    {
+      "hiragana": "やまもと りく",
+      "katakana": "ヤマモト リク",
+      "korean": "야마모토 리쿠"
+    },
+    {
+      "hiragana": "すずき ゆうせい",
+      "katakana": "スズキ ユウセイ",
+      "korean": "스즈키 유우세이"
+    },
+    {
+      "hiragana": "たかはし りゅう",
+      "katakana": "タカハシ リュウ",
+      "korean": "타카하시 류"
+    },
+    {
+      "hiragana": "いとう はると",
+      "katakana": "イトウ ハルト",
+      "korean": "이토 하야토"
+    },
+    {
+      "hiragana": "なかむら しょうた",
+      "katakana": "ナカムラ ショウタ",
+      "korean": "나카무라 쇼타"
+    },
+    {
+      "hiragana": "よしだ りょうが",
+      "katakana": "ヨシダ リョウガ",
+      "korean": "요시다 료가"
+    },
+    {
+      "hiragana": "こばやし こうき",
+      "katakana": "コバヤシ コウキ",
+      "korean": "코바야시 코우키"
+    },
+    {
+      "hiragana": "わたなべ たいが",
+      "katakana": "ワタナベ タイガ",
+      "korean": "와타나베 타이가"
+    },
+    {
+      "hiragana": "おおにし いぶき",
+      "katakana": "オオニシ イブキ",
+      "korean": "오오니시 이부키"
+    },
+    {
+      "hiragana": "さいとう つばさ",
+      "katakana": "サイトウ ツバサ",
+      "korean": "사이토 츠바사"
+    },
+    {
+      "hiragana": "ふじわら ゆうせい",
+      "katakana": "フジワラ ユウセイ",
+      "korean": "후지와라 유우세이"
+    },
+    {
+      "hiragana": "むらかみ らい",
+      "katakana": "ムラカミ ライ",
+      "korean": "무라카미 라이"
+    },
+    {
+      "hiragana": "はしもと そら",
+      "katakana": "ハシモト ソラ",
+      "korean": "하시모토 소라"
+    },
+    {
+      "hiragana": "きむら ゆう",
+      "katakana": "キムラ ユウ",
+      "korean": "키무라 유우"
+    },
+    {
+      "hiragana": "まつもと げん",
+      "katakana": "マツモト ゲン",
+      "korean": "마츠모토 겐"
+    },
+    {
+      "hiragana": "さかた あつや",
+      "katakana": "サカタ アツヤ",
+      "korean": "사카타 아츠야"
+    },
+    {
+      "hiragana": "いのうえ けん",
+      "katakana": "イノウエ ケン",
+      "korean": "이노우에 켄"
+    },
+    {
+      "hiragana": "ながた とら",
+      "katakana": "ナガタ トラ",
+      "korean": "나가타 토라"
+    },
+    {
+      "hiragana": "おお타 이츠키",
+      "katakana": "オオタ イツキ",
+      "korean": "오오타 이츠키"
+    },
+    {
+      "hiragana": "후지이 타케루",
+      "katakana": "フジイ タケル",
+      "korean": "후지이 타케루"
+    },
+    {
+      "hiragana": "쿠로다 카이",
+      "katakana": "クロダ カイ",
+      "korean": "쿠로다 카이"
+    },
+    {
+      "hiragana": "카와무라 레오",
+      "katakana": "カワムラ レオ",
+      "korean": "카와무라 레오"
+    },
+    {
+      "hiragana": "오카다 리쿠",
+      "katakana": "オカダ リク",
+      "korean": "오카다 리쿠"
+    },
+    {
+      "hiragana": "타케우치 유우토",
+      "katakana": "タケウチ ユウと",
+      "korean": "타케우치 유우토"
+    },
+    {
+      "hiragana": "미야모토 코우키",
+      "katakana": "ミヤモト コウキ",
+      "korean": "미야모토 코우키"
+    },
+    {
+      "hiragana": "혼다 신",
+      "katakana": "ホンダ シン",
+      "korean": "혼다 신"
+    },
+    {
+      "hiragana": "이시이 류",
+      "katakana": "イシイ リュウ",
+      "korean": "이시이 류"
+    },
+    {
+      "hiragana": "쿠도 타쿠마",
+      "katakana": "クドウ タクマ",
+      "korean": "쿠도 타쿠마"
+    }
   ]
 } 
