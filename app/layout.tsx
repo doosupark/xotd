@@ -118,6 +118,11 @@ export default function RootLayout({
               </div>
             </main>
 
+            {/* 모바일 하단 광고 영역 */}
+            <div className="lg:hidden px-4 py-4">
+              <AdBanner />
+            </div>
+
             {/* 모바일 하단 네비게이션 */}
             <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
               <Navigation />
