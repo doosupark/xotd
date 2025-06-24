@@ -8,12 +8,17 @@ import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// AdSense 심사 중이므로 임시로 비활성화
+const ADSENSE_UNDER_REVIEW = true;
+
 export const metadata = {
   title: "MBTI 일본 이름 생성기",
   description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
-  other: {
-    "google-adsense-account": "ca-pub-8759341144415814",
-  },
+  ...(ADSENSE_UNDER_REVIEW ? {} : {
+    other: {
+      "google-adsense-account": "ca-pub-8759341144415814",
+    },
+  }),
 };
 
 export default function RootLayout({
@@ -24,7 +29,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759341144415814" crossOrigin="anonymous"></script>
+        {/* AdSense 심사 중이므로 임시로 비활성화 */}
+        {!ADSENSE_UNDER_REVIEW && (
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759341144415814"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
       </head>
       <body className={inter.className}>
         {/* Google Analytics - Next.js Script component 사용 */}
@@ -46,20 +59,21 @@ export default function RootLayout({
           id="json-ld"
           type="application/ld+json"
           strategy="afterInteractive"
-        >
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://xotd.net",
-            "name": "XOTD.NET | MBTI 일본 이름 생성기",
-            "description": "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://xotd.net/?mbti={mbti}&gender={gender}",
-              "query-input": "required name=mbti, required name=gender"
-            }
-          })}
-        </Script>
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://xotd.net",
+              "name": "XOTD.NET | MBTI 일본 이름 생성기",
+              "description": "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://xotd.net/?mbti={mbti}&gender={gender}",
+                "query-input": "required name=mbti, required name=gender"
+              }
+            })
+          }}
+        />
 
         <div className="flex min-h-screen">
           {/* PC 사이드바 */}
