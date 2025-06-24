@@ -19,4 +19,25 @@ export function createShortShareUrl(data: {
   });
   
   return `${baseUrl}?${params.toString()}`;
+}
+
+// OG 이미지 URL 생성 함수
+export function createOGImageUrl(data: {
+  mbti: string;
+  gender: 'male' | 'female';
+  hiragana: string;
+  katakana: string;
+  korean: string;
+  index: number;
+}): string {
+  const params = new URLSearchParams({
+    mbti: data.mbti,
+    gender: data.gender,
+    hiragana: data.hiragana,
+    katakana: data.katakana,
+    korean: data.korean,
+    index: data.index.toString()
+  });
+  
+  return `https://xotd.net/api/og-image?${params.toString()}`;
 } 

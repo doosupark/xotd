@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createOGImageUrl } from "@/lib/canvas-utils";
 
 export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }): Promise<Metadata> {
   const defaultMetadata = {
@@ -57,19 +58,26 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
   }
 
   // 결과/상세 페이지 (동적 OG 이미지 사용)
-  if (searchParams?.mbti && searchParams?.korean && searchParams?.index) {
+  if (searchParams?.mbti && searchParams?.korean && searchParams?.index && searchParams?.gender && searchParams?.hiragana && searchParams?.katakana) {
     const { mbti, gender, hiragana, katakana, korean, index } = searchParams;
     const genderText = gender === "male" ? "남성" : "여성";
     
-    // 동적 OG 이미지 URL 생성
-    const ogImageUrl = `https://xotd.net/api/og-image?mbti=${mbti}&gender=${gender}&korean=${encodeURIComponent(korean as string)}&hiragana=${encodeURIComponent(hiragana as string)}&katakana=${encodeURIComponent(katakana as string)}&index=${index}`;
+    // canvas-utils의 함수를 사용하여 OG 이미지 URL 생성
+    const ogImageUrl = createOGImageUrl({
+      mbti: mbti as string,
+      gender: gender as 'male' | 'female',
+      hiragana: hiragana as string,
+      katakana: katakana as string,
+      korean: korean as string,
+      index: Number(index)
+    });
     
     return {
       title: `${mbti} ${genderText} 일본 이름 - ${korean} | xotd.net`,
       description: `${mbti} ${genderText}의 일본 이름 ${korean}(${hiragana}, ${katakana})을 확인해보세요.`,
       openGraph: {
-        title: `${mbti} 일본 이름 결과`,
-        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
+        title: `${korean} - ${mbti} 일본 이름`,
+        description: `${mbti} ${genderText}의 특별한 일본 이름을 확인해보세요.`,
         images: [
           {
             url: ogImageUrl,
@@ -84,8 +92,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       },
       twitter: {
         card: "summary_large_image",
-        title: `${mbti} 일본 이름 결과`,
-        description: `${mbti}와 성별로 추천된 일본식 이름을 확인하세요.`,
+        title: `${korean} - ${mbti} 일본 이름`,
+        description: `${mbti} ${genderText}의 특별한 일본 이름을 확인해보세요.`,
         images: [ogImageUrl],
       },
     };

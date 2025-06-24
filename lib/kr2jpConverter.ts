@@ -170,7 +170,7 @@ export class Kr2JpConverter {
     return Kr2JpConverter.SURNAME_MAP[familyName] || familyName;
   }
 
-  // 이름 변환 (가장 단순화된 예시: 한글 -> 가타카나, 실제 로직은 nameGenerator.js 참고)
+  // 이름 변환 (한글 -> 가타카나 변환)
   static convertGivenNameToKatakana(givenName: string): string {
     return hangulToKatakanaAdvanced(givenName);
   }
