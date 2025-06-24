@@ -1,5 +1,8 @@
 import { NextRequest } from 'next/server';
 
+// Node.js Runtime 사용
+export const runtime = 'nodejs';
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -18,12 +21,15 @@ export async function GET(request: NextRequest) {
       mbti, gender, korean, hiragana, katakana, index, title, description
     });
 
+    // 동적으로 canvas 모듈 import
+    const { createCanvas } = await import('canvas');
+    
     // Canvas 크기 설정
     const width = 1200;
     const height = 630;
 
     // Canvas 생성
-    const canvas = new OffscreenCanvas(width, height);
+    const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
     if (!ctx) {
@@ -44,7 +50,7 @@ export async function GET(request: NextRequest) {
     const containerWidth = width - 120;
     const containerHeight = height - 120;
 
-    // 흰색 배경 박스 (더 부드러운 그림자) - roundRect 대신 일반 사각형 사용
+    // 흰색 배경 박스 (더 부드러운 그림자)
     ctx.fillStyle = 'white';
     ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
     ctx.shadowBlur = 30;
@@ -153,12 +159,11 @@ export async function GET(request: NextRequest) {
     }
 
     // Canvas를 이미지로 변환
-    const imageBuffer = await canvas.convertToBlob();
-    const arrayBuffer = await imageBuffer.arrayBuffer();
+    const buffer = canvas.toBuffer('image/png');
 
-    console.log('OG image generated successfully, size:', arrayBuffer.byteLength);
+    console.log('OG image generated successfully, size:', buffer.length);
 
-    return new Response(arrayBuffer, {
+    return new Response(buffer, {
       headers: {
         'Content-Type': 'image/png',
         'Cache-Control': 'public, max-age=31536000, immutable',
@@ -166,6 +171,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error generating OG image:', error);
-    return new Response('Error generating OG image', { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return new Response('Error generating OG image: ' + errorMessage, { status: 500 });
   }
 } 
