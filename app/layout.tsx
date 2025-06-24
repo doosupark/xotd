@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "MBTI 일본 이름 생성기",
   description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+  other: {
+    "google-adsense-account": "ca-pub-8759341144415814",
+  },
 };
 
 export default function RootLayout({
