@@ -9,14 +9,13 @@ export function createShortShareUrl(data: {
 }): string {
   // 동적 OG 이미지 API를 사용하는 직접 쿼리 파라미터 방식
   const baseUrl = 'https://xotd.net';
-  const params = new URLSearchParams({
-    mbti: data.mbti,
-    gender: data.gender,
-    hiragana: data.hiragana,
-    katakana: data.katakana,
-    korean: data.korean,
-    index: data.index.toString()
-  });
+  const params = new URLSearchParams();
+  params.set('mbti', data.mbti);
+  params.set('gender', data.gender);
+  params.set('korean', data.korean);
+  params.set('hiragana', data.hiragana);
+  params.set('katakana', data.katakana);
+  params.set('index', data.index.toString());
   
   return `${baseUrl}?${params.toString()}`;
 }
@@ -30,14 +29,14 @@ export function createOGImageUrl(data: {
   korean: string;
   index: number;
 }): string {
-  const params = new URLSearchParams({
-    mbti: data.mbti,
-    gender: data.gender,
-    hiragana: data.hiragana,
-    katakana: data.katakana,
-    korean: data.korean,
-    index: data.index.toString()
-  });
+  // 한글과 일본어 문자를 명시적으로 인코딩
+  const params = new URLSearchParams();
+  params.set('mbti', data.mbti);
+  params.set('gender', data.gender);
+  params.set('korean', data.korean);
+  params.set('hiragana', data.hiragana);
+  params.set('katakana', data.katakana);
+  params.set('index', data.index.toString());
   
   return `https://xotd.net/api/og-image?${params.toString()}`;
 } 
