@@ -10,7 +10,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
       images: [
         {
-          url: "https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=MBTI와%20성별로%20나만의%20일본식%20이름을%20추천받으세요",
+          url: "https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=나만의%20일본식%20이름을%20찾아보세요",
           width: 1200,
           height: 630,
           alt: "MBTI 일본 이름 생성기",
@@ -24,7 +24,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       card: "summary_large_image",
       title: "MBTI 일본 이름 생성기",
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
-      images: ["https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=MBTI와%20성별로%20나만의%20일본식%20이름을%20추천받으세요"],
+      images: ["https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=나만의%20일본식%20이름을%20찾아보세요"],
     },
   };
 
@@ -38,7 +38,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
         images: [
           {
-            url: "https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20쉽게%20변환해보세요",
+            url: "https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20변환하세요",
             width: 1200,
             height: 630,
             alt: "한글 이름 일본어 변환기",
@@ -52,7 +52,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         card: "summary_large_image",
         title: "한글 이름 일본어 변환기",
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
-        images: ["https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20쉽게%20변환해보세요"],
+        images: ["https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20변환하세요"],
       },
     };
   }
@@ -73,11 +73,11 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
     });
     
     return {
-      title: `${mbti} ${genderText} 일본 이름 - ${korean} | xotd.net`,
-      description: `${mbti} ${genderText}의 일본 이름 ${korean}(${hiragana}, ${katakana})을 확인해보세요.`,
+      title: `${korean} - MBTI 일본 이름`,
+      description: `${mbti} ${genderText}의 일본 이름입니다.`,
       openGraph: {
-        title: `${korean} - ${mbti} 일본 이름`,
-        description: `${mbti} ${genderText}의 특별한 일본 이름을 확인해보세요.`,
+        title: `${korean}`,
+        description: `${mbti} ${genderText}`,
         images: [
           {
             url: ogImageUrl,
@@ -92,8 +92,8 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       },
       twitter: {
         card: "summary_large_image",
-        title: `${korean} - ${mbti} 일본 이름`,
-        description: `${mbti} ${genderText}의 특별한 일본 이름을 확인해보세요.`,
+        title: `${korean}`,
+        description: `${mbti} ${genderText}`,
         images: [ogImageUrl],
       },
     };

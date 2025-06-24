@@ -37,15 +37,13 @@ export async function GET(request: NextRequest) {
   const containerWidth = width - 120;
   const containerHeight = height - 120;
 
-  // 흰색 배경 박스 (더 부드러운 그림자)
+  // 흰색 배경 박스 (더 부드러운 그림자) - roundRect 대신 일반 사각형 사용
   ctx.fillStyle = 'white';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
   ctx.shadowBlur = 30;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 15;
-  ctx.beginPath();
-  ctx.roundRect(containerX, containerY, containerWidth, containerHeight, 20);
-  ctx.fill();
+  ctx.fillRect(containerX, containerY, containerWidth, containerHeight);
   ctx.shadowColor = 'transparent';
 
   // 기본 OG 이미지 (MBTI 생성기 홈페이지)
@@ -79,29 +77,18 @@ export async function GET(request: NextRequest) {
     const rightAreaY = containerY + 40;
     const rightAreaWidth = containerWidth - leftBoxSize - 140;
     
-    // 왼쪽: 캐릭터 배경 (둥근 사각형, 더 밝은 색상)
+    // 왼쪽: 캐릭터 배경 (사각형, 더 밝은 색상)
     ctx.fillStyle = '#fafafa';
     ctx.strokeStyle = '#e5e7eb';
     ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.roundRect(leftBoxX, leftBoxY, leftBoxSize, leftBoxSize, 25);
-    ctx.fill();
-    ctx.stroke();
+    ctx.fillRect(leftBoxX, leftBoxY, leftBoxSize, leftBoxSize);
+    ctx.strokeRect(leftBoxX, leftBoxY, leftBoxSize, leftBoxSize);
     
-    // 캐릭터 영역에 실제 MBTI 이미지 로드 시도 (fallback으로 이모지 사용)
-    try {
-      // 실제 환경에서는 이미지 로드가 복잡하므로, 일단 텍스트로 표현
-      ctx.fillStyle = '#6366f1';
-      ctx.font = 'bold 64px Arial, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(mbti, leftBoxX + leftBoxSize / 2, leftBoxY + leftBoxSize / 2 - 20);
-    } catch (error) {
-      // fallback: MBTI 텍스트 표시
-      ctx.fillStyle = '#6366f1';
-      ctx.font = 'bold 64px Arial, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(mbti, leftBoxX + leftBoxSize / 2, leftBoxY + leftBoxSize / 2 - 20);
-    }
+    // 캐릭터 영역에 MBTI 텍스트 표시
+    ctx.fillStyle = '#6366f1';
+    ctx.font = 'bold 64px Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(mbti, leftBoxX + leftBoxSize / 2, leftBoxY + leftBoxSize / 2 - 20);
     
     // 캐릭터 영역 하단에 히라가나
     ctx.fillStyle = '#4b5563';
