@@ -20,8 +20,15 @@ async function selectMBTI(page: Page, mbtiTypes: typeof MBTI_TYPES) {
 async function generateName(page: Page) {
   const generateButton = page.locator('button:has-text("일본 이름 생성하기")');
   await expect(generateButton).not.toBeDisabled();
-  await generateButton.click();
-  await page.waitForSelector('.result-card', { state: 'visible', timeout: TEST_TIMEOUT });
+  
+  // 클릭 후 페이지 이동을 기다립니다.
+  await Promise.all([
+    page.waitForURL(/\/result\/.+/, { timeout: TEST_TIMEOUT }),
+    generateButton.click(),
+  ]);
+
+  // 새로운 페이지에서 결과 카드가 보이는지 확인합니다.
+  await expect(page.locator('.result-card')).toBeVisible({ timeout: TEST_TIMEOUT });
 }
 
 test.describe('MBTI 일본 이름 생성기 테스트', () => {
