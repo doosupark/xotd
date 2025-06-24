@@ -97,7 +97,6 @@ export async function GET(request: NextRequest) {
     // MBTI 결과 OG 이미지
     else if (mbti && gender && korean && hiragana && katakana && index) {
       console.log('Generating MBTI result OG image for:', korean, mbti, gender);
-      const genderText = gender === 'male' ? '남성' : '여성';
       
       return new ImageResponse(
         (
@@ -135,20 +134,25 @@ export async function GET(request: NextRequest) {
                   width: '450px',
                   height: '450px',
                   marginRight: '60px',
+                  position: 'relative',
                 }}
               >
+                {/* TODO: 여기에 실제 결과 이미지가 들어갈 예정 */}
                 <div
                   style={{
-                    fontSize: '64px',
-                    fontWeight: 'bold',
-                    color: '#6366f1',
-                    marginBottom: '20px',
+                    fontSize: '48px',
+                    color: '#9ca3af',
+                    textAlign: 'center',
                   }}
                 >
-                  {mbti}
+                  결과 이미지
                 </div>
+                
+                {/* 히라가나를 이미지 하단에 배치 */}
                 <div
                   style={{
+                    position: 'absolute',
+                    bottom: '20px',
                     fontSize: '28px',
                     fontWeight: 'bold',
                     color: '#4b5563',
@@ -167,56 +171,59 @@ export async function GET(request: NextRequest) {
                   flex: 1,
                 }}
               >
+                {/* 한글 이름 (150% 더 크게) */}
                 <h1
                   style={{
-                    fontSize: '84px',
+                    fontSize: '126px', // 84px * 1.5 = 126px
                     fontWeight: 'bold',
                     color: '#111827',
-                    marginBottom: '20px',
+                    marginBottom: '60px',
                     lineHeight: 1.1,
                   }}
                 >
                   {korean}
                 </h1>
+                
+                {/* 카타카나 정보 */}
                 <p
                   style={{
-                    fontSize: '42px',
-                    fontWeight: 'bold',
-                    color: '#8b5cf6',
-                    marginBottom: '30px',
-                  }}
-                >
-                  {mbti} {genderText}
-                </p>
-                <p
-                  style={{
-                    fontSize: '28px',
-                    color: '#6b7280',
-                    marginBottom: '30px',
-                  }}
-                >
-                  인생은 즐기는 거야!
-                </p>
-                <p
-                  style={{
-                    fontSize: '24px',
+                    fontSize: '32px',
                     fontWeight: 'bold',
                     color: '#374151',
-                    marginBottom: '40px',
+                    marginBottom: '80px',
                   }}
                 >
                   カタカナ: {katakana}
                 </p>
-                <p
+                
+                {/* MBTI 성향과 문구 (줄간격 좁게) */}
+                <div
                   style={{
-                    fontSize: '22px',
-                    fontWeight: 'bold',
-                    color: '#3b82f6',
-                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px', // 줄간격 좁게
                   }}
                 >
-                  xotd.net - MBTI 일본 이름 생성기
-                </p>
+                  <p
+                    style={{
+                      fontSize: '42px',
+                      fontWeight: 'bold',
+                      color: '#8b5cf6',
+                      margin: 0,
+                    }}
+                  >
+                    {mbti}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '28px',
+                      color: '#6b7280',
+                      margin: 0,
+                    }}
+                  >
+                    인생은 즐기는 거야!
+                  </p>
+                </div>
               </div>
             </div>
           </div>
