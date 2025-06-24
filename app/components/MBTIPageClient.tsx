@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import MBTISelector from "./MBTISelector";
 import MBTIResultCard from "./MBTIResultCard";
 import { createShortShareUrl } from "../../lib/canvas-utils";
@@ -20,8 +21,10 @@ type ResultData = {
   };
 };
 
-export default function MBTIPageClient({ initialResult }: { initialResult?: ResultData | null }) {
-  const [result, setResult] = useState<ResultData | null>(initialResult || null);
+export default function MBTIPageClient() {
+  const router = useRouter();
+  const [result, setResult] = useState<ResultData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = (type: "hiragana" | "katakana") => {
     console.log(`복사: ${type}`);
@@ -72,11 +75,32 @@ export default function MBTIPageClient({ initialResult }: { initialResult?: Resu
     });
   };
 
+  const handleGenerationComplete = (resultData: ResultData) => {
+    if (!resultData.gender) {
+      // gender가 null이면 함수를 실행하지 않거나 기본값을 설정합니다.
+      console.error("Gender is not selected.");
+      return;
+    }
+
+    setIsLoading(true);
+    // 1. 공유 URL 생성
+    const resultUrl = createShortShareUrl({
+      ...resultData,
+      gender: resultData.gender,
+    });
+    
+    // 2. 결과 페이지로 이동
+    router.push(resultUrl);
+  };
+
   return (
     <div>
       <h1 className="mt-6 text-center text-3xl font-bold mb-2">MBTI 일본 이름 생성기</h1>
       <h2 className="text-center text-lg text-gray-500 mb-4">나만의 일본식 이름을 만들어보세요</h2>
-      <MBTISelector onComplete={setResult} />
+      <MBTISelector onComplete={handleGenerationComplete} />
+      
+      {isLoading && <div className="text-center p-8">결과 페이지로 이동 중...</div>}
+
       <div id="ad-banner-placement" className="w-full h-24 my-6 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg">
         광고 자리 (Ad Banner Placeholder)
       </div>

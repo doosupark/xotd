@@ -33,6 +33,10 @@ npm run dev
 
 - **MBTI 일본이름 생성기**
   - MBTI와 성별을 선택하면 일본식 이름을 추천
+  - 생성된 결과는 고유 URL(`/result/[id]`)을 통해 공유 가능
+- **결과 공유 페이지**
+  - 동적 OG 태그(미리보기 이미지, 제목, 설명) 자동 생성
+  - 카카오톡 등 소셜 미디어에서 안정적인 미리보기 지원
 - **한글→일본어 이름 변환기**
   - 한글 성/이름 입력(각 4글자 제한)
   - 일본어(카타카나/히라가나)로 변환
@@ -50,6 +54,10 @@ npm run dev
 ```
 D:/dev/xotd
 ├── app/                # Next.js App Router (메인)
+│   ├── page.tsx            # 메인 페이지 (이름 생성기)
+│   ├── result/[id]/page.tsx # 동적 결과 페이지
+│   ├── api/og-image/route.tsx # 동적 OG 이미지 생성 API
+│   └── ...
 ├── amplify/            # AWS Amplify 백엔드 설정
 ├── public/             # 정적 파일 (favicon 등)
 ├── ...
