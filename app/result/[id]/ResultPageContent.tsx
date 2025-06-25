@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import MBTIResultCard from '@/app/components/MBTIResultCard';
 import { createShortShareUrl } from '@/lib/canvas-utils';
 
@@ -20,9 +21,35 @@ interface ResultPageContentProps {
       description: string;
     };
   };
+  shouldRedirect?: boolean;
 }
 
-const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult }) => {
+const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult, shouldRedirect = false }) => {
+  const router = useRouter();
+
+  // 리다이렉트 로직
+  useEffect(() => {
+    if (shouldRedirect) {
+      // 약간의 지연 후 홈페이지로 리다이렉트 (OG 크롤링 시간 확보)
+      const timer = setTimeout(() => {
+        router.push('/');
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [shouldRedirect, router]);
+
+  // 리다이렉트 중이면 로딩 표시
+  if (shouldRedirect) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <p>페이지를 이동 중입니다...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {

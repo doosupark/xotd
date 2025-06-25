@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 import { mbtiTravelPersona } from '@/lib/mbtiNameData';
 import ResultPageContent from './ResultPageContent';
 import maleNames from '../../../public/data/male_names.json';
@@ -188,8 +187,12 @@ const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     return <div className="text-center p-8">결과 데이터를 복원할 수 없습니다.</div>;
   }
   
-  // 사용자를 홈페이지로 리다이렉트 (OG 메타데이터는 유지됨)
-  redirect('/');
+  // 클라이언트 컴포넌트를 통한 리다이렉트
+  return (
+    <div className="flex flex-col items-center">
+      <ResultPageContent fullResult={fullResult} shouldRedirect={true} />
+    </div>
+  );
 };
 
 export default ResultPage; 
