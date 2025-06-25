@@ -21,14 +21,14 @@ test.describe('한글 이름 일본어 변환기 테스트', () => {
     // 성과 이름 입력
     await page.fill('input[placeholder="성"]', '김');
     await page.fill('input[placeholder="이름"]', '철수');
-    
+    await page.screenshot({ path: 'input_state.png' });
+    await page.waitForTimeout(500);
+    await page.waitForSelector('button:has-text("일본 이름으로 변환하기"):not([disabled])', { timeout: 5000 });
     // 변환 버튼 클릭
     await page.click('button:has-text("일본 이름으로 변환하기")');
-    
     // 결과가 표시될 때까지 대기
     await page.waitForSelector('text=キム', { state: 'visible', timeout: 10000 });
     await page.waitForSelector('text=チョルス', { state: 'visible', timeout: 10000 });
-    
     // 결과 확인
     await expect(page.locator('text=キム')).toBeVisible();
     await expect(page.locator('text=チョルス')).toBeVisible();
@@ -38,14 +38,14 @@ test.describe('한글 이름 일본어 변환기 테스트', () => {
     // 이름 변환 후
     await page.fill('input[placeholder="성"]', '김');
     await page.fill('input[placeholder="이름"]', '철수');
+    await page.screenshot({ path: 'input_state_copy.png' });
+    await page.waitForTimeout(500);
+    await page.waitForSelector('button:has-text("일본 이름으로 변환하기"):not([disabled])', { timeout: 5000 });
     await page.click('button:has-text("일본 이름으로 변환하기")');
-    
     // 결과가 표시될 때까지 대기
     await page.waitForSelector('text=キム', { state: 'visible', timeout: 10000 });
-    
     // 성 복사 버튼 클릭
     await page.click('button:has-text("성 복사하기")');
-    
     // 복사 완료 메시지 확인
     await expect(page.locator('text=복사 완료')).toBeVisible({ timeout: 10000 });
   });
