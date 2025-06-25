@@ -2,8 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 프로덕션 환경에서 안정성을 위한 설정
-  output: 'standalone',
+  // AWS Amplify 배포를 위해 standalone 출력 제거
   experimental: {
     // 빌드 최적화 (optimizeCss 제거)
     optimizePackageImports: ['@next/font'],
