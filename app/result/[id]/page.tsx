@@ -55,8 +55,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  const { korean, mbti } = data;
-  const ogImageUrl = createOGImageUrl(data);
+  const { korean, mbti, gender } = data;
+  // 정적 MBTI 이미지 사용 (동적 생성 대신)
+  const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.png`;
   const pageUrl = `https://xotd.net/result/${id}`;
 
   return {
@@ -103,7 +104,7 @@ const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   
   const fullResult = {
     ...resultData,
-    imageUrl: createOGImageUrl(resultData),
+    imageUrl: `/images/${resultData.gender}/${resultData.mbti.toLowerCase()}.png`,
     persona: {
       nickname: personaData.nickname,
       slogan: personaData.slogan,
