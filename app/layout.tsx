@@ -113,7 +113,7 @@ export default function RootLayout({
           {/* 메인 콘텐츠 */}
           <div className="lg:pl-56 flex flex-col flex-1">
             {/* 모바일 헤더 - CI 로고에 홈페이지 링크 추가 */}
-            <div className="lg:hidden bg-white px-4 py-3">
+            <div className="lg:hidden bg-white px-4 py-1.5">
               <div className="flex items-center justify-center">
                 <Link href="/" className="transition-opacity hover:opacity-80">
                   <Image
@@ -129,7 +129,7 @@ export default function RootLayout({
             </div>
 
             <main className="flex-1">
-              <div className="py-6 pb-20 lg:pb-6">
+              <div className="py-3 pb-20 lg:pb-6">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   {children}
                 </div>

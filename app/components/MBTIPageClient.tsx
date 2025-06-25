@@ -108,7 +108,7 @@ export default function MBTIPageClient() {
 
   return (
     <div>
-      <h1 className="mt-6 text-center text-3xl font-bold mb-2">MBTI 일본 이름 생성기</h1>
+      <h1 className="mt-3 text-center text-3xl font-bold mb-2">MBTI 일본 이름 생성기</h1>
       <h2 className="text-center text-lg text-gray-500 mb-4">나만의 일본식 이름을 만들어보세요</h2>
       <MBTISelector onComplete={handleGenerationComplete} />
       

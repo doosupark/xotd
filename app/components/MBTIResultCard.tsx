@@ -51,7 +51,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
   const imageSize = 168;
 
   return (
-    <section className="result-card flex flex-col items-center w-full mt-8">
+    <section className="result-card flex flex-col items-center w-full mt-4">
       {/* 결과 안내 텍스트 */}
       <div id="mbti-result-title" className="text-center text-lg font-semibold mt-2 mb-4">당신의 일본 이름은?</div>
       {/* 결과 이미지 + 이름 */}
