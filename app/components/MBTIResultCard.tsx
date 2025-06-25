@@ -107,8 +107,8 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
           `}</style>
         </div>
         {/* 한글 이름(크게) + 가타카나(괄호) */}
-        <div style={{ marginTop: 8 }} className={`text-2xl font-extrabold mb-1 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>{result.korean}</div>
-        <div className={`text-base text-gray-500 mb-2 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
+        <div style={{ marginTop: 8 }} className={`text-2xl font-extrabold mb-0.5 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>{result.korean}</div>
+        <div className={`text-base text-gray-500 mb-1 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
       </div>
       {/* 복사/공유 버튼 */}
       <div className="flex gap-2 mb-2">
