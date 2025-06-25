@@ -137,26 +137,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  const fullData = restoreFullResultData(shortData);
+  const { mbti, gender, index } = shortData;
   
-  if (!fullData) {
-    return {
-      title: "결과를 찾을 수 없습니다",
-      description: "데이터를 복원할 수 없습니다.",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
-  }
-
-  const { korean, mbti, gender } = fullData;
+  // 기본 이름으로 폴백 (메타데이터에서는 복잡한 로직 피함)
+  const koreanName = `${mbti} 타입 이름`;
+  
   // 절대 URL로 OG 이미지 설정
   const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.png`;
   const pageUrl = `https://xotd.net/result/${id}`;
 
   return {
-    title: `${korean} - MBTI 일본 이름`,
+    title: `${koreanName} - MBTI 일본 이름`,
     description: `당신의 MBTI(${mbti}) 성향에 맞는 일본 이름입니다.`,
     alternates: {
       canonical: pageUrl,
@@ -170,22 +161,23 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       },
     },
     openGraph: {
-      title: korean,
-      description: `${mbti} 타입에게 추천하는 이름`,
+      title: `${mbti} 타입의 일본 이름`,
+      description: `${mbti} 성향에 맞는 특별한 일본 이름을 확인해보세요!`,
       images: [{
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: `${korean} (${mbti})`,
+        alt: `${mbti} MBTI 타입 이미지`,
+        type: 'image/png',
       }],
       url: pageUrl,
       type: 'website',
-      siteName: 'XOTD',
+      siteName: 'XOTD - MBTI 일본 이름 생성기',
     },
     twitter: {
       card: 'summary_large_image',
-      title: korean,
-      description: `${mbti} 타입에게 추천하는 이름`,
+      title: `${mbti} 타입의 일본 이름`,
+      description: `${mbti} 성향에 맞는 특별한 일본 이름을 확인해보세요!`,
       images: [ogImageUrl],
     },
   };
