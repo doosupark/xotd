@@ -1,4 +1,4 @@
-// 공유 URL 생성 함수 (동적 라우트 사용)
+// 극단적으로 짧은 공유 URL 생성 함수
 export function createShortShareUrl(data: {
   mbti: string;
   gender: 'male' | 'female';
@@ -15,16 +15,15 @@ export function createShortShareUrl(data: {
       : 'http://localhost:3000/result';
       
   try {
-    // 1. 데이터를 JSON 문자열로 변환
-    const jsonString = JSON.stringify(data);
+    // 극단적으로 짧은 ID 생성: {mbti}-{gender첫글자}-{index}
+    const genderCode = data.gender === 'male' ? 'm' : 'f';
+    const shortId = `${data.mbti.toLowerCase()}-${genderCode}-${data.index}`;
     
-    // 2. 유니코드 안전 Base64 인코딩
-    // UTF-8 → Base64 → URL 인코딩 순서
-    const utf8Bytes = new TextEncoder().encode(jsonString);
-    const base64String = btoa(String.fromCharCode(...utf8Bytes));
-    const encodedId = encodeURIComponent(base64String);
+    // 디버깅: 어떤 데이터가 전달되는지 확인
+    console.log('createShortShareUrl received:', data);
+    console.log('Generated short ID:', shortId);
     
-    return `${baseUrl}/${encodedId}`;
+    return `${baseUrl}/${shortId}`;
   } catch (error) {
     console.error('Failed to create share URL:', error);
     // 에러 발생 시 fallback URL

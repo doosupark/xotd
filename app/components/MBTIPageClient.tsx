@@ -86,10 +86,15 @@ export default function MBTIPageClient() {
     setIsLoading(true);
     
     try {
-      // 1. 공유 URL 생성
+      // 1. 짧은 공유 URL 생성 (핵심 데이터만 전달)
       const fullUrl = createShortShareUrl({
-        ...resultData,
+        mbti: resultData.mbti,
         gender: resultData.gender,
+        index: resultData.index,
+        // 더미 데이터 (실제로는 사용되지 않음)
+        hiragana: '',
+        katakana: '',
+        korean: ''
       });
       
       // 2. 전체 URL에서 경로 부분만 추출하여 이동

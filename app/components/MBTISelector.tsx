@@ -121,7 +121,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
       katakana: name.katakana,
       korean: name.korean,
       index: name.index,
-      persona,
+      persona, // 여전히 UI 표시용으로 전달하지만 URL에는 포함하지 않음
     };
     onComplete?.(resultData);
 
