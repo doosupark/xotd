@@ -16,17 +16,37 @@ type ResultData = {
 // 헬퍼 함수: id를 디코딩하여 결과 데이터 반환
 const decodeResultData = (id: string): ResultData | null => {
   try {
-    const decodedString = decodeURIComponent(atob(id));
-    return JSON.parse(decodedString);
+    console.log('Decoding ID:', id);
+    
+    // 1. URL 디코딩
+    const urlDecoded = decodeURIComponent(id);
+    console.log('URL decoded:', urlDecoded);
+    
+    // 2. Base64 디코딩
+    const base64Decoded = atob(urlDecoded);
+    console.log('Base64 decoded (bytes):', base64Decoded);
+    
+    // 3. UTF-8 디코딩
+    const uint8Array = new Uint8Array(base64Decoded.split('').map(char => char.charCodeAt(0)));
+    const jsonString = new TextDecoder().decode(uint8Array);
+    console.log('UTF-8 decoded:', jsonString);
+    
+    // 4. JSON 파싱
+    const result = JSON.parse(jsonString);
+    console.log('JSON parsed:', result);
+    
+    return result;
   } catch (error) {
-    console.error('Failed to decode result data for metadata:', error);
+    console.error('Failed to decode result data:', error);
+    console.error('Received ID:', id);
     return null;
   }
 };
 
 // 동적 OG 메타데이터 생성
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const data = decodeResultData(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const data = decodeResultData(id);
 
   if (!data) {
     return {
@@ -37,7 +57,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   const { korean, mbti } = data;
   const ogImageUrl = createOGImageUrl(data);
-  const pageUrl = `https://xotd.net/result/${params.id}`;
+  const pageUrl = `https://xotd.net/result/${id}`;
 
   return {
     title: `${korean} - MBTI 일본 이름`,
@@ -65,8 +85,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 // 서버 컴포넌트에서 데이터 페칭 후 클라이언트 컴포넌트에 전달
-const ResultPage = ({ params }: { params: { id:string } }) => {
-  const resultData = decodeResultData(params.id);
+const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  const resultData = decodeResultData(id);
 
   if (!resultData) {
     return <div className="text-center p-8">잘못된 결과 URL입니다.</div>;

@@ -82,15 +82,27 @@ export default function MBTIPageClient() {
       return;
     }
 
+    console.log("Generation complete, resultData:", resultData);
     setIsLoading(true);
-    // 1. 공유 URL 생성
-    const resultUrl = createShortShareUrl({
-      ...resultData,
-      gender: resultData.gender,
-    });
     
-    // 2. 결과 페이지로 이동
-    router.push(resultUrl);
+    try {
+      // 1. 공유 URL 생성
+      const fullUrl = createShortShareUrl({
+        ...resultData,
+        gender: resultData.gender,
+      });
+      console.log("Generated full URL:", fullUrl);
+      
+      // 2. 전체 URL에서 경로 부분만 추출하여 이동
+      const pathname = new URL(fullUrl).pathname;
+      console.log("Extracted pathname:", pathname);
+      
+      router.push(pathname);
+      console.log("Router.push called with:", pathname);
+    } catch (error) {
+      console.error("Error in handleGenerationComplete:", error);
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -15,6 +15,21 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/api/og-image**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'xotd.net',
+        pathname: '/api/og-image**',
+      },
+    ],
+  },
   allowedDevOrigins: [
     "https://www.google.com",
     "http://localhost:3000",
