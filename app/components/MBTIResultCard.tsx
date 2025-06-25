@@ -110,12 +110,6 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
         <div style={{ marginTop: 8 }} className={`text-2xl font-extrabold mb-1 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>{result.korean}</div>
         <div className={`text-base text-gray-500 mb-2 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
       </div>
-      {/* MBTI 설명 */}
-      <div className="w-full max-w-xs bg-gray-50 rounded-lg p-4 mb-4 text-center shadow transition-shadow duration-300 hover:shadow-md">
-        <div className="font-bold text-lg mb-1">{result.mbti} <span className="text-purple-500">{result.persona?.nickname}</span></div>
-        <div className="text-sm text-gray-700 mb-1">{result.persona?.slogan}</div>
-        <div className="text-sm text-gray-600 whitespace-pre-line">{result.persona?.description}</div>
-      </div>
       {/* 복사/공유 버튼 */}
       <div className="flex gap-2 mb-2">
         <button className="px-2 py-1 rounded bg-gray-200 font-semibold text-sm transition-colors duration-300 hover:bg-gray-300 min-w-[80px]" onClick={() => handleCopy("hiragana")} aria-label="히라가나 복사하기"> 
@@ -126,6 +120,12 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
         </button>
       </div>
       <button className="w-[50%] min-w-[180px] max-w-md py-3 rounded-lg font-bold text-black text-lg bg-[#FEE500] mb-4 transition-colors duration-300 hover:bg-[#ffe066]" onClick={handleShare} aria-label="결과 공유하기">결과 공유하기</button>
+      {/* MBTI 설명 */}
+      <div className="w-full max-w-xs bg-gray-50 rounded-lg p-4 mb-4 text-center shadow transition-shadow duration-300 hover:shadow-md">
+        <div className="font-bold text-lg mb-1">{result.mbti} <span className="text-purple-500">{result.persona?.nickname}</span></div>
+        <div className="text-sm text-gray-700 mb-1">{result.persona?.slogan}</div>
+        <div className="text-sm text-gray-600 whitespace-pre-line">{result.persona?.description}</div>
+      </div>
     </section>
   );
 } 
