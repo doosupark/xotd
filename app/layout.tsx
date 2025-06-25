@@ -79,16 +79,18 @@ export default function RootLayout({
           {/* PC 사이드바 */}
           <div className="hidden lg:flex lg:w-56 lg:flex-col lg:fixed lg:inset-y-0">
             <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
-              {/* CI 로고 - 이미지 크기 수정 */}
+              {/* CI 로고 - 홈페이지 링크 추가 */}
               <div className="flex items-center flex-shrink-0 px-4 mb-8">
-                <Image
-                  src="/images/ci/ci_logo_small.webp"
-                  alt="XOTD Logo"
-                  width={120}
-                  height={40}
-                  priority
-                  className="h-10 w-auto"
-                />
+                <Link href="/" className="transition-opacity hover:opacity-80">
+                  <Image
+                    src="/images/ci/ci_logo_small.webp"
+                    alt="XOTD Logo - 홈으로 이동"
+                    width={120}
+                    height={40}
+                    priority
+                    className="h-10 w-auto"
+                  />
+                </Link>
               </div>
               
               {/* 네비게이션 */}
@@ -110,17 +112,19 @@ export default function RootLayout({
           
           {/* 메인 콘텐츠 */}
           <div className="lg:pl-56 flex flex-col flex-1">
-            {/* 모바일 헤더 - CI 로고 */}
+            {/* 모바일 헤더 - CI 로고에 홈페이지 링크 추가 */}
             <div className="lg:hidden bg-white px-4 py-3">
               <div className="flex items-center justify-center">
-                <Image
-                  src="/images/ci/ci_logo_small.webp"
-                  alt="XOTD Logo"
-                  width={100}
-                  height={33}
-                  priority
-                  className="h-8 w-auto"
-                />
+                <Link href="/" className="transition-opacity hover:opacity-80">
+                  <Image
+                    src="/images/ci/ci_logo_small.webp"
+                    alt="XOTD Logo - 홈으로 이동"
+                    width={100}
+                    height={33}
+                    priority
+                    className="h-8 w-auto"
+                  />
+                </Link>
               </div>
             </div>
 
