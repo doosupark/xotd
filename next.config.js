@@ -2,11 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // AWS Amplify 배포를 위해 standalone 출력 제거
-  experimental: {
-    // 빌드 최적화 (optimizeCss 제거)
-    optimizePackageImports: ['@next/font'],
-  },
+  // AWS Amplify 배포를 위한 기본 설정
   async headers() {
     return [
       {
@@ -58,29 +54,19 @@ const nextConfig = {
           },
         ],
       },
-      // 기타 페이지에 대한 캐시 제어
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
-          },
-        ],
-      },
     ];
   },
-  allowedDevOrigins: [
-    "https://www.google.com",
-    "http://localhost:3000",
-  ],
-  productionBrowserSourceMaps: false,
   // 이미지 최적화 설정
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
+  allowedDevOrigins: [
+    "https://www.google.com",
+    "http://localhost:3000",
+  ],
+  productionBrowserSourceMaps: false,
   webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
