@@ -97,12 +97,27 @@ export default function MBTIPageClient() {
         korean: ''
       });
       
+      console.log('Generated URL:', fullUrl);
+      
       // 2. 전체 URL에서 경로 부분만 추출하여 이동
-      const pathname = new URL(fullUrl).pathname;
+      const url = new URL(fullUrl);
+      const pathname = url.pathname;
+      
+      console.log('Navigating to pathname:', pathname);
+      
+      // 3. 페이지 이동
       router.push(pathname);
+      
+      // 타이머로 로딩 상태 해제 (페이지 이동이 완료되지 않을 경우를 대비)
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+      
     } catch (error) {
       console.error("Error in handleGenerationComplete:", error);
       setIsLoading(false);
+      // 에러 발생 시 사용자에게 알림
+      alert('페이지 이동 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
