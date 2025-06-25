@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { createOGImageUrl } from '@/lib/canvas-utils';
 import { mbtiTravelPersona } from '@/lib/mbtiNameData';
 import ResultPageContent from './ResultPageContent'; // 클라이언트 컴포넌트 임포트
 
@@ -16,29 +15,20 @@ type ResultData = {
 // 헬퍼 함수: id를 디코딩하여 결과 데이터 반환
 const decodeResultData = (id: string): ResultData | null => {
   try {
-    console.log('Decoding ID:', id);
-    
     // 1. URL 디코딩
     const urlDecoded = decodeURIComponent(id);
-    console.log('URL decoded:', urlDecoded);
     
     // 2. Base64 디코딩
     const base64Decoded = atob(urlDecoded);
-    console.log('Base64 decoded (bytes):', base64Decoded);
     
     // 3. UTF-8 디코딩
     const uint8Array = new Uint8Array(base64Decoded.split('').map(char => char.charCodeAt(0)));
     const jsonString = new TextDecoder().decode(uint8Array);
-    console.log('UTF-8 decoded:', jsonString);
     
     // 4. JSON 파싱
-    const result = JSON.parse(jsonString);
-    console.log('JSON parsed:', result);
-    
-    return result;
+    return JSON.parse(jsonString);
   } catch (error) {
     console.error('Failed to decode result data:', error);
-    console.error('Received ID:', id);
     return null;
   }
 };

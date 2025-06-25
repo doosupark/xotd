@@ -23,6 +23,7 @@ type ResultData = {
 
 export default function MBTIPageClient() {
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [result, setResult] = useState<ResultData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -82,7 +83,6 @@ export default function MBTIPageClient() {
       return;
     }
 
-    console.log("Generation complete, resultData:", resultData);
     setIsLoading(true);
     
     try {
@@ -91,14 +91,10 @@ export default function MBTIPageClient() {
         ...resultData,
         gender: resultData.gender,
       });
-      console.log("Generated full URL:", fullUrl);
       
       // 2. 전체 URL에서 경로 부분만 추출하여 이동
       const pathname = new URL(fullUrl).pathname;
-      console.log("Extracted pathname:", pathname);
-      
       router.push(pathname);
-      console.log("Router.push called with:", pathname);
     } catch (error) {
       console.error("Error in handleGenerationComplete:", error);
       setIsLoading(false);
