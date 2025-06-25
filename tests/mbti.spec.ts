@@ -89,7 +89,78 @@ test.describe('MBTI 일본 이름 생성기 테스트', () => {
   });
 
   test('MBTI 선택 및 이름 생성', async ({ page }) => {
-    await selectMBTI(page, MBTI_TYPES);
-    await generateName(page);
+    // 홈페이지 접속
+    await page.goto('/');
+    console.log('✅ Homepage loaded');
+
+    // 성별 선택 (male) - aria-label로 선택
+    await page.click('button[aria-label="남성"]', { force: true });
+    console.log('✅ Gender selected: male');
+
+    // MBTI 성향 선택 - aria-label로 선택
+    await page.click('button[aria-label="I"]', { force: true });
+    console.log('✅ I trait selected');
+
+    await page.click('button[aria-label="S"]', { force: true });
+    console.log('✅ S trait selected');
+
+    await page.click('button[aria-label="F"]', { force: true });
+    console.log('✅ F trait selected');
+
+    await page.click('button[aria-label="P"]', { force: true });
+    console.log('✅ P trait selected');
+
+    // 이름 생성 버튼 클릭
+    const generateButton = page.locator('button').filter({ hasText: '일본 이름 생성' });
+    await expect(generateButton).toBeEnabled();
+    
+    await generateButton.click();
+    console.log('✅ Generate button clicked');
+
+    // 결과 페이지로 이동 대기 (리다이렉트 없이 실제 결과 페이지 표시)
+    await page.waitForURL(/\/result\/\w+-[mf]-\d+/, { timeout: 10000 });
+    console.log('✅ Result page loaded');
+
+    // 결과 페이지에서 실제 컨텐츠 확인 - result-card 섹션이 있는지 확인
+    await expect(page.locator('section.result-card')).toBeVisible();
+    console.log('✅ Result card section is visible');
+
+    // "당신의 일본 이름은?" 텍스트 확인
+    await expect(page.locator('#mbti-result-title')).toContainText('당신의 일본 이름은?');
+    console.log('✅ Result title is displayed');
+
+    // 애니메이션 완료 대기 (1초)
+    await page.waitForTimeout(1000);
+
+    // 한국어 이름 확인 - text-2xl 클래스를 가진 div
+    await expect(page.locator('div.text-2xl').filter({ hasText: /[\uAC00-\uD7AF]/ })).toBeVisible();
+    console.log('✅ Korean name is displayed');
+
+    // 복사 버튼들 확인 (히라가나/가타카나가 포함된 버튼으로 간접 확인)
+    await expect(page.locator('button').filter({ hasText: '히라가나 복사하기' })).toBeVisible();
+    await expect(page.locator('button').filter({ hasText: '가타카나 복사하기' })).toBeVisible();
+    console.log('✅ Copy buttons are visible (confirms Japanese names exist)');
+
+    // 공유 버튼이 있는지 확인
+    await expect(page.locator('button').filter({ hasText: '결과 공유하기' })).toBeVisible();
+    console.log('✅ Share button is visible');
+
+    // "새로운 이름 생성하기" 버튼이 있는지 확인
+    await expect(page.locator('button').filter({ hasText: '새로운 이름 생성하기' })).toBeVisible();
+    console.log('✅ New name generation button is visible');
+
+    // 페이지 전체 텍스트에서 일본어 문자가 있는지 확인
+    const pageContent = await page.textContent('body');
+    const hasHiragana = /[\u3040-\u309F]/.test(pageContent || '');
+    const hasKatakana = /[\u30A0-\u30FF]/.test(pageContent || '');
+    const hasKorean = /[\uAC00-\uD7AF]/.test(pageContent || '');
+    expect(hasHiragana).toBe(true);
+    expect(hasKatakana).toBe(true);
+    expect(hasKorean).toBe(true);
+    console.log('✅ All language characters (Korean, Hiragana, Katakana) found in page content');
+
+    // MBTI 타입이 결과에 포함되어 있는지 확인
+    expect(pageContent).toContain('ISFP');
+    console.log('✅ MBTI type (ISFP) is displayed');
   });
 }); 

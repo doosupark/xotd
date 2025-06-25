@@ -130,6 +130,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return {
       title: "결과를 찾을 수 없습니다",
       description: "잘못된 URL이거나 만료된 결과입니다.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -139,6 +143,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return {
       title: "결과를 찾을 수 없습니다",
       description: "데이터를 복원할 수 없습니다.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -150,6 +158,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${korean} - MBTI 일본 이름`,
     description: `당신의 MBTI(${mbti}) 성향에 맞는 일본 이름입니다.`,
+    alternates: {
+      canonical: pageUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       title: korean,
       description: `${mbti} 타입에게 추천하는 이름`,
@@ -187,10 +206,10 @@ const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     return <div className="text-center p-8">결과 데이터를 복원할 수 없습니다.</div>;
   }
   
-  // 클라이언트 컴포넌트를 통한 리다이렉트
+  // 실제 결과 페이지를 표시 (리다이렉트 제거)
   return (
     <div className="flex flex-col items-center">
-      <ResultPageContent fullResult={fullResult} shouldRedirect={true} />
+      <ResultPageContent fullResult={fullResult} />
     </div>
   );
 };

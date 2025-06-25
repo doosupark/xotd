@@ -78,7 +78,6 @@ export default function MBTIPageClient() {
 
   const handleGenerationComplete = (resultData: ResultData) => {
     if (!resultData.gender) {
-      // gender가 null이면 함수를 실행하지 않거나 기본값을 설정합니다.
       console.error("Gender is not selected.");
       return;
     }
@@ -86,37 +85,19 @@ export default function MBTIPageClient() {
     setIsLoading(true);
     
     try {
-      // 1. 짧은 공유 URL 생성 (핵심 데이터만 전달)
-      const fullUrl = createShortShareUrl({
-        mbti: resultData.mbti,
-        gender: resultData.gender,
-        index: resultData.index,
-        // 더미 데이터 (실제로는 사용되지 않음)
-        hiragana: '',
-        katakana: '',
-        korean: ''
-      });
+      // 직접 pathname 생성
+      const genderCode = resultData.gender === 'male' ? 'm' : 'f';
+      const shortId = `${resultData.mbti.toLowerCase()}-${genderCode}-${resultData.index}`;
+      const pathname = `/result/${shortId}`;
       
-      console.log('Generated URL:', fullUrl);
+      console.log('Navigating to:', pathname);
       
-      // 2. 전체 URL에서 경로 부분만 추출하여 이동
-      const url = new URL(fullUrl);
-      const pathname = url.pathname;
-      
-      console.log('Navigating to pathname:', pathname);
-      
-      // 3. 페이지 이동
+      // 페이지 이동
       router.push(pathname);
-      
-      // 타이머로 로딩 상태 해제 (페이지 이동이 완료되지 않을 경우를 대비)
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
       
     } catch (error) {
       console.error("Error in handleGenerationComplete:", error);
       setIsLoading(false);
-      // 에러 발생 시 사용자에게 알림
       alert('페이지 이동 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };

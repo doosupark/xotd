@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import MBTIResultCard from '@/app/components/MBTIResultCard';
 import { createShortShareUrl } from '@/lib/canvas-utils';
@@ -21,35 +21,10 @@ interface ResultPageContentProps {
       description: string;
     };
   };
-  shouldRedirect?: boolean;
 }
 
-const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult, shouldRedirect = false }) => {
+const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult }) => {
   const router = useRouter();
-
-  // 리다이렉트 로직
-  useEffect(() => {
-    if (shouldRedirect) {
-      // 약간의 지연 후 홈페이지로 리다이렉트 (OG 크롤링 시간 확보)
-      const timer = setTimeout(() => {
-        router.push('/');
-      }, 500);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [shouldRedirect, router]);
-
-  // 리다이렉트 중이면 로딩 표시
-  if (shouldRedirect) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p>페이지를 이동 중입니다...</p>
-        </div>
-      </div>
-    );
-  }
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -59,26 +34,54 @@ const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult, shoul
 
   const handleShare = () => {
     const shareUrl = createShortShareUrl(fullResult);
+    
     if (navigator.share) {
       navigator.share({
         title: `${fullResult.korean} - MBTI 일본 이름`,
         text: `내 MBTI(${fullResult.mbti})에 맞는 일본 이름은?`,
         url: shareUrl,
+      }).then(() => {
+        // 공유 완료 후 홈페이지로 이동
+        setTimeout(() => {
+          router.push('/');
+        }, 1000);
       });
     } else {
       // Fallback: 클립보드에 URL 복사
       navigator.clipboard.writeText(shareUrl).then(() => {
         alert("링크가 복사되었습니다!");
+        // 복사 완료 후 홈페이지로 이동
+        setTimeout(() => {
+          router.push('/');
+        }, 1500);
       });
     }
   };
 
   return (
-    <MBTIResultCard 
-      result={fullResult} 
-      onCopy={(type) => handleCopy(type === 'hiragana' ? fullResult.hiragana : fullResult.katakana)}
-      onShare={handleShare}
-    />
+    <div className="w-full">
+      <MBTIResultCard 
+        result={fullResult} 
+        onCopy={(type) => handleCopy(type === 'hiragana' ? fullResult.hiragana : fullResult.katakana)}
+        onShare={handleShare}
+      />
+      
+      {/* 추가 정보 섹션 */}
+      <section className="mt-8 px-4">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-lg font-bold mb-4">더 많은 이름 찾기</h2>
+          <p className="text-sm text-gray-600 mb-4">
+            다른 MBTI 성향의 일본 이름도 궁금하시나요?
+          </p>
+          <button 
+            onClick={() => router.push('/')}
+            className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            새로운 이름 생성하기
+          </button>
+        </div>
+      </section>
+    </div>
   );
 };
 
