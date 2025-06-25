@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('한글 이름 일본어 변환기 테스트', () => {
   test.beforeEach(async ({ page }) => {
     // 각 테스트 전에 변환기 페이지로 이동
-    await page.goto('http://localhost:3000/translator');
+    await page.goto('/translator');
     // 페이지가 완전히 로드될 때까지 대기
     await page.waitForLoadState('networkidle');
   });
