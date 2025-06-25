@@ -56,7 +56,6 @@ D:/dev/xotd
 ├── app/                # Next.js App Router (메인)
 │   ├── page.tsx            # 메인 페이지 (이름 생성기)
 │   ├── result/[id]/page.tsx # 동적 결과 페이지
-│   ├── api/og-image/route.tsx # 동적 OG 이미지 생성 API
 │   └── ...
 ├── amplify/            # AWS Amplify 백엔드 설정
 ├── public/             # 정적 파일 (favicon 등)

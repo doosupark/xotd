@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { createOGImageUrl } from "@/lib/canvas-utils";
 
 export async function generateMetadata({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }): Promise<Metadata> {
   const defaultMetadata = {
@@ -10,7 +9,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
       images: [
         {
-          url: "https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=나만의%20일본식%20이름을%20찾아보세요",
+          url: "https://xotd.net/images/ci/ci_logo_small.png",
           width: 1200,
           height: 630,
           alt: "MBTI 일본 이름 생성기",
@@ -24,7 +23,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
       card: "summary_large_image",
       title: "MBTI 일본 이름 생성기",
       description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
-      images: ["https://xotd.net/api/og-image?title=MBTI%20일본%20이름%20생성기&description=나만의%20일본식%20이름을%20찾아보세요"],
+      images: ["https://xotd.net/images/ci/ci_logo_small.png"],
     },
   };
 
@@ -38,7 +37,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
         images: [
           {
-            url: "https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20변환하세요",
+            url: "https://xotd.net/images/ci/ci_logo_small.png",
             width: 1200,
             height: 630,
             alt: "한글 이름 일본어 변환기",
@@ -52,48 +51,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Record<
         card: "summary_large_image",
         title: "한글 이름 일본어 변환기",
         description: "한글 이름을 일본어로 쉽게 변환해보세요.",
-        images: ["https://xotd.net/api/og-image?title=한글%20이름%20일본어%20변환기&description=한글%20이름을%20일본어로%20변환하세요"],
-      },
-    };
-  }
-
-  // 결과/상세 페이지 (동적 OG 이미지 사용)
-  if (searchParams?.mbti && searchParams?.korean && searchParams?.index && searchParams?.gender && searchParams?.hiragana && searchParams?.katakana) {
-    const { mbti, gender, hiragana, katakana, korean, index } = searchParams;
-    
-    // canvas-utils의 함수를 사용하여 OG 이미지 URL 생성
-    const ogImageUrl = createOGImageUrl({
-      mbti: mbti as string,
-      gender: gender as 'male' | 'female',
-      hiragana: hiragana as string,
-      katakana: katakana as string,
-      korean: korean as string,
-      index: Number(index)
-    });
-    
-    return {
-      title: `${korean}`,
-      description: `${korean}`,
-      openGraph: {
-        title: `${korean}`,
-        description: `${korean}`,
-        images: [
-          {
-            url: ogImageUrl,
-            width: 1200,
-            height: 630,
-            alt: `${korean}`,
-          }
-        ],
-        url: `https://xotd.net?mbti=${mbti}&gender=${gender}&hiragana=${hiragana}&katakana=${katakana}&korean=${korean}&index=${index}`,
-        type: 'website',
-        siteName: 'XOTD',
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: `${korean}`,
-        description: `${korean}`,
-        images: [ogImageUrl],
+        images: ["https://xotd.net/images/ci/ci_logo_small.png"],
       },
     };
   }
