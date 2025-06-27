@@ -139,16 +139,23 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   const { mbti, gender } = shortData;
   
-  // 기본 이름으로 폴백 (메타데이터에서는 복잡한 로직 피함)
-  const koreanName = `${mbti} 타입 이름`;
+  // 실제 이름 데이터 조회
+  const fullResult = restoreFullResultData(shortData);
+  let nameResult = '';
+  
+  if (fullResult) {
+    nameResult = `${fullResult.korean}(${fullResult.hiragana})`;
+  } else {
+    nameResult = `${mbti} 타입의 특별한 일본 이름`;
+  }
   
   // 절대 URL로 OG 이미지 설정
   const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.png`;
   const pageUrl = `https://xotd.net/result/${id}`;
 
   return {
-    title: `${koreanName} - MBTI 일본 이름`,
-    description: `당신의 MBTI(${mbti}) 성향에 맞는 일본 이름입니다.`,
+    title: `${mbti} 타입의 일본 이름은? - MBTI 일본 이름`,
+    description: `${nameResult} 입니다!`,
     alternates: {
       canonical: pageUrl,
     },
@@ -161,8 +168,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       },
     },
     openGraph: {
-      title: `${mbti} 타입의 일본 이름`,
-      description: `${mbti} 성향에 맞는 특별한 일본 이름을 확인해보세요!`,
+      title: `${mbti} 타입의 일본 이름은?`,
+      description: `${nameResult} 입니다!`,
       images: [{
         url: ogImageUrl,
         width: 1200,
@@ -176,8 +183,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${mbti} 타입의 일본 이름`,
-      description: `${mbti} 성향에 맞는 특별한 일본 이름을 확인해보세요!`,
+      title: `${mbti} 타입의 일본 이름은?`,
+      description: `${nameResult} 입니다!`,
       images: [ogImageUrl],
     },
   };
