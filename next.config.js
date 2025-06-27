@@ -3,38 +3,42 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // AWS Amplify 배포를 위한 기본 설정
+  trailingSlash: false,
+  poweredByHeader: false,
+  
+  // 이미지 최적화 설정
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+  
+  // 기본 경로 별칭 설정
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname),
+    };
+    return config;
+  },
+  
+  // 헤더 설정
   async headers() {
     return [
       {
-        source: '/',
+        source: '/(.*)',
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
+            key: 'X-Frame-Options',
+            value: 'DENY',
           },
-        ],
-      },
-      // JavaScript 파일들에 대한 캐시 제어
-      {
-        source: '/_next/static/chunks/:path*',
-        headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
           },
         ],
       },
       // 정적 자원에 대한 캐시 제어
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // 이미지 파일에 대한 캐시 제어
       {
         source: '/images/:path*',
         headers: [
@@ -44,54 +48,7 @@ const nextConfig = {
           },
         ],
       },
-      // 동적 페이지에 대한 캐시 제어
-      {
-        source: '/result/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
-          },
-        ],
-      },
     ];
-  },
-  // 이미지 최적화 설정
-  images: {
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
-  allowedDevOrigins: [
-    "https://www.google.com",
-    "http://localhost:3000",
-  ],
-  productionBrowserSourceMaps: false,
-  webpack: (config, { dev, isServer }) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname),
-    };
-
-    if (dev) {
-      config.devtool = false;
-    }
-
-    // 프로덕션 빌드 최적화
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      };
-    }
-
-    return config;
   },
 };
 

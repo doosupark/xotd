@@ -11,6 +11,8 @@
 
 ## ✅ 완료된 주요 작업
 - **극단적 URL 단축 시스템 구현**: Base64 인코딩에서 ID 방식(`enfp-m-21`)으로 변경하여 URL 길이를 95% 단축 (500자+ → 10-15자)
+- **Amplify 배포 안정성 개선**: React 18 안정 버전 사용, Node.js 18.18.2 고정, 복잡한 웹팩 설정 제거로 빌드 환경 최적화
+- **빌드 환경 표준화**: .nvmrc 파일 추가, package.json engines 필드 명시, amplify.yml 개선으로 일관된 빌드 환경 구축
 - 동적 라우트(`/result/[id]`) 기반 공유 시스템 도입으로 OG 미리보기 안정화
 - CI/CD 파이프라인 최적화: GitHub Actions는 테스트만, AWS Amplify는 자동 배포만 담당하도록 역할을 분리하여 프로세스 단순화
 - 코드 리팩토링: 불필요한 `src`, `components` 디렉토리 및 레거시 파일(`utils.js`, `nameGenerator.js`) 제거

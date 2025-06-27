@@ -3,10 +3,15 @@ frontend:
   phases:
     preBuild:
       commands:
+        - node --version
+        - npm --version
         - npm ci
     build:
       commands:
         - npm run build
+    postBuild:
+      commands:
+        - echo "Build completed successfully"
   artifacts:
     baseDirectory: .next
     files:
@@ -14,4 +19,7 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+      - .next/cache/**/*
+  environmentVariables:
+    - NODE_OPTIONS: '--max-old-space-size=4096'
   appRoot: .
