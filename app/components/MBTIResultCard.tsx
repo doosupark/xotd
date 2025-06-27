@@ -93,7 +93,7 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
           </div>
           {/* 히라가나 (이미지 하단에 겹치게, 20% 더 작게) */}
           <div
-            className={`absolute left-0 w-full text-center font-bold tracking-widest transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}
+            className={`absolute left-0 w-full text-center font-bold tracking-widest transition-opacity duration-500 text-black ${isVisible ? "opacity-100" : "opacity-0"}`}
             style={{ bottom: 10, fontSize: "0.96rem", pointerEvents: "none" }}
           >
             {result.hiragana}
