@@ -12,7 +12,10 @@
     "dev:test": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "amplify:sandbox": "npx ampx sandbox",
+    "amplify:deploy": "npx ampx pipeline-deploy",
+    "amplify:delete": "npx ampx sandbox delete"
   },
   "dependencies": {
     "aws-amplify": "^6.15.0",
