@@ -5,6 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* 커스텀 다크모드 대응 색상 */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --button-bg: #f3f4f6;
+  --button-hover: #e5e7eb;
+  --text-muted: #6b7280;
 }
 
 @theme inline {
@@ -18,6 +24,12 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    /* 다크모드 색상 */
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    --button-bg: #374151;
+    --button-hover: #4b5563;
+    --text-muted: #9ca3af;
   }
 }
 

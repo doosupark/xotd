@@ -141,7 +141,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
           return (
             <div key={field.key} className="flex flex-col items-center gap-1">
               <div
-                className={`flex items-center justify-center rounded-lg bg-white overflow-hidden transition-all duration-300`}
+                className={`flex items-center justify-center rounded-lg bg-white dark:bg-gray-800 overflow-hidden transition-all duration-300`}
                 style={{
                   width: isSelected ? traitBoxSizeSelected : traitBoxSize,
                   height: isSelected ? traitBoxSizeSelected : traitBoxSize,
@@ -191,7 +191,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
           className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg font-bold transition-all duration-200
             ${gender === "male"
               ? "bg-[#8B8FFF] text-white border-none"
-              : "border-gray-300 bg-white text-gray-400"}`}
+              : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500"}`}
           onClick={() => handleGenderSelect("male")}
           aria-label="남성"
         >
@@ -210,7 +210,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
           className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg font-bold transition-all duration-200
             ${gender === "female"
               ? "bg-[#8B8FFF] text-white border-none"
-              : "border-gray-300 bg-white text-gray-400"}`}
+              : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500"}`}
           onClick={() => handleGenderSelect("female")}
           aria-label="여성"
         >
@@ -227,7 +227,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
               className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg font-bold transition-all duration-200
                 ${mbti[field.key] === field.left && gender
                   ? "bg-[#8B8FFF] text-white border-none"
-                  : "border-gray-300 bg-white text-gray-400"}`}
+                  : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500"}`}
               onClick={() => handleSelect(field.key, field.left)}
               aria-label={field.left}
               disabled={!gender}
@@ -253,7 +253,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
               className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg font-bold transition-all duration-200
                 ${mbti[field.key] === field.right && gender
                   ? "bg-[#8B8FFF] text-white border-none"
-                  : "border-gray-300 bg-white text-gray-400"}`}
+                  : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500"}`}
               onClick={() => handleSelect(field.key, field.right)}
               aria-label={field.right}
               disabled={!gender}

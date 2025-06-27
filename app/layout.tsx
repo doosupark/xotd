@@ -78,7 +78,7 @@ export default function RootLayout({
         <div className="flex min-h-screen">
           {/* PC 사이드바 */}
           <div className="hidden lg:flex lg:w-56 lg:flex-col lg:fixed lg:inset-y-0">
-            <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
+            <div className="flex flex-col flex-grow bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 pt-5 pb-4 overflow-y-auto">
               {/* CI 로고 - 홈페이지 링크 추가 */}
               <div className="flex items-center flex-shrink-0 px-4 mb-8">
                 <Link href="/" className="transition-opacity hover:opacity-80">
@@ -95,10 +95,10 @@ export default function RootLayout({
               
               {/* 네비게이션 */}
               <nav className="mt-5 flex-1 px-2 space-y-1">
-                <Link href="/" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900 hover:bg-gray-50">
+                <Link href="/" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
                   MBTI 일본 이름 생성기
                 </Link>
-                <Link href="/translator" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                <Link href="/translator" className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
                   한글 이름 일본어 변환기
                 </Link>
               </nav>
@@ -113,7 +113,7 @@ export default function RootLayout({
           {/* 메인 콘텐츠 */}
           <div className="lg:pl-56 flex flex-col flex-1">
             {/* 모바일 헤더 - CI 로고에 홈페이지 링크 추가 */}
-            <div className="lg:hidden bg-white px-4 py-1.5">
+            <div className="lg:hidden bg-white dark:bg-gray-900 px-4 py-1.5">
               <div className="flex items-center justify-center">
                 <Link href="/" className="transition-opacity hover:opacity-80">
                   <Image
@@ -142,7 +142,7 @@ export default function RootLayout({
             </div>
 
             {/* 모바일 하단 네비게이션 */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 z-50">
               <Navigation />
             </div>
           </div>

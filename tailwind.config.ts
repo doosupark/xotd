@@ -6,6 +6,7 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'media', // 시스템 다크모드 설정 감지
   theme: {
     extend: {
       colors: {

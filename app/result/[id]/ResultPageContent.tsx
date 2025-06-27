@@ -67,13 +67,13 @@ const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult }) => 
       {/* 추가 정보 섹션 */}
       <section className="mt-8 px-4">
         <div className="max-w-md mx-auto text-center">
-          <h2 className="text-lg font-bold mb-4">더 많은 이름 찾기</h2>
-          <p className="text-sm text-gray-600 mb-4">
+          <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">더 많은 이름 찾기</h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
             다른 MBTI 성향의 일본 이름도 궁금하시나요?
           </p>
           <button 
             onClick={() => router.push('/')}
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            className="w-full py-2 px-4 bg-blue-500 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
           >
             새로운 이름 생성하기
           </button>
