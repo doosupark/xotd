@@ -54,10 +54,10 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
     <section className="result-card flex flex-col items-center w-full mt-4">
       {/* 결과 안내 텍스트 */}
       <div id="mbti-result-title" className="text-center text-lg font-semibold mt-2 mb-4">당신의 일본 이름은?</div>
-      {/* 결과 이미지 + 이름 */}
+      {/* 결과 이미지 */}
       <div
         className="flex flex-col items-center mb-4 relative"
-        style={{ width: imageBoxSize, height: imageBoxSize + 60, overflow: 'hidden' }}
+        style={{ width: imageBoxSize }}
       >
         {/* 이미지+블랙 외각선: relative, flex */}
         <div
@@ -106,9 +106,12 @@ export default function MBTIResultCard({ result, onCopy, onShare }: MBTIResultCa
             }
           `}</style>
         </div>
-        {/* 한글 이름(크게) + 가타카나(괄호) */}
-        <div style={{ marginTop: 8 }} className={`text-2xl font-extrabold mb-0.5 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>{result.korean}</div>
-        <div className={`text-base text-gray-500 dark:text-gray-400 mb-1 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
+      </div>
+      
+      {/* 한글 이름(크게) + 가타카나(괄호) */}
+      <div className="flex flex-col items-center mb-8">
+        <div className={`text-2xl font-extrabold mb-2 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>{result.korean}</div>
+        <div className={`text-base text-gray-500 dark:text-gray-400 mb-4 leading-tight transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>({result.katakana})</div>
       </div>
       {/* 복사/공유 버튼 */}
       <div className="flex gap-2 mb-2">
