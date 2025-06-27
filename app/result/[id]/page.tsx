@@ -137,7 +137,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  const { mbti, gender, index } = shortData;
+  const { mbti, gender } = shortData;
   
   // 기본 이름으로 폴백 (메타데이터에서는 복잡한 로직 피함)
   const koreanName = `${mbti} 타입 이름`;
