@@ -40,20 +40,18 @@ const ResultPageContent: React.FC<ResultPageContentProps> = ({ fullResult }) => 
         title: `${fullResult.korean} - MBTI 일본 이름`,
         text: `내 MBTI(${fullResult.mbti})에 맞는 일본 이름은?`,
         url: shareUrl,
-      }).then(() => {
-        // 공유 완료 후 홈페이지로 이동
-        setTimeout(() => {
-          router.push('/');
-        }, 1000);
+      }).catch((error) => {
+        // 공유가 취소되거나 실패한 경우 fallback
+        if (error.name !== 'AbortError') {
+          navigator.clipboard.writeText(shareUrl).then(() => {
+            alert("링크가 복사되었습니다!");
+          });
+        }
       });
     } else {
       // Fallback: 클립보드에 URL 복사
       navigator.clipboard.writeText(shareUrl).then(() => {
         alert("링크가 복사되었습니다!");
-        // 복사 완료 후 홈페이지로 이동
-        setTimeout(() => {
-          router.push('/');
-        }, 1500);
       });
     }
   };
