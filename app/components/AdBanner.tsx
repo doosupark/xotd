@@ -7,7 +7,7 @@ const ADSENSE_UNDER_REVIEW = false;
 
 declare global {
   interface Window {
-    adsbygoogle: any[];
+    adsbygoogle: Array<Record<string, unknown>>;
   }
 }
 
