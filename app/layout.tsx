@@ -8,8 +8,8 @@ import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// AdSense 심사 중이므로 임시로 비활성화
-const ADSENSE_UNDER_REVIEW = true;
+// AdSense 활성화
+const ADSENSE_UNDER_REVIEW = false;
 
 export const metadata = {
   title: "MBTI 일본 이름 생성기",
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* AdSense 심사 중이므로 임시로 비활성화 */}
+        {/* Google AdSense */}
         {!ADSENSE_UNDER_REVIEW && (
           <Script
             async

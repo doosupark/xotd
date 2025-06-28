@@ -1,9 +1,26 @@
 'use client';
 
-// AdSense 심사 중이므로 임시로 비활성화
-const ADSENSE_UNDER_REVIEW = true;
+import { useEffect } from 'react';
+
+// AdSense 활성화
+const ADSENSE_UNDER_REVIEW = false;
+
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
 
 export default function AdBanner() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !ADSENSE_UNDER_REVIEW) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (error) {
+        console.error('AdSense error:', error);
+      }
+    }
+  }, []);
   // 심사 중에는 플레이스홀더만 표시
   if (ADSENSE_UNDER_REVIEW) {
     return (
@@ -27,6 +44,17 @@ export default function AdBanner() {
     );
   }
 
-  // 심사 완료 후 사용할 코드 (현재 비활성화)
-  return null;
+  // AdSense 광고 표시
+  return (
+    <div className="adsense-container" style={{ textAlign: 'center', margin: '16px 0' }}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-8759341144415814"
+        data-ad-slot="auto"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
 } 

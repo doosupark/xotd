@@ -3,33 +3,42 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://xotd.net'
   
-  // 주요 MBTI 타입과 성별 조합 샘플 (검색 엔진이 인덱싱할 수 있도록)
-  const sampleResults = [
-    'enfp-m-1', 'enfp-f-1', 'intj-m-1', 'intj-f-1',
-    'isfj-m-1', 'isfj-f-1', 'entp-m-1', 'entp-f-1',
-    'infp-m-1', 'infp-f-1', 'estj-m-1', 'estj-f-1',
-    'isfp-m-1', 'isfp-f-1', 'entj-m-1', 'entj-f-1',
+  // 모든 MBTI 타입 정의
+  const mbtiTypes = [
+    'enfj', 'enfp', 'entj', 'entp', 'esfj', 'esfp', 'estj', 'estp',
+    'infj', 'infp', 'intj', 'intp', 'isfj', 'isfp', 'istj', 'istp'
   ];
+  
+  // 각 MBTI 타입별로 남성/여성 샘플 결과 생성 (인덱스 1-5까지)
+  const sampleResults: string[] = [];
+  mbtiTypes.forEach(mbti => {
+    for (let i = 1; i <= 5; i++) {
+      sampleResults.push(`${mbti}-m-${i}`);
+      sampleResults.push(`${mbti}-f-${i}`);
+    }
+  });
+  
+  const currentDate = new Date('2025-01-01'); // 명시적 날짜로 변경
   
   const routes = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'weekly' as const,
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/translator`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    // 샘플 결과 페이지들 추가
+    // 모든 MBTI 타입별 샘플 결과 페이지들 (총 160개 URL)
     ...sampleResults.map(resultId => ({
       url: `${baseUrl}/result/${resultId}`,
-      lastModified: new Date(),
+      lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: 0.8,
     })),
   ];
   
