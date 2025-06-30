@@ -9,10 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'infj', 'infp', 'intj', 'intp', 'isfj', 'isfp', 'istj', 'istp'
   ];
   
-  // 각 MBTI 타입별로 남성/여성 샘플 결과 생성 (인덱스 1-5까지)
+  // 각 MBTI 타입별로 남성/여성 결과 생성 (인덱스 1-30까지)
   const sampleResults: string[] = [];
   mbtiTypes.forEach(mbti => {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 30; i++) {
       sampleResults.push(`${mbti}-m-${i}`);
       sampleResults.push(`${mbti}-f-${i}`);
     }
@@ -33,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    // 모든 MBTI 타입별 샘플 결과 페이지들 (총 160개 URL)
+    // 모든 MBTI 타입별 결과 페이지들 (총 960개 URL)
     ...sampleResults.map(resultId => ({
       url: `${baseUrl}/result/${resultId}`,
       lastModified: currentDate,
