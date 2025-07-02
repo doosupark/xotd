@@ -5,6 +5,9 @@ import ResultPageContent from './ResultPageContent';
 import maleNames from '../../../public/data/male_names.json';
 import femaleNames from '../../../public/data/female_names.json';
 
+// ISR 캐싱 설정 - 1시간마다 재검증
+export const revalidate = 3600;
+
 type ShortResultData = {
   mbti: string;
   gender: 'male' | 'female';
@@ -56,10 +59,10 @@ const parseShortId = (id: string): ShortResultData | null => {
       return null;
     }
     
-    // 인덱스 파싱
+    // 인덱스 파싱 (1-30 범위)
     const index = parseInt(indexStr, 10);
-    if (isNaN(index) || index < 0) {
-      console.error(`Invalid index: ${indexStr}`);
+    if (isNaN(index) || index < 1 || index > 30) {
+      console.error(`Invalid index: ${indexStr}. Must be between 1-30`);
       return null;
     }
     
@@ -84,12 +87,14 @@ const restoreFullResultData = (shortData: ShortResultData): FullResultData | nul
     const female = femaleNames as NameData;
     const names = gender === "male" ? male[mbti] : female[mbti];
     
-    if (!names || !Array.isArray(names) || names.length === 0 || !names[index]) {
-      console.error(`No names found for MBTI: ${mbti}, gender: ${gender}, index: ${index}`);
+    // 배열 인덱스는 0부터 시작하므로 index - 1 사용
+    const arrayIndex = index - 1;
+    if (!names || !Array.isArray(names) || names.length === 0 || !names[arrayIndex]) {
+      console.error(`No names found for MBTI: ${mbti}, gender: ${gender}, index: ${index} (arrayIndex: ${arrayIndex})`);
       return null;
     }
     
-    const nameData = names[index];
+    const nameData = names[arrayIndex];
     
     // MBTI 페르소나 데이터 가져오기
     const personaData = mbtiTravelPersona.mbti_types.find(
@@ -212,5 +217,34 @@ const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     </div>
   );
 };
+
+// 정적 경로 생성 - 960개 페이지를 빌드 시점에 미리 생성
+export async function generateStaticParams() {
+  const mbtiTypes = [
+    'enfj', 'enfp', 'entj', 'entp',
+    'esfj', 'esfp', 'estj', 'estp', 
+    'infj', 'infp', 'intj', 'intp',
+    'isfj', 'isfp', 'istj', 'istp'
+  ];
+  
+  const genders = ['m', 'f'];
+  const nameIndices = Array.from({ length: 30 }, (_, i) => i + 1); // 1-30
+  
+  const staticParams = [];
+  
+  // 16 MBTI × 2 성별 × 30 인덱스 = 960개 조합 생성
+  for (const mbti of mbtiTypes) {
+    for (const gender of genders) {
+      for (const index of nameIndices) {
+        staticParams.push({
+          id: `${mbti}-${gender}-${index}`
+        });
+      }
+    }
+  }
+  
+  console.log(`Generated ${staticParams.length} static params for result pages`);
+  return staticParams;
+}
 
 export default ResultPage; 
