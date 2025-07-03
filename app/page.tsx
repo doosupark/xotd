@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
     images: [
       {
-        url: "https://xotd.net/images/ci/ci_logo_small.png",
+        url: "https://xotd.net/images/ci/ci_logo_small.webp",
         width: 1200,
         height: 630,
         alt: "MBTI 일본 이름 생성기",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MBTI 일본 이름 생성기",
     description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
-    images: ["https://xotd.net/images/ci/ci_logo_small.png"],
+          images: ["https://xotd.net/images/ci/ci_logo_small.webp"],
   },
 };
 

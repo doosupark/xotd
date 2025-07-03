@@ -113,7 +113,7 @@ const restoreFullResultData = (shortData: ShortResultData): FullResultData | nul
       katakana: nameData.katakana,
       korean: nameData.korean,
       index,
-      imageUrl: `/images/${gender}/${mbti.toLowerCase()}.png`,
+      imageUrl: `/images/${gender}/${mbti.toLowerCase()}.webp`,
       persona: {
         nickname: personaData.nickname,
         slogan: personaData.slogan,
@@ -155,7 +155,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
   
   // 절대 URL로 OG 이미지 설정
-  const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.png`;
+  const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.webp`;
   const pageUrl = `https://xotd.net/result/${id}`;
 
   return {
@@ -180,7 +180,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         width: 1200,
         height: 630,
         alt: `${mbti} MBTI 타입 이미지`,
-        type: 'image/png',
+        type: 'image/webp',
       }],
       url: pageUrl,
       type: 'website',

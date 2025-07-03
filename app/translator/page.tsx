@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "한글 이름을 일본어로 쉽게 변환해보세요.",
     images: [
       {
-        url: "https://xotd.net/images/ci/ci_logo_small.png",
+        url: "https://xotd.net/images/ci/ci_logo_small.webp",
         width: 1200,
         height: 630,
         alt: "한글 이름 일본어 변환기",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "한글 이름 일본어 변환기",
     description: "한글 이름을 일본어로 쉽게 변환해보세요.",
-    images: ["https://xotd.net/images/ci/ci_logo_small.png"],
+          images: ["https://xotd.net/images/ci/ci_logo_small.webp"],
   },
 };
 

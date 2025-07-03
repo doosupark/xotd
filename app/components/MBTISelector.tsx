@@ -45,13 +45,25 @@ function getTraitImagePath(gender: Gender | null, letter: string) {
   return `/images/${gender}/${letter.toLowerCase()}.webp`;
 }
 
-// 이미지 사전 로딩 함수
+// 이미지 사전 로딩 함수 - 우선순위 기반 로딩
 function preloadImages(gender: Gender) {
-  const letters = ['e', 'i', 'n', 's', 't', 'f', 'j', 'p'];
-  letters.forEach(letter => {
+  // 우선순위 1: 가장 자주 사용되는 이미지들 먼저 로드
+  const highPriorityLetters = ['e', 'i', 'n', 's']; // 가장 자주 선택되는 성향들
+  const lowPriorityLetters = ['t', 'f', 'j', 'p'];
+  
+  // 즉시 로딩: 고우선순위 이미지들
+  highPriorityLetters.forEach(letter => {
     const img = new window.Image();
     img.src = `/images/${gender}/${letter}.webp`;
   });
+  
+  // 지연 로딩: 저우선순위 이미지들 (300ms 후)
+  setTimeout(() => {
+    lowPriorityLetters.forEach(letter => {
+      const img = new window.Image();
+      img.src = `/images/${gender}/${letter}.webp`;
+    });
+  }, 300);
 }
 
 function getRandomName(gender: string, mbti: string): { hiragana: string; katakana: string; korean: string; index: number } {
@@ -81,7 +93,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
   // 성별 선택 시 이미지 사전 로딩
   const handleGenderSelect = (selectedGender: Gender) => {
     setGender(selectedGender);
-    // 성별 선택 시 해당 성별의 모든 개별 이미지를 미리 로드
+    // 성별 선택 시 해당 성별의 개별 이미지를 단계별로 로드
     preloadImages(selectedGender);
   };
 
@@ -116,7 +128,7 @@ export default function MBTISelector({ onComplete }: { onComplete?: (data: Resul
     const resultData: ResultData = {
       mbti: mbtiStr,
       gender,
-      imageUrl: `/images/${gender}/${mbtiStr.toLowerCase()}.png`,
+      imageUrl: `/images/${gender}/${mbtiStr.toLowerCase()}.webp`,
       hiragana: name.hiragana,
       katakana: name.katakana,
       korean: name.korean,
