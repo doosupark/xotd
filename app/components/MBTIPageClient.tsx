@@ -110,9 +110,6 @@ export default function MBTIPageClient() {
       
       {isLoading && <div className="text-center p-8">결과 페이지로 이동 중...</div>}
 
-      <div id="ad-banner-placement" className="w-full h-24 my-6 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg">
-        광고 자리 (Ad Banner Placeholder)
-      </div>
       {result && <MBTIResultCard result={result} onCopy={handleCopy} onShare={handleShare} />}
       <section className="mt-10">
         <h2 className="text-lg font-bold mb-2">MBTI란?</h2>

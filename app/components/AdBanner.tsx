@@ -47,6 +47,10 @@ export default function AdBanner() {
   // AdSense 광고 표시
   return (
     <div className="adsense-container" style={{ textAlign: 'center', margin: '16px 0' }}>
+      {/* 광고 라벨 */}
+      <div className="text-xs text-gray-500 mb-1" style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>
+        광고
+      </div>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
