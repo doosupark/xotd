@@ -3,9 +3,19 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "개인정보보호 정책 - XOTD",
   description: "XOTD 서비스의 개인정보보호 정책을 확인하세요.",
+  alternates: {
+    canonical: 'https://xotd.net/privacy',
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

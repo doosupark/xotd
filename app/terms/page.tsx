@@ -3,9 +3,19 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "이용약관 - XOTD",
   description: "XOTD 서비스의 이용약관을 확인하세요.",
+  alternates: {
+    canonical: 'https://xotd.net/terms',
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

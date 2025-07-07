@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   });
   
-  const currentDate = new Date('2025-01-01'); // 명시적 날짜로 변경
+  const currentDate = new Date(); // 현재 날짜로 변경
   
   const routes = [
     {

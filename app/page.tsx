@@ -4,6 +4,20 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요 | xotd.net",
   description: "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+  alternates: {
+    canonical: 'https://xotd.net',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: "MBTI 일본 이름 생성기",
     description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
@@ -23,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MBTI 일본 이름 생성기",
     description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
-          images: ["https://xotd.net/images/ci/ci_logo_small.webp"],
+    images: ["https://xotd.net/images/ci/ci_logo_small.webp"],
   },
 };
 

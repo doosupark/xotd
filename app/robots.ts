@@ -6,11 +6,24 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/admin/',
+          '/favicon.ico',
+          '/robots.txt',
+          '/sitemap.xml'
+        ],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/admin/',
+          '/favicon.ico'
+        ],
         crawlDelay: 1,
       }
     ],
