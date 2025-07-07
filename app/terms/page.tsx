@@ -80,7 +80,7 @@ export default function TermsOfService() {
             5. 면책 조항
           </h2>
           <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• 본 서비스는 "있는 그대로" 제공되며, 
+            <p>• 본 서비스는 &quot;있는 그대로&quot; 제공되며, 
                특정 목적에의 적합성을 보장하지 않습니다.</p>
             <p>• 서비스 이용으로 인한 직간접적 손해에 대해 책임지지 않습니다.</p>
             <p>• 생성된 이름의 정확성, 적절성에 대해 보장하지 않습니다.</p>
