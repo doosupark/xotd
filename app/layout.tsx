@@ -12,8 +12,54 @@ const inter = Inter({ subsets: ["latin"] });
 const ADSENSE_UNDER_REVIEW = false;
 
 export const metadata = {
-  title: "MBTI 일본 이름 생성기",
-  description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+  title: "MBTI 일본 이름 생성기 - XOTD",
+  description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요! 16가지 성격 유형별 특별한 일본 이름 추천 서비스입니다.",
+  keywords: "MBTI, 일본이름, 성격유형, 이름생성기, 일본어변환, 성격테스트",
+  authors: [{ name: "XOTD Team" }],
+  creator: "XOTD",
+  publisher: "XOTD",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://xotd.net'),
+  alternates: {
+    canonical: 'https://xotd.net',
+  },
+  openGraph: {
+    title: "MBTI 일본 이름 생성기 - XOTD",
+    description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+    url: 'https://xotd.net',
+    siteName: 'XOTD',
+    locale: 'ko_KR',
+    type: 'website',
+    images: [
+      {
+        url: 'https://xotd.net/images/ci/ci_logo_small.webp',
+        width: 1200,
+        height: 630,
+        alt: 'XOTD - MBTI 일본 이름 생성기',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "MBTI 일본 이름 생성기 - XOTD",
+    description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+    images: ['https://xotd.net/images/ci/ci_logo_small.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   ...(ADSENSE_UNDER_REVIEW ? {} : {
     other: {
       "google-adsense-account": "ca-pub-8759341144415814",
@@ -77,7 +123,7 @@ export default function RootLayout({
 
         <div className="flex min-h-screen">
           {/* PC 사이드바 */}
-          <div className="hidden lg:flex lg:w-56 lg:flex-col lg:fixed lg:inset-y-0">
+          <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
             <div className="flex flex-col flex-grow bg-white dark:bg-black border-r border-gray-200 dark:border-gray-700 pt-5 pb-4 overflow-y-auto">
               {/* CI 로고 - 홈페이지 링크 추가 */}
               <div className="flex items-center flex-shrink-0 px-4 mb-8">
@@ -103,15 +149,15 @@ export default function RootLayout({
                 </Link>
               </nav>
               
-              {/* 광고 영역 */}
+              {/* 수직형 광고 영역 - PC 사이드바 */}
               <div className="flex-shrink-0 p-4">
-                <AdBanner />
+                <AdBanner type="vertical" />
               </div>
             </div>
           </div>
           
           {/* 메인 콘텐츠 */}
-          <div className="lg:pl-56 flex flex-col flex-1">
+          <div className="lg:pl-64 flex flex-col flex-1">
             {/* 모바일 헤더 - CI 로고에 홈페이지 링크 추가 */}
             <div className="lg:hidden bg-white dark:bg-black px-4 py-1.5">
               <div className="flex items-center justify-center">
@@ -136,9 +182,51 @@ export default function RootLayout({
               </div>
             </main>
 
-            {/* 모바일 하단 광고 영역 */}
-            <div className="lg:hidden px-4 py-4">
-              <AdBanner />
+            {/* 푸터 - PC 전용 */}
+            <footer className="hidden lg:block bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+                  <div>
+                    © 2024 XOTD. All rights reserved.
+                  </div>
+                  <div className="flex space-x-6">
+                    <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
+                      개인정보보호 정책
+                    </Link>
+                    <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300">
+                      이용약관
+                    </Link>
+                    <a 
+                      href="mailto:support@xotd.net" 
+                      className="hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                      문의하기
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </footer>
+
+            {/* 모바일 하단 광고 영역 - 하단형 광고 사용 */}
+            <div className="lg:hidden px-4 py-4 bg-gray-50 dark:bg-gray-900">
+              <AdBanner type="bottom" />
+            </div>
+
+            {/* 모바일 푸터 */}
+            <div className="lg:hidden bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 pb-16">
+              <div className="px-4 py-3">
+                <div className="text-center text-xs text-gray-500 dark:text-gray-400 space-y-1">
+                  <div>© 2024 XOTD. All rights reserved.</div>
+                  <div className="flex justify-center space-x-4">
+                    <Link href="/privacy" className="hover:text-gray-700 dark:hover:text-gray-300">
+                      개인정보보호정책
+                    </Link>
+                    <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300">
+                      이용약관
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* 모바일 하단 네비게이션 */}
