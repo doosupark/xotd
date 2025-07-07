@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
           <div className="text-gray-700 dark:text-gray-300">
             <p>개인정보보호 관련 문의사항이 있으시면 다음으로 연락해 주세요:</p>
             <p className="mt-2">
-              이메일: privacy@xotd.net<br />
+              이메일: privacy@12goblins.com<br />
               웹사이트: https://xotd.net
             </p>
           </div>

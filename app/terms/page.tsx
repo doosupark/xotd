@@ -136,7 +136,7 @@ export default function TermsOfService() {
           <div className="text-gray-700 dark:text-gray-300">
             <p>이용약관 관련 문의사항이 있으시면 다음으로 연락해 주세요:</p>
             <p className="mt-2">
-              이메일: support@xotd.net<br />
+              이메일: support@12goblins.com<br />
               웹사이트: https://xotd.net
             </p>
           </div>

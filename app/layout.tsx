@@ -196,12 +196,6 @@ export default function RootLayout({
                     <Link href="/terms" className="hover:text-gray-700 dark:hover:text-gray-300">
                       이용약관
                     </Link>
-                    <a 
-                      href="mailto:support@xotd.net" 
-                      className="hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                      문의하기
-                    </a>
                   </div>
                 </div>
               </div>
