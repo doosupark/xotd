@@ -105,11 +105,11 @@ const nextConfig = {
   // 압축 활성화
   compress: true,
   
-  // 실험적 기능 설정
-  experimental: {
-    optimizeCss: true,
-    optimizeServerReact: true,
-  },
+  // 실험적 기능 설정 (critters 오류로 인해 임시 비활성화)
+  // experimental: {
+  //   optimizeCss: true,
+  //   optimizeServerReact: true,
+  // },
 };
 
 module.exports = nextConfig; 

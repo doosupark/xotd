@@ -56,7 +56,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. 개인정보 수집 및 이용</h2>
               <div className="text-gray-600 space-y-4">
                 <p>
-                  XOTD(이하 "회사")는 사용자의 개인정보를 중요시하며, 개인정보보호법을 준수하고 있습니다.
+                  XOTD(이하 &quot;회사&quot;)는 사용자의 개인정보를 중요시하며, 개인정보보호법을 준수하고 있습니다.
                 </p>
                 <p>
                   본 서비스는 회원가입 없이 이용 가능하며, 개인정보를 직접 수집하지 않습니다.

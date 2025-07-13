@@ -56,7 +56,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">제1조 (목적)</h2>
               <div className="text-gray-600 space-y-4">
                 <p>
-                  이 약관은 XOTD(이하 "회사")가 제공하는 MBTI 일본 이름 생성기 서비스(이하 "서비스")의 
+                  이 약관은 XOTD(이하 &quot;회사&quot;)가 제공하는 MBTI 일본 이름 생성기 서비스(이하 &quot;서비스&quot;)의 
                   이용 조건 및 절차, 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
                 </p>
               </div>
@@ -67,9 +67,9 @@ export default function TermsPage() {
               <div className="text-gray-600 space-y-4">
                 <p>이 약관에서 사용하는 용어의 정의는 다음과 같습니다:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>"서비스"라 함은 회사가 제공하는 MBTI 일본 이름 생성기 및 관련 서비스를 의미합니다.</li>
-                  <li>"이용자"라 함은 이 약관에 따라 회사가 제공하는 서비스를 받는 자를 의미합니다.</li>
-                  <li>"콘텐츠"라 함은 서비스를 통해 제공되는 모든 정보, 텍스트, 이미지 등을 의미합니다.</li>
+                  <li>&quot;서비스&quot;라 함은 회사가 제공하는 MBTI 일본 이름 생성기 및 관련 서비스를 의미합니다.</li>
+                  <li>&quot;이용자&quot;라 함은 이 약관에 따라 회사가 제공하는 서비스를 받는 자를 의미합니다.</li>
+                  <li>&quot;콘텐츠&quot;라 함은 서비스를 통해 제공되는 모든 정보, 텍스트, 이미지 등을 의미합니다.</li>
                 </ul>
               </div>
             </section>
