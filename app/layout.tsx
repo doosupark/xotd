@@ -13,7 +13,7 @@ const ADSENSE_UNDER_REVIEW = false;
 
 export const metadata = {
   title: "MBTI 일본 이름 생성기 - XOTD",
-  description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요! 16가지 성격 유형별 특별한 일본 이름 추천 서비스입니다.",
+  description: "MBTI 성향에 맞는 귀여운 이미지와 함께 일본식 이름을 생성해보세요! 16가지 성격 유형별 특별한 일본 이름 추천 서비스입니다.",
   keywords: "MBTI, 일본이름, 성격유형, 이름생성기, 일본어변환, 성격테스트",
   authors: [{ name: "XOTD Team" }],
   creator: "XOTD",
@@ -29,7 +29,7 @@ export const metadata = {
   },
   openGraph: {
     title: "MBTI 일본 이름 생성기 - XOTD",
-    description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+    description: "MBTI 성향에 맞는 귀여운 이미지와 함께 일본식 이름을 생성해보세요!",
     url: 'https://xotd.net',
     siteName: 'XOTD',
     locale: 'ko_KR',
@@ -46,7 +46,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "MBTI 일본 이름 생성기 - XOTD",
-    description: "MBTI 성향에 맞는 일본식 이름을 생성해보세요!",
+    description: "MBTI 성향에 맞는 귀여운 이미지와 함께 일본식 이름을 생성해보세요!",
     images: ['https://xotd.net/images/ci/ci_logo_small.webp'],
   },
   robots: {
@@ -75,6 +75,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* Naver Search Advisor 소유권 확인 */}
+        <meta name="naver-site-verification" content="6abc282195a3afa3f8b71e8254e24f3ec86f89ff" />
+        
         {/* Google AdSense */}
         {!ADSENSE_UNDER_REVIEW && (
           <Script
@@ -100,9 +103,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* JSON-LD for SEO - Script component 사용 */}
+        {/* JSON-LD for SEO - 확장된 구조화 데이터 */}
         <Script
-          id="json-ld"
+          id="json-ld-website"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -111,12 +114,109 @@ export default function RootLayout({
               "@type": "WebSite",
               "url": "https://xotd.net",
               "name": "XOTD.NET | MBTI 일본 이름 생성기",
-              "description": "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+              "description": "MBTI 16가지 성격 유형별 귀여운 이미지와 함께 특별한 일본식 이름을 무료로 생성해보세요!",
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": "https://xotd.net/?mbti={mbti}&gender={gender}",
                 "query-input": "required name=mbti, required name=gender"
               }
+            })
+          }}
+        />
+
+        {/* JSON-LD for WebApplication */}
+        <Script
+          id="json-ld-webapp"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "MBTI 일본 이름 생성기",
+              "description": "MBTI 성격 유형별 귀여운 이미지와 함께 일본식 이름을 생성하는 무료 웹 애플리케이션",
+              "url": "https://xotd.net",
+              "applicationCategory": "UtilityApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "KRW"
+              },
+              "author": {
+                "@type": "Organization",
+                "name": "XOTD"
+              },
+              "featureList": [
+                "MBTI 16가지 성격 유형별 일본 이름 생성",
+                "귀여운 캐릭터 이미지 제공",
+                "히라가나, 가타카나 표기 지원",
+                "한글 이름 일본어 변환",
+                "결과 공유 기능"
+              ]
+            })
+          }}
+        />
+
+        {/* JSON-LD for FAQ */}
+        <Script
+          id="json-ld-faq"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "MBTI 일본 이름 생성기는 무엇인가요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "MBTI 16가지 성격 유형과 성별을 선택하면 해당 성향에 어울리는 일본식 이름을 추천해주는 무료 서비스입니다. 귀여운 캐릭터 이미지와 함께 히라가나, 가타카나 표기도 제공합니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "생성된 일본 이름을 어떻게 활용할 수 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "일본 여행 시 별명, 온라인 게임 캐릭터명, SNS 닉네임, 창작 활동, 일본 웹사이트 가입 등 다양한 용도로 활용하실 수 있습니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "한글 이름을 일본어로 변환할 수 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "네, 별도의 한글 이름 일본어 변환기를 제공합니다. 한글 이름을 입력하면 정확한 일본어(카타카나/히라가나) 표기로 변환해드립니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "서비스 이용료가 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "모든 서비스는 완전 무료입니다. 회원가입 없이 언제든지 이용하실 수 있습니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "결과를 저장하거나 공유할 수 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "네, 생성된 결과는 고유 URL을 통해 언제든지 다시 확인할 수 있으며, 카카오톡, 페이스북 등 SNS에 공유할 때 미리보기 이미지가 함께 표시됩니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "MBTI 타입별로 어떤 차이가 있나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "각 MBTI 타입별로 성격 특성에 맞는 일본식 이름을 추천하며, 귀여운 캐릭터 이미지와 함께 개성 있는 페르소나 설명을 제공합니다."
+                  }
+                }
+              ]
             })
           }}
         />

@@ -36,6 +36,10 @@ const nextConfig = {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
         ],
       },
       // 정적 자원에 대한 캐시 제어
@@ -48,7 +52,63 @@ const nextConfig = {
           },
         ],
       },
+      // 사이트맵과 robots.txt 캐시 설정
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, must-revalidate', // 1시간 캐시
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/xml',
+          },
+        ],
+      },
+      {
+        source: '/robots.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, must-revalidate', // 24시간 캐시
+          },
+          {
+            key: 'Content-Type',
+            value: 'text/plain',
+          },
+        ],
+      },
+      // 결과 페이지 캐시 최적화
+      {
+        source: '/result/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800', // 24시간 캐시, 7일 stale
+          },
+        ],
+      },
+      // API 경로 크롤링 방지
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
     ];
+  },
+  
+  // 압축 활성화
+  compress: true,
+  
+  // 실험적 기능 설정
+  experimental: {
+    optimizeCss: true,
+    optimizeServerReact: true,
   },
 };
 

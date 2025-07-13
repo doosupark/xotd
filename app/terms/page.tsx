@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "이용약관 - XOTD",
-  description: "XOTD 서비스의 이용약관을 확인하세요.",
+  description: "XOTD MBTI 일본 이름 생성기의 이용약관을 확인하세요. 서비스 이용 조건, 지적재산권, 면책 조항, 광고 정책 등 서비스 이용 시 필요한 모든 약관을 상세히 안내합니다.",
   alternates: {
     canonical: 'https://xotd.net/terms',
   },
@@ -19,138 +19,165 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TermsOfService() {
+export default function TermsPage() {
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">
-        이용약관
-      </h1>
-      
-      <div className="prose max-w-none dark:prose-invert">
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
-          최종 업데이트: 2024년 12월 21일
-        </p>
+    <div className="min-h-screen bg-gray-50 py-8">
+      {/* JSON-LD for BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "홈",
+                "item": "https://xotd.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "이용약관",
+                "item": "https://xotd.net/terms"
+              }
+            ]
+          })
+        }}
+      />
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            1. 서비스 소개
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>
-              XOTD는 MBTI 성격 유형에 기반하여 일본식 이름을 생성하고, 
-              한글 이름을 일본어로 변환하는 서비스를 제공합니다.
-            </p>
-            <p>
-              본 서비스는 오락 및 교육 목적으로 제공되며, 
-              실제 이름 작명이나 법적 용도로는 사용하실 수 없습니다.
-            </p>
-          </div>
-        </section>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">이용약관</h1>
+          
+          <div className="space-y-8">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제1조 (목적)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  이 약관은 XOTD(이하 "회사")가 제공하는 MBTI 일본 이름 생성기 서비스(이하 "서비스")의 
+                  이용 조건 및 절차, 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+                </p>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            2. 이용 조건
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>서비스 이용 시 다음 사항을 준수해야 합니다:</p>
-            <ul className="list-disc list-inside ml-4 space-y-1">
-              <li>관련 법령 및 본 약관 준수</li>
-              <li>타인의 권리 침해 금지</li>
-              <li>서비스의 정상적인 운영 방해 금지</li>
-              <li>부정한 목적으로의 서비스 이용 금지</li>
-            </ul>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제2조 (정의)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>이 약관에서 사용하는 용어의 정의는 다음과 같습니다:</p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>"서비스"라 함은 회사가 제공하는 MBTI 일본 이름 생성기 및 관련 서비스를 의미합니다.</li>
+                  <li>"이용자"라 함은 이 약관에 따라 회사가 제공하는 서비스를 받는 자를 의미합니다.</li>
+                  <li>"콘텐츠"라 함은 서비스를 통해 제공되는 모든 정보, 텍스트, 이미지 등을 의미합니다.</li>
+                </ul>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            3. 서비스 제공 및 변경
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• XOTD는 서비스의 안정적 제공을 위해 최선을 다하지만, 
-               기술적 문제나 기타 사유로 서비스가 중단될 수 있습니다.</p>
-            <p>• 서비스 개선을 위해 기능 추가, 수정, 삭제가 이루어질 수 있습니다.</p>
-            <p>• 중요한 변경사항은 웹사이트를 통해 사전 공지하겠습니다.</p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제3조 (약관의 효력 및 변경)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  이 약관은 서비스를 이용하는 모든 이용자에게 적용되며, 
+                  서비스 이용 시 이 약관에 동의한 것으로 간주됩니다.
+                </p>
+                <p>
+                  회사는 필요한 경우 이 약관을 변경할 수 있으며, 
+                  변경된 약관은 웹사이트에 공지함으로써 효력이 발생합니다.
+                </p>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            4. 지적재산권
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• 본 서비스의 모든 콘텐츠는 XOTD 또는 해당 권리자에게 귀속됩니다.</p>
-            <p>• 사용자는 개인적, 비상업적 용도로만 서비스를 이용할 수 있습니다.</p>
-            <p>• 서비스의 무단 복제, 배포, 상업적 이용을 금지합니다.</p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제4조 (서비스의 제공)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>회사는 다음과 같은 서비스를 제공합니다:</p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>MBTI 성격 유형별 일본 이름 추천 서비스</li>
+                  <li>한글 이름의 일본어 변환 서비스</li>
+                  <li>생성된 결과의 공유 기능</li>
+                  <li>기타 회사가 정하는 서비스</li>
+                </ul>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            5. 면책 조항
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• 본 서비스는 &quot;있는 그대로&quot; 제공되며, 
-               특정 목적에의 적합성을 보장하지 않습니다.</p>
-            <p>• 서비스 이용으로 인한 직간접적 손해에 대해 책임지지 않습니다.</p>
-            <p>• 생성된 이름의 정확성, 적절성에 대해 보장하지 않습니다.</p>
-            <p>• 제3자 서비스(Google AdSense 등)로 인한 문제에 대해 책임지지 않습니다.</p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제5조 (이용자의 의무)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>이용자는 다음 행위를 하여서는 안 됩니다:</p>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>서비스의 정상적인 운영을 방해하는 행위</li>
+                  <li>다른 이용자의 개인정보를 수집하거나 이용하는 행위</li>
+                  <li>서비스를 상업적 목적으로 무단 이용하는 행위</li>
+                  <li>관련 법령에 위반되는 행위</li>
+                </ul>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            6. 광고 정책
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• 본 서비스는 Google AdSense를 통해 광고를 게재합니다.</p>
-            <p>• 광고는 사용자의 관심사와 관련된 내용으로 표시될 수 있습니다.</p>
-            <p>• 광고 클릭 시 외부 사이트로 이동하며, 
-               해당 사이트의 정책이 적용됩니다.</p>
-            <p>• 광고 내용에 대한 책임은 광고주에게 있습니다.</p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibent text-gray-800 mb-4">제6조 (지적재산권)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  서비스에 사용된 콘텐츠, 이미지, 소프트웨어 등의 지적재산권은 회사에 귀속됩니다.
+                </p>
+                <p>
+                  이용자는 서비스를 통해 얻은 정보를 회사의 사전 승낙 없이 
+                  복제, 송신, 출판, 배포, 방송 기타 방법에 의하여 영리목적으로 이용할 수 없습니다.
+                </p>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            7. 개인정보보호
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>개인정보 처리에 관한 사항은 별도의 
-              <a 
-                href="/privacy" 
-                className="text-blue-600 dark:text-blue-400 hover:underline mx-1"
-              >
-                개인정보보호 정책
-              </a>
-              을 따릅니다.
-            </p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제7조 (광고 게재)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  회사는 서비스 운영을 위해 Google AdSense 등을 통한 광고를 게재할 수 있습니다.
+                </p>
+                <p>
+                  이용자는 서비스 이용 시 노출되는 광고에 대해 동의한 것으로 간주됩니다.
+                </p>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            8. 약관 변경
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <p>• 본 약관은 관련 법령이나 서비스 정책 변경에 따라 수정될 수 있습니다.</p>
-            <p>• 중요한 변경사항은 웹사이트를 통해 사전 공지하겠습니다.</p>
-            <p>• 변경된 약관에 동의하지 않는 경우 서비스 이용을 중단하시기 바랍니다.</p>
-          </div>
-        </section>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제8조 (면책조항)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  회사는 천재지변, 전쟁, 기타 이에 준하는 불가항력으로 인하여 
+                  서비스를 제공할 수 없는 경우에는 서비스 제공에 관한 책임이 면제됩니다.
+                </p>
+                <p>
+                  회사는 이용자의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.
+                </p>
+              </div>
+            </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-            9. 연락처
-          </h2>
-          <div className="text-gray-700 dark:text-gray-300">
-            <p>이용약관 관련 문의사항이 있으시면 다음으로 연락해 주세요:</p>
-            <p className="mt-2">
-              이메일: support@12goblins.com<br />
-              웹사이트: https://xotd.net
-            </p>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제9조 (분쟁해결)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  서비스 이용과 관련하여 회사와 이용자 사이에 분쟁이 발생한 경우, 
+                  상호 협의를 통해 해결하는 것을 원칙으로 합니다.
+                </p>
+                <p>
+                  협의가 이루어지지 않을 경우, 대한민국 법령에 따라 해결합니다.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">제10조 (기타)</h2>
+              <div className="text-gray-600 space-y-4">
+                <p>
+                  이 약관에 명시되지 않은 사항은 관련 법령 및 상관례에 따릅니다.
+                </p>
+                <p className="font-medium">
+                  시행일: 2024년 12월 21일
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );

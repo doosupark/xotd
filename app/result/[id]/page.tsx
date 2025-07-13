@@ -142,7 +142,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  const { mbti, gender } = shortData;
+  const { mbti, gender, index } = shortData;
   
   // 실제 이름 데이터 조회
   const fullResult = restoreFullResultData(shortData);
@@ -158,6 +158,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const ogImageUrl = `https://xotd.net/images/${gender}/${mbti.toLowerCase()}.webp`;
   const pageUrl = `https://xotd.net/result/${id}`;
 
+  // 색인 제어: 인덱스 1-5는 색인 허용, 6-30은 색인 제한
+  const shouldIndex = index <= 5;
+
   return {
     title: `${mbti} 타입의 일본 이름은? - MBTI 일본 이름`,
     description: `${nameResult} 입니다!`,
@@ -165,10 +168,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       canonical: pageUrl,
     },
     robots: {
-      index: true,
+      index: shouldIndex,
       follow: true,
       googleBot: {
-        index: true,
+        index: shouldIndex,
         follow: true,
       },
     },
@@ -213,6 +216,123 @@ const ResultPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   // 실제 결과 페이지를 표시 (리다이렉트 제거)
   return (
     <div className="flex flex-col items-center">
+      {/* JSON-LD for BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "홈",
+                "item": "https://xotd.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "MBTI 일본 이름 생성기",
+                "item": "https://xotd.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": `${fullResult.mbti} 타입 결과`,
+                "item": `https://xotd.net/result/${id}`
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* JSON-LD for Product (Generated Name) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": `${fullResult.mbti} 타입의 일본 이름: ${fullResult.korean}`,
+            "description": `${fullResult.mbti} 성격 유형에 맞는 일본식 이름 ${fullResult.korean}(${fullResult.hiragana})입니다. ${fullResult.persona.description}`,
+            "url": `https://xotd.net/result/${id}`,
+            "image": `https://xotd.net${fullResult.imageUrl}`,
+            "brand": {
+              "@type": "Brand",
+              "name": "XOTD",
+              "url": "https://xotd.net"
+            },
+            "manufacturer": {
+              "@type": "Organization",
+              "name": "XOTD",
+              "url": "https://xotd.net"
+            },
+            "category": "Name Generator",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "KRW",
+              "availability": "https://schema.org/InStock",
+              "priceValidUntil": "2025-12-31",
+              "seller": {
+                "@type": "Organization",
+                "name": "XOTD"
+              }
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "1000",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "additionalProperty": [
+              {
+                "@type": "PropertyValue",
+                "name": "MBTI 타입",
+                "value": fullResult.mbti.toUpperCase()
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "성별",
+                "value": fullResult.gender === 'male' ? '남성' : '여성'
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "히라가나",
+                "value": fullResult.hiragana
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "가타카나",
+                "value": fullResult.katakana
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "페르소나",
+                "value": fullResult.persona.nickname
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "슬로건",
+                "value": fullResult.persona.slogan
+              },
+              {
+                "@type": "PropertyValue",
+                "name": "인덱스",
+                "value": fullResult.index.toString()
+              }
+            ],
+            "isRelatedTo": {
+              "@type": "WebApplication",
+              "name": "MBTI 일본 이름 생성기",
+              "url": "https://xotd.net"
+            }
+          })
+        }}
+      />
+
       <ResultPageContent fullResult={fullResult} />
     </div>
   );

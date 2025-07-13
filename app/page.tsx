@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "MBTI 일본 이름 생성기 - 나만의 일본식 이름을 찾아보세요 | xotd.net",
-  description: "MBTI와 성별을 선택하면 당신만을 위한 일본식 이름을 추천해드립니다. 일본 여행, 닉네임, SNS 등에서 활용하세요!",
+  description: "MBTI 16가지 성격 유형별 귀여운 이미지와 함께 특별한 일본식 이름을 무료로 생성해보세요! 히라가나, 가타카나 표기까지 제공하며 일본 여행, 닉네임, SNS, 온라인 게임 등 다양한 용도로 활용 가능합니다.",
   alternates: {
     canonical: 'https://xotd.net',
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "MBTI 일본 이름 생성기",
-    description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
+    description: "MBTI 성격 유형별 귀여운 이미지와 함께 나만의 일본식 이름을 추천받으세요!",
     images: [
       {
         url: "https://xotd.net/images/ci/ci_logo_small.webp",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "MBTI 일본 이름 생성기",
-    description: "MBTI와 성별로 나만의 일본식 이름을 추천받으세요.",
+    description: "MBTI 성격 유형별 귀여운 이미지와 함께 나만의 일본식 이름을 추천받으세요!",
     images: ["https://xotd.net/images/ci/ci_logo_small.webp"],
   },
 };
@@ -44,6 +44,31 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="flex flex-col items-center">
+      {/* JSON-LD for BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "홈",
+                "item": "https://xotd.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "MBTI 일본 이름 생성기",
+                "item": "https://xotd.net"
+              }
+            ]
+          })
+        }}
+      />
+
       {/* 메인 서비스 */}
       <MBTIPageClient />
       

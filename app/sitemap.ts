@@ -9,22 +9,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'infj', 'infp', 'intj', 'intp', 'isfj', 'isfp', 'istj', 'istp'
   ];
   
-  // 각 MBTI 타입별로 남성/여성 결과 생성 (인덱스 1-30까지)
+  // 각 MBTI 타입별로 대표 샘플 URL만 생성 (인덱스 1-5까지만)
+  // 실제로는 1-30까지 존재하지만, 사이트맵에는 샘플만 포함
   const sampleResults: string[] = [];
   mbtiTypes.forEach(mbti => {
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 5; i++) { // 30개 -> 5개로 축소
       sampleResults.push(`${mbti}-m-${i}`);
       sampleResults.push(`${mbti}-f-${i}`);
     }
   });
   
-  const currentDate = new Date(); // 현재 날짜로 변경
+  const currentDate = new Date();
   
   const routes = [
+    // 핵심 페이지들 (높은 우선순위)
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'daily' as const, // 메인 페이지는 매일 체크
       priority: 1.0,
     },
     {
@@ -36,21 +38,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/privacy`,
       lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      changeFrequency: 'yearly' as const, // 정책 페이지는 연간 업데이트
+      priority: 0.2,
     },
     {
       url: `${baseUrl}/terms`,
       lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      changeFrequency: 'yearly' as const, // 약관 페이지는 연간 업데이트
+      priority: 0.2,
     },
-    // 모든 MBTI 타입별 결과 페이지들 (총 960개 URL)
+    // 각 MBTI 타입별 대표 샘플 결과 페이지들 (총 160개 URL)
+    // 실제로는 더 많은 결과가 있지만, 구글이 패턴을 학습할 수 있도록 샘플만 제공
     ...sampleResults.map(resultId => ({
       url: `${baseUrl}/result/${resultId}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      priority: 0.8, // 우선순위 더 상향 조정 (결과 페이지가 핵심 콘텐츠)
     })),
   ];
   
